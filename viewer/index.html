@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GIS Viewer demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- ArcGIS Maps SDK for JavaScript (keep both URLs on the same version) -->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.30/"></script>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body class="standalone">
+  <!-- A published GIS Viewer. Everything it shows comes from manifest.json next to this page. -->
+  <section class="view viewer" id="view-viewer" style="--brand-bg: #3680F7; --brand-text: #FFFFFF">
+    <header class="brand" id="viewer-brand"></header>
+    <div class="viewer-body">
+      <main class="map" id="map" aria-label="Map"></main>
+      <aside class="vpanel" id="viewer-panel" aria-label="Map widgets"></aside>
+    </div>
+    <!-- Startup screen: shown before any script loads; js/startupScreen.js takes it over (same markup). -->
+    <div class="startup" role="status" aria-live="polite">
+      <div class="startup-card">
+        <div class="startup-brand"><span class="startup-title">GIS Viewer demo</span></div>
+        <div class="startup-spinner" aria-hidden="true"></div>
+        <ol class="startup-steps">
+          <li data-step="init" class="is-current"><span class="startup-mark" aria-hidden="true"></span>Initializing application</li>
+          <li data-step="config"><span class="startup-mark" aria-hidden="true"></span>Configuring components</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <noscript>This map needs JavaScript.</noscript>
+  <script type="module" src="js/viewer-main.js"></script>
+</body>
+</html>

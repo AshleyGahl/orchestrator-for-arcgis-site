@@ -1,0 +1,1478 @@
+{
+  "addData": {
+    "collections": [],
+    "portalSearch": "organization",
+    "url": true,
+    "file": true
+  },
+  "bookmarks": {
+    "includeWebMap": true,
+    "extra": []
+  },
+  "branding": {
+    "subtitle": "An Orchestrator for ArcGIS demo",
+    "headerBg": "#3680F7",
+    "headerText": "#FFFFFF",
+    "accent": "#4E63FD",
+    "selectionOnImagery": "#EAF55C",
+    "selectionLine": "dash",
+    "logo": ""
+  },
+  "dashboards": [
+    {
+      "id": "dash-3ac63461",
+      "title": "Cadastre (Deeds) overview",
+      "description": "Made automatically from Cadastre (Deeds). Change anything, or rearrange it in the Draft preview.",
+      "widgets": [
+        {
+          "id": "dw-85950ecc",
+          "type": "indicator",
+          "title": "Total Cadastre (Deeds)",
+          "layerKey": "19fb846d28e-layer-12",
+          "categoryField": "",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 10,
+          "cols": 4,
+          "rows": 2,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "single",
+          "opacity": 0.85,
+          "outlineColor": "",
+          "outlineWidth": 0,
+          "showValues": false,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": "Features in the layer"
+        },
+        {
+          "id": "dw-4897b63c",
+          "type": "indicator",
+          "title": "Total ExtentSqm",
+          "layerKey": "19fb846d28e-layer-12",
+          "categoryField": "",
+          "valueField": "ExtentSqm",
+          "statistic": "sum",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 10,
+          "cols": 4,
+          "rows": 2,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "single",
+          "opacity": 0.85,
+          "outlineColor": "",
+          "outlineWidth": 0,
+          "showValues": false,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": "Cadastre (Deeds)"
+        },
+        {
+          "id": "dw-10834cdf",
+          "type": "indicator",
+          "title": "Total Valuation",
+          "layerKey": "19fb846d28e-layer-12",
+          "categoryField": "",
+          "valueField": "Valuation",
+          "statistic": "sum",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 10,
+          "cols": 4,
+          "rows": 2,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "single",
+          "opacity": 0.85,
+          "outlineColor": "",
+          "outlineWidth": 0,
+          "showValues": false,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": "Cadastre (Deeds)"
+        },
+        {
+          "id": "dw-2f50ea98",
+          "type": "doughnut",
+          "title": "Cadastre (Deeds) by Type",
+          "layerKey": "19fb846d28e-layer-12",
+          "categoryField": "Type",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 6,
+          "cols": 4,
+          "rows": 3,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "palette",
+          "opacity": 0.85,
+          "outlineColor": "#FFFFFF",
+          "outlineWidth": 2,
+          "showValues": true,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": ""
+        },
+        {
+          "id": "dw-0eb41fdc",
+          "type": "doughnut",
+          "title": "Cadastre (Deeds) by Status",
+          "layerKey": "19fb846d28e-layer-12",
+          "categoryField": "Status",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 6,
+          "cols": 4,
+          "rows": 3,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "palette",
+          "opacity": 0.85,
+          "outlineColor": "#FFFFFF",
+          "outlineWidth": 2,
+          "showValues": true,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": ""
+        },
+        {
+          "id": "dw-b1f30809",
+          "type": "hbar",
+          "title": "Cadastre (Deeds) by Ward",
+          "layerKey": "19fb846d28e-layer-12",
+          "categoryField": "Ward",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 10,
+          "cols": 4,
+          "rows": 3,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "single",
+          "opacity": 0.85,
+          "outlineColor": "",
+          "outlineWidth": 0,
+          "showValues": false,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": ""
+        },
+        {
+          "id": "dw-90ceec81",
+          "type": "table",
+          "title": "ExtentSqm by Type",
+          "layerKey": "19fb846d28e-layer-12",
+          "categoryField": "Type",
+          "valueField": "ExtentSqm",
+          "statistic": "sum",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 20,
+          "cols": 6,
+          "rows": 6,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "single",
+          "opacity": 0.85,
+          "outlineColor": "",
+          "outlineWidth": 0,
+          "showValues": false,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": ""
+        },
+        {
+          "id": "dw-1306ca00",
+          "type": "records",
+          "title": "Cadastre (Deeds): features",
+          "layerKey": "19fb846d28e-layer-12",
+          "categoryField": "",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 25,
+          "cols": 6,
+          "rows": 6,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [
+            "Address",
+            "SchemeName",
+            "Type",
+            "Status",
+            "ExtentSqm",
+            "CreateDate"
+          ],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "single",
+          "opacity": 0.85,
+          "outlineColor": "",
+          "outlineWidth": 0,
+          "showValues": false,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": ""
+        }
+      ]
+    }
+  ],
+  "description": "",
+  "details": {
+    "19fb7ea909c-layer-1:1": {
+      "hideFields": [
+        "OBJECTID",
+        "WardID",
+        "Shape_Length",
+        "Shape_Area"
+      ],
+      "sections": [
+        {
+          "distance": 100,
+          "emphasis": {
+            "flash": true,
+            "flashTimes": 3,
+            "highlight": true,
+            "fillOpacity": 0.9,
+            "lift": true,
+            "liftHeight": 24,
+            "color": "",
+            "zoomScale": 0
+          },
+          "id": "sec-2f4bae7a",
+          "max": 1000,
+          "relation": "contains",
+          "render": "table",
+          "targets": [
+            {
+              "fields": [
+                {
+                  "label": "SGCode",
+                  "name": "SGCode"
+                },
+                {
+                  "label": "PropertyNo",
+                  "name": "PropertyNo"
+                },
+                {
+                  "label": "Address",
+                  "name": "Address"
+                },
+                {
+                  "label": "Suburb",
+                  "name": "Suburb"
+                },
+                {
+                  "label": "Zoning",
+                  "name": "Zoning"
+                }
+              ],
+              "layerKey": "19fb846d28e-layer-12"
+            }
+          ],
+          "title": "Spatial relationship",
+          "type": "spatial",
+          "windowSide": "left",
+          "windowSize": "half"
+        }
+      ]
+    },
+    "19fb7f5ed83-layer-6:19": {
+      "hideFields": [
+        "OBJECTID",
+        "KeyNumber",
+        "RID",
+        "Angle",
+        "Result"
+      ],
+      "title": "{Result}"
+    },
+    "19fb846d28e-layer-12": {
+      "expand": true
+    }
+  },
+  "disclaimer": {
+    "enabled": true,
+    "title": "Disclaimer",
+    "text": "This map viewer is published for **general information only**. Please read these terms before you use it. In these terms, \"we\" and \"us\" mean the organisation that publishes this viewer.\n\n> **Not for emergencies.** In an emergency, phone the emergency services. Do not use this viewer for emergency response or navigation.\n\n## At a glance\n| What you see | How to treat it | The official source |\n|---|---|---|\n| Property boundaries, erf or parcel numbers | Approximate | The approved survey diagrams and the title deeds |\n| Zoning and land use | A guide | The approved zoning scheme and its register |\n| Property values | For reference | The official valuation roll |\n| Pipes, cables and other services | Indicative only | The service provider, confirmed on site |\n| Distances, areas and coordinates | Estimates | A professional land surveyor |\n\n## 1. Information only\nThe maps, data and results shown here are a guide. They are not:\n- an official record or a legal document\n- a certificate or a plan approval\n- a replacement for advice from a qualified professional or a written answer from us.\n\n## 2. No guarantee of accuracy\nWe take reasonable care to keep the data accurate and current, but it is compiled from many sources, at different dates and scales, and may contain errors, gaps or delays. No guarantee is given that it is accurate, complete, current or fit for any particular purpose.\n\n## 3. Boundaries, positions and measurements\nProperty boundaries, erf or parcel numbers, zoning, servitudes and other lines are approximate and may be shifted against the aerial imagery. They are not a substitute for a land survey, the approved survey diagrams, the title deeds or the approved zoning scheme. Distances, areas and coordinates measured in this viewer are **estimates only**.\n\n## 4. Valuations, zoning and other official information\nWhere property values, zoning or land-use information is shown, the official valuation roll, the zoning scheme register and our formal decisions take precedence over anything in this viewer.\n\n## 5. Services and infrastructure\nThe position of pipes, cables and other services is indicative only. **Never rely on this viewer to locate underground services before you dig or build:**\n- contact us and the relevant service providers\n- confirm positions on site.\n\n## 6. Not for emergencies or navigation\nDo not use this viewer for emergency response, navigation or any decision where an error could put people or property at risk.\n\n## 7. Limitation of liability\nTo the fullest extent allowed by law, we, our officials and our suppliers are not liable for any loss, damage, cost or claim, direct or indirect, that arises from using, or being unable to use, this viewer or its data, or from any decision made on the strength of it. **You use it at your own risk.**\n\n## 8. Third-party content\nBasemaps, imagery and some layers come from third parties (including Esri and its data partners) under their own terms and copyright. We do not control and are not responsible for them. Links to other websites are provided for convenience and do not mean we endorse their content.\n\n## 9. Availability and changes\nThe viewer and its data may change, be withdrawn or be unavailable at any time without notice. Downloads, where offered, are provided as they are, without support.\n\n## 10. Copyright and use of the data\nOur data in this viewer remains our property.\n| You may | You may not, without our written permission |\n|---|---|\n| View it and print it for personal and non-commercial reference | Resell it, or copy it in bulk |\n\n## 11. Personal information\nAny personal information is handled in line with the applicable data protection law, including the Protection of Personal Information Act 4 of 2013 (POPIA). Use personal information you see here only for a lawful purpose. Your acceptance of these terms is kept only in your own browser; it is not sent to us.\n\n## 12. Governing law\nThese terms are governed by the laws of the Republic of South Africa.\n\n> To report an error in the data, or for official information, please contact us.\n\n**By continuing you confirm that you have read, understood and accept these terms.**",
+    "acceptLabel": "I agree",
+    "textSize": "small",
+    "transition": "left",
+    "speed": "slow",
+    "remember": "session",
+    "rememberDays": 30
+  },
+  "downloads": {
+    "width": "half",
+    "side": "left",
+    "pages": [
+      {
+        "id": "dl-4293e8fc",
+        "title": "Map Sheets (PDF)",
+        "description": "",
+        "source": {
+          "kind": "instantApp",
+          "url": "https://overstrand.maps.arcgis.com/apps/instant/filtergallery/index.html?appid=e2cf9ea58a984861af3ff0f63f6fd519",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-33f3a294",
+        "title": "WCG - Geoscience",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=boundaries%2520%2526%2520geoscience",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-4b7da2b0",
+        "title": "WCG - Demographics",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=demographics",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-35023a4c",
+        "title": "WCG - Service Delivery",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=service%2520delivery",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-ffac994d",
+        "title": "WCG - Economy Employment",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=economy%2520%2526%2520employment",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-d45b2a1d",
+        "title": "WCG - Governance Planning",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=governance%2520%2526%2520planning",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      }
+    ]
+  },
+  "editing": {
+    "template": "split",
+    "width": "half",
+    "side": "left",
+    "maxRecords": 200,
+    "layers": [
+      {
+        "id": "edl-ece67793",
+        "layerKey": "svc-4c1c31c1:0",
+        "title": "",
+        "allowUpdate": true,
+        "allowAdd": false,
+        "allowDelete": false,
+        "titleField": "",
+        "listFields": [],
+        "fields": [],
+        "groups": []
+      }
+    ],
+    "emphasis": {
+      "flash": false,
+      "flashTimes": 3,
+      "highlight": false,
+      "fillOpacity": 0.6,
+      "lift": false,
+      "liftHeight": 24,
+      "color": "",
+      "zoomScale": 0
+    }
+  },
+  "externalPages": {
+    "width": "half",
+    "side": "left",
+    "pages": [
+      {
+        "id": "page-cfm",
+        "title": "Cape Farm Mapper",
+        "url": "https://gis.elsenburg.com/apps/cfm/#x={lon}&y={lat}&z={zoom}&bm=hybrid",
+        "description": "Western Cape Department of Agriculture: farms, crops, soils and climate",
+        "followMap": true
+      },
+      {
+        "id": "page-csg",
+        "title": "CSG Property Viewer",
+        "url": "https://csggis.dlrrd.gov.za/portal/apps/experiencebuilder/experience/?id=a9a8f908e82c443b9cb7bede69f5985e#widget_81=viewpoint:%7B%22rotation%22%3A0%2C%22scale%22%3A{scale}%2C%22targetGeometry%22%3A%7B%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%2C%22x%22%3A{lon}%2C%22y%22%3A{lat}%7D%7D",
+        "description": "Chief Surveyor-General (DLRRD): cadastral parcels and survey diagrams",
+        "followMap": true
+      }
+    ]
+  },
+  "id": "viewer-686d3d0b",
+  "layerInfo": {
+    "layers": {
+      "19fb7ea909c-layer-1:0": {
+        "service": true
+      },
+      "19fb7ea909c-layer-1:1": {
+        "service": true
+      },
+      "19fb7ea909c-layer-1:10": {
+        "service": true
+      },
+      "19fb7ea909c-layer-1:11": {
+        "service": true
+      },
+      "19fb7ea909c-layer-1:2": {
+        "service": true
+      },
+      "19fb7ea909c-layer-1:3": {
+        "service": true
+      },
+      "19fb7ea909c-layer-1:4": {
+        "service": true
+      },
+      "19fb7ea909c-layer-1:5": {
+        "service": true
+      },
+      "19fb7ea909c-layer-1:9": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:0": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:11": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:12": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:15": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:17": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:19": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:2": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:20": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:21": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:22": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:3": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:4": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:5": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:6": {
+        "service": true
+      },
+      "19fb7f5ed83-layer-6:8": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:0": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:1": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:11": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:12": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:13": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:14": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:15": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:16": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:17": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:18": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:5": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:6": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:7": {
+        "service": true
+      },
+      "19fb80c281f-layer-9:8": {
+        "service": true
+      },
+      "19fb80edb06-layer-11:0": {
+        "service": true
+      },
+      "19fb80edb06-layer-11:1": {
+        "service": true
+      },
+      "19fb80edb06-layer-11:2": {
+        "service": true
+      },
+      "19fb80edb06-layer-11:3": {
+        "service": true
+      },
+      "19fb80edb06-layer-11:4": {
+        "service": true
+      },
+      "19fb824e309-layer-18": {
+        "service": true
+      },
+      "19fb846d28e-layer-12": {
+        "service": true
+      },
+      "19fb8476c55-layer-13": {
+        "service": true
+      },
+      "1a048165a9a-layer-15": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:1": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:10": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:11": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:12": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:13": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:14": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:18": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:19": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:2": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:21": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:22": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:23": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:3": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:4": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:5": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:6": {
+        "service": true
+      },
+      "1a0d7bad988-layer-16:8": {
+        "service": true
+      },
+      "1a0d7ca1373-layer-17": {
+        "service": true
+      },
+      "1a0d7ca549a-layer-18": {
+        "service": true
+      },
+      "1a0d7d18977-layer-19:0": {
+        "service": true
+      },
+      "1a0d7d18977-layer-19:1": {
+        "service": true
+      }
+    },
+    "showAddress": false
+  },
+  "layerStyles": {
+    "layers": {
+      "19fb846d28e-layer-12": {
+        "start": "webmap",
+        "styles": [
+          {
+            "classes": [
+              {
+                "color": "#ffffb2",
+                "label": "Up to 200,000",
+                "upTo": 200000
+              },
+              {
+                "color": "#fecc5c",
+                "label": "200,000 to 750,000",
+                "upTo": 750000
+              },
+              {
+                "color": "#fd8d3c",
+                "label": "750,000 to 2,000,000",
+                "upTo": 2000000
+              },
+              {
+                "color": "#f03b20",
+                "label": "2,000,000 to 3,100,000",
+                "upTo": 3100000
+              },
+              {
+                "color": "#bd0026",
+                "label": "More than 3,100,000",
+                "upTo": 398500000
+              }
+            ],
+            "description": "",
+            "enabled": true,
+            "field": "Valuation",
+            "id": "by-value",
+            "minValue": 0,
+            "name": "Valuation",
+            "opacity": 0.45,
+            "other": {
+              "color": "#cccccc",
+              "label": "No value",
+              "show": true
+            },
+            "outline": {
+              "color": "#6e6e6e",
+              "width": 0.5
+            },
+            "outlines": "layer",
+            "type": "classBreaks"
+          }
+        ]
+      }
+    }
+  },
+  "layout": {
+    "template": "rail",
+    "panelSide": "right",
+    "fieldsAs": "rows",
+    "resultsAt": "panel"
+  },
+  "legendLabels": {
+    "layers": {}
+  },
+  "publishedAt": "2026-11-08T22:14:12.016Z",
+  "publishedBy": null,
+  "scene": {
+    "width": "half",
+    "side": "left",
+    "layers": []
+  },
+  "schema": "overstrand.map-manifest/3",
+  "search": {
+    "boxSources": [
+      {
+        "id": "box-ebb2a536",
+        "type": "locator",
+        "name": "ArcGIS World Geocoder",
+        "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+        "placeholder": "",
+        "countryCode": "",
+        "maxSuggestions": 6,
+        "resultFields": [],
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 500
+        }
+      },
+      {
+        "id": "box-0e9d17d3",
+        "type": "layer",
+        "layerKey": "19fb7f5ed83-layer-6:19",
+        "name": "Address Search",
+        "searchFields": [
+          "Address"
+        ],
+        "displayField": "Address",
+        "exactMatch": false,
+        "placeholder": "",
+        "maxSuggestions": 12,
+        "resultFields": [
+          {
+            "label": "Result",
+            "name": "Result"
+          }
+        ],
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.25,
+          "lift": false,
+          "liftHeight": 4,
+          "color": "#EE892B",
+          "zoomScale": 500
+        }
+      }
+    ],
+    "boxPrimary": "box-0e9d17d3",
+    "allPlaceholder": "",
+    "sources": [
+      {
+        "id": "src-6132bac8",
+        "layerKey": "19fb846d28e-layer-12",
+        "fields": [
+          "PropertyNo"
+        ],
+        "operators": [
+          "eq"
+        ],
+        "defaultOperator": "eq",
+        "resultFields": [
+          {
+            "label": "Suburb",
+            "name": "Suburb"
+          },
+          {
+            "label": "Address",
+            "name": "Address"
+          }
+        ],
+        "hint": "Erf | Farm e.g. 3791 or 581/3",
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 500
+        }
+      },
+      {
+        "id": "src-1f6d042c",
+        "layerKey": "19fb8476c55-layer-13",
+        "fields": [
+          "PropertyNo"
+        ],
+        "operators": [
+          "contains"
+        ],
+        "defaultOperator": "contains",
+        "resultFields": [
+          {
+            "label": "PropertyNo",
+            "name": "PropertyNo"
+          },
+          {
+            "label": "SGCode",
+            "name": "SGCode"
+          }
+        ],
+        "hint": "Erf | Farm e.g. 3791 or 581/3",
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      }
+    ]
+  },
+  "streaming": {
+    "width": "half",
+    "side": "left",
+    "cameras": {
+      "on": true,
+      "groupId": "",
+      "streams": [
+        {
+          "id": "st-2c727da7",
+          "title": "I-80 west of Ashby Avenue, Berkeley (demo)",
+          "url": "https://wzmedia.dot.ca.gov/D4/E80_JWO_ASHBY_Av.stream/playlist.m3u8",
+          "kind": "hls",
+          "refreshSeconds": 10,
+          "location": [
+            -122.29806,
+            37.84672
+          ],
+          "description": "A public Caltrans traffic camera, live.",
+          "credit": "Caltrans (California Department of Transportation)"
+        },
+        {
+          "id": "st-e39368cc",
+          "title": "I-280 at 6th Street, San Francisco (demo)",
+          "url": "https://wzmedia.dot.ca.gov/D4/N280_at_6th.stream/playlist.m3u8",
+          "kind": "hls",
+          "refreshSeconds": 10,
+          "location": [
+            -122.3974,
+            37.77145
+          ],
+          "description": "A public Caltrans traffic camera, live.",
+          "credit": "Caltrans (California Department of Transportation)"
+        },
+        {
+          "id": "st-f0c7db20",
+          "title": "Bay Bridge east tower (demo snapshot)",
+          "url": "https://cwwp2.dot.ca.gov/data/d4/cctv/image/tvd32i80baybridgesastowereast/tvd32i80baybridgesastowereast.jpg",
+          "kind": "snapshot",
+          "refreshSeconds": 60,
+          "location": [
+            -122.35855,
+            37.81526
+          ],
+          "description": "A still picture the camera updates every minute or so.",
+          "credit": "Caltrans (California Department of Transportation)"
+        }
+      ]
+    },
+    "drones": {
+      "on": true,
+      "groupId": "",
+      "demo": true
+    },
+    "tracking": {
+      "on": true,
+      "groupId": "",
+      "feeds": [
+        {
+          "id": "trk-412b8fc0",
+          "title": "Los Angeles Metro buses (demo)",
+          "kind": "stream",
+          "url": "https://geoeventsample1.esri.com:6443/arcgis/rest/services/LABus/StreamServer",
+          "refreshSeconds": 15,
+          "itemsPath": "",
+          "latField": "",
+          "lonField": "",
+          "idField": "id",
+          "labelField": "route_id",
+          "trail": 10,
+          "color": "",
+          "visible": true,
+          "description": "Esri's sample ArcGIS stream service: LA Metro buses, pushed to the map as they report.",
+          "credit": "Esri sample service (LA Metro data)"
+        },
+        {
+          "id": "trk-e5d0d42a",
+          "title": "US flights (demo)",
+          "kind": "stream",
+          "url": "https://geoeventsample1.esri.com:6443/arcgis/rest/services/FAAStream/StreamServer",
+          "refreshSeconds": 15,
+          "itemsPath": "",
+          "latField": "",
+          "lonField": "",
+          "idField": "ACID",
+          "labelField": "ACID",
+          "trail": 5,
+          "color": "",
+          "visible": false,
+          "description": "Esri's sample ArcGIS stream service: aircraft over the United States.",
+          "credit": "Esri sample service (FAA data)"
+        },
+        {
+          "id": "trk-709c152f",
+          "title": "International Space Station (demo)",
+          "kind": "json",
+          "url": "https://api.wheretheiss.at/v1/satellites/25544",
+          "refreshSeconds": 5,
+          "itemsPath": "",
+          "latField": "latitude",
+          "lonField": "longitude",
+          "idField": "id",
+          "labelField": "name",
+          "trail": 60,
+          "color": "",
+          "visible": false,
+          "description": "One object from a plain JSON answer: the ISS, about 28,000 km/h. Follow it to watch it cross the map.",
+          "credit": "wheretheiss.at"
+        },
+        {
+          "id": "trk-3e0bd442",
+          "title": "Finnish trains (demo)",
+          "kind": "geojson",
+          "url": "https://rata.digitraffic.fi/api/v1/train-locations.geojson/latest/",
+          "refreshSeconds": 15,
+          "itemsPath": "",
+          "latField": "",
+          "lonField": "",
+          "idField": "trainNumber",
+          "labelField": "trainNumber",
+          "trail": 20,
+          "color": "",
+          "visible": false,
+          "description": "GPS positions of passenger and freight trains in Finland, as GeoJSON.",
+          "credit": "Fintraffic / digitraffic.fi, CC BY 4.0"
+        },
+        {
+          "id": "trk-6b8a181e",
+          "title": "Boston subway and trams (demo)",
+          "kind": "json",
+          "url": "https://api-v3.mbta.com/vehicles?filter%5Broute_type%5D=0,1&fields%5Bvehicle%5D=label,latitude,longitude,bearing,speed,current_status,updated_at",
+          "refreshSeconds": 15,
+          "itemsPath": "data",
+          "latField": "attributes.latitude",
+          "lonField": "attributes.longitude",
+          "idField": "id",
+          "labelField": "attributes.label",
+          "trail": 20,
+          "color": "",
+          "visible": false,
+          "description": "A transit agency's JSON API: the list is under \"data\", positions under \"attributes\".",
+          "credit": "Massachusetts Bay Transportation Authority (MBTA)"
+        }
+      ]
+    }
+  },
+  "title": "GIS Viewer demo",
+  "trace": {
+    "width": "half",
+    "side": "left",
+    "allowUserTraces": false,
+    "limits": {
+      "maxSteps": 5,
+      "maxIdsPerStep": 5000,
+      "maxFinal": 2000,
+      "batchSize": 200,
+      "concurrency": 3,
+      "timeoutSeconds": 60
+    },
+    "emphasis": {
+      "flash": true,
+      "flashTimes": 3,
+      "highlight": true,
+      "fillOpacity": 0.3,
+      "lift": true,
+      "liftHeight": 8,
+      "color": "#E5B243",
+      "zoomScale": 0
+    },
+    "traces": [
+      {
+        "id": "trc-74505ef5",
+        "title": "Street Names",
+        "description": "",
+        "startLayer": "19fb7f5ed83-layer-6:17",
+        "resultLabel": "Connected Properties",
+        "confirmsImpact": false,
+        "steps": [
+          {
+            "id": "stp-7222b974",
+            "from": "start",
+            "sourceField": "RID",
+            "targetLayer": "19fb7f5ed83-layer-6:19",
+            "targetField": "RID",
+            "filters": [],
+            "optional": false,
+            "caseInsensitive": false
+          },
+          {
+            "id": "stp-da28ae36",
+            "from": "stp-7222b974",
+            "sourceField": "SGCode",
+            "targetLayer": "19fb846d28e-layer-12",
+            "targetField": "SGCode",
+            "filters": [],
+            "optional": false,
+            "caseInsensitive": false
+          }
+        ],
+        "finalFields": [
+          {
+            "label": "",
+            "name": "PropertyNo"
+          },
+          {
+            "label": "",
+            "name": "Address"
+          },
+          {
+            "label": "",
+            "name": "Suburb"
+          }
+        ]
+      }
+    ]
+  },
+  "version": 84,
+  "webmap": {
+    "portalUrl": "https://overstrand.maps.arcgis.com",
+    "itemId": "f89d2fbbff4a4fe7b927560c90f34e58",
+    "title": "General Viewer Public",
+    "mode": "live",
+    "secured": false,
+    "modified": null,
+    "snapshot": null,
+    "extraServices": [],
+    "layerOrder": [],
+    "layerVisibility": {}
+  },
+  "widgets": {
+    "layers": true,
+    "legend": true,
+    "details": true,
+    "bookmarks": true,
+    "search": true,
+    "addData": false,
+    "dashboards": true,
+    "editing": true,
+    "scene": false,
+    "streaming": true,
+    "externalPages": true,
+    "downloads": true,
+    "layerInfo": true,
+    "trace": true,
+    "tools": [
+      "measure-distance",
+      "measure-area",
+      "sketch",
+      "swipe",
+      "elevation",
+      "label-orientation",
+      "dimensions",
+      "vegetation",
+      "go-to-xy",
+      "address-audit",
+      "basemap-gallery",
+      "share-link",
+      "screenshot",
+      "coordinates",
+      "export-results"
+    ],
+    "toolConfig": {
+      "measure-distance": {
+        "unit": "metric"
+      },
+      "measure-area": {
+        "unit": "metric"
+      },
+      "select": {
+        "layers": [],
+        "shapes": [
+          "rectangle",
+          "polygon"
+        ],
+        "emphasis": {
+          "flash": false,
+          "flashTimes": 3,
+          "highlight": false,
+          "fillOpacity": 0.6,
+          "lift": false,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      },
+      "sketch": {
+        "shapes": [
+          "point",
+          "polyline",
+          "polygon",
+          "rectangle",
+          "circle"
+        ],
+        "color": "#2B6F7F"
+      },
+      "elevation": {
+        "unit": "metric"
+      },
+      "swipe": {
+        "direction": "horizontal",
+        "leading": [
+          "19fb818cc10-layer-12"
+        ],
+        "trailing": [
+          "19fb8225f9e-layer-15",
+          "19fb823f0d8-layer-16"
+        ]
+      },
+      "label-orientation": {
+        "streetLayer": "",
+        "streetLabelField": "",
+        "pointLayer": "",
+        "labelField": "",
+        "angleField": "",
+        "saveGroupId": "",
+        "mode": "PARALLEL",
+        "autoFlip": true
+      },
+      "dimensions": {
+        "unit": "meters",
+        "areaUnit": "auto",
+        "decimals": 2,
+        "showArea": true,
+        "showBearings": false,
+        "bearingFormat": "dms",
+        "lineLength": "segments",
+        "lengthColor": "#000000",
+        "areaColor": "#000000",
+        "bearingColor": "#000000"
+      },
+      "vegetation": {
+        "source": "sentinel2",
+        "serviceUrl": "",
+        "bands": {
+          "blue": null,
+          "green": null,
+          "red": null,
+          "nir": null,
+          "swir1": null,
+          "swir2": null
+        },
+        "scale": 1,
+        "dateField": "",
+        "cloudField": "",
+        "indices": [
+          "ndvi",
+          "savi",
+          "ndmi",
+          "evi",
+          "nbr"
+        ],
+        "defaultIndex": "ndvi",
+        "breaks": {},
+        "maxCloud": 20,
+        "opacity": 0.7,
+        "emphasis": {
+          "flash": false,
+          "flashTimes": 3,
+          "highlight": false,
+          "fillOpacity": 0.6,
+          "lift": false,
+          "liftHeight": 24,
+          "color": "#10B981",
+          "zoomScale": 0
+        }
+      },
+      "go-to-xy": {
+        "zoom": 17,
+        "emphasis": {
+          "flash": false,
+          "flashTimes": 3,
+          "highlight": false,
+          "fillOpacity": 0.6,
+          "lift": false,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      },
+      "basemap-gallery": {
+        "basemaps": [
+          "topo-vector",
+          "streets-vector",
+          "gray-vector",
+          "dark-gray-vector",
+          "satellite",
+          "hybrid",
+          "osm"
+        ]
+      },
+      "print": {
+        "serviceUrl": "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task",
+        "title": "",
+        "layout": "a4-landscape",
+        "format": "pdf"
+      },
+      "share-link": {},
+      "screenshot": {
+        "format": "png"
+      },
+      "coordinates": {
+        "format": "dd"
+      },
+      "export-results": {},
+      "address-audit": {
+        "layer": "19fb7f5ed83-layer-6:19",
+        "fields": {
+          "number": {
+            "field": "StreetNo",
+            "part": 0
+          },
+          "unit": {
+            "field": "",
+            "part": 0
+          },
+          "street": {
+            "field": "Address",
+            "part": 0
+          },
+          "streetType": {
+            "field": "",
+            "part": 0
+          },
+          "suburb": {
+            "field": "Address",
+            "part": 8
+          },
+          "locality": {
+            "field": "",
+            "part": 0
+          },
+          "postal": {
+            "field": "",
+            "part": 0
+          }
+        },
+        "skipValues": [
+          "UNKNOWN"
+        ],
+        "providers": [
+          "osm",
+          "google"
+        ],
+        "maxDistance": 25,
+        "locality": "",
+        "admin": "",
+        "postal": "",
+        "country": "ZA",
+        "windowSize": "bottom",
+        "emphasis": {
+          "color": "",
+          "fillOpacity": 0.6,
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "lift": true,
+          "liftHeight": 24,
+          "zoomScale": 0
+        }
+      }
+    },
+    "open": "layers",
+    "order": [],
+    "toolOrder": [],
+    "layerReorder": false,
+    "restLinks": [],
+    "cursors": {
+      "draw": "cross",
+      "pick": "target",
+      "select": "arrow",
+      "colour": "dark",
+      "size": "normal",
+      "overrides": {
+        "spatial": "plus",
+        "trace": "cross",
+        "vegetation": "target"
+      }
+    },
+    "detailsEmphasis": {
+      "flash": false,
+      "flashTimes": 3,
+      "highlight": false,
+      "fillOpacity": 0.6,
+      "lift": false,
+      "liftHeight": 24,
+      "color": "",
+      "zoomScale": 0
+    }
+  }
+}

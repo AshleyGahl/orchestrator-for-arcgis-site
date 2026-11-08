@@ -1,0 +1,2032 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orchestrator for ArcGIS User Guide</title>
+<meta name="description" content="How to author, check and publish ArcGIS map viewers with Orchestrator for ArcGIS: every setting, widget and tool.">
+<!-- The user guide. One page, one topic shown at a time (#topic-id in the address), no build step and nothing to
+     download but the font. Screenshots come from ../images/guide/ (see images/README.md): taken with Playwright from
+     the live app, a public viewer (a project's examples/&lt;viewer&gt;.json) on its live web map. Add a topic as an
+     <article class="topic" id="…" data-group="…"> with an <h1>; the navigation, "In this topic", breadcrumb and
+     Previous / Next are built from the articles. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1C2B30; --muted: #56656a; --bg: #ffffff; --panel: #f4f7f6; --rule: #d7dfdd; --tide: #2B6F7F;
+    --tide-soft: #e2eef0; --link: #22626f; --fynbos: #B4466A; --code: #eef2f1; --tip: #2E7D4F; --tip-bg: #e7f5ec;
+    --warn: #8a5a00; --warn-bg: #fdf3e1; --shadow: 0 1px 3px rgb(0 0 0 / .08);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #e3ebe9; --muted: #a2b1ad; --bg: #141c1e; --panel: #1b2629; --rule: #2f3d40; --tide: #5fb3c4;
+      --tide-soft: #1d3338; --link: #7cc6d5; --fynbos: #e283a3; --code: #22302f; --tip: #6fcf97; --tip-bg: #1a3324;
+      --warn: #f0c060; --warn-bg: #3a2e14; --shadow: none; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink: #e3ebe9; --muted: #a2b1ad; --bg: #141c1e; --panel: #1b2629; --rule: #2f3d40; --tide: #5fb3c4;
+    --tide-soft: #1d3338; --link: #7cc6d5; --fynbos: #e283a3; --code: #22302f; --tip: #6fcf97; --tip-bg: #1a3324;
+    --warn: #f0c060; --warn-bg: #3a2e14; --shadow: none; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 76px; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 "Atkinson Hyperlegible", "Segoe UI", Arial, sans-serif; }
+  a { color: var(--link); }
+  a:hover { text-decoration-thickness: 2px; }
+  code, kbd { font-family: Consolas, "Cascadia Mono", monospace; font-size: .88em; background: var(--code); padding: .05em .35em; border-radius: 4px; overflow-wrap: anywhere; }
+  kbd { border: 1px solid var(--rule); }
+  :focus-visible { outline: 3px solid var(--tide); outline-offset: 2px; }
+
+  /* Header */
+  .top { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 14px; padding: 0 16px; height: 60px; background: var(--tide); color: #fff; }
+  :root[data-theme="dark"] .top { background: #0f2a30; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .top { background: #0f2a30; } }
+  .top .brand { color: #fff; text-decoration: none; font-weight: 700; font-size: 1.1rem; white-space: nowrap; }
+  .top .brand span { font-weight: 400; opacity: .85; }
+  .top .search { margin-left: auto; position: relative; flex: 0 1 300px; min-width: 0; }
+  .top input[type=search] { width: 100%; font: inherit; font-size: .95rem; padding: 7px 10px; border-radius: 6px; border: 0; background: rgb(255 255 255 / .95); color: #1C2B30; }
+  .icon-btn { font: inherit; color: #fff; background: transparent; border: 1px solid rgb(255 255 255 / .5); border-radius: 6px; padding: 5px 10px; cursor: pointer; white-space: nowrap; }
+  .icon-btn:hover { background: rgb(255 255 255 / .12); }
+  #menu-btn { display: none; }
+
+  /* Three columns: topics, the topic, in this topic */
+  .layout { display: grid; grid-template-columns: 280px minmax(0, 1fr) 220px; max-width: 1440px; margin: 0 auto; }
+  .side { position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; border-right: 1px solid var(--rule); padding: 16px 12px 40px; background: var(--panel); }
+  .side h2 { font-size: .74rem; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin: 18px 8px 4px; }
+  .side h2:first-child { margin-top: 0; }
+  .side ul { list-style: none; margin: 0; padding: 0; }
+  .side a { display: block; padding: 4px 8px; border-radius: 5px; color: var(--ink); text-decoration: none; font-size: .93rem; line-height: 1.35; }
+  .side a:hover { background: var(--tide-soft); }
+  .side a[aria-current="page"] { background: var(--tide); color: #fff; font-weight: 700; }
+  .side .count { font-size: .85rem; color: var(--muted); margin: 0 8px 10px; }
+  .side .none { margin: 8px; color: var(--muted); }
+  main { padding: 20px 40px 60px; min-width: 0; }
+  .onpage { position: sticky; top: 60px; align-self: start; padding: 24px 16px; font-size: .9rem; max-height: calc(100vh - 60px); overflow-y: auto; }
+  .onpage h2 { font-size: .74rem; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+  .onpage ol { margin: 0; padding-left: 18px; }
+  .onpage li { margin-bottom: 6px; }
+  .onpage a { color: var(--muted); text-decoration: none; }
+  .onpage a:hover { color: var(--link); text-decoration: underline; }
+
+  /* A topic */
+  .crumbs { font-size: .88rem; color: var(--muted); margin-bottom: 4px; }
+  article.topic { scroll-margin-top: 140px; }   /* a link to a topic keeps the breadcrumb in view */
+  .crumbs a { color: var(--muted); }
+  article h1 { font-size: 2.1rem; line-height: 1.2; margin: 0 0 12px; }
+  article h2 { font-size: 1.45rem; margin: 36px 0 10px; padding-top: 14px; border-top: 1px solid var(--rule); }
+  article h3 { font-size: 1.1rem; margin: 24px 0 6px; }
+  article p, article li { max-width: 78ch; }
+  .lead { font-size: 1.12rem; color: var(--muted); max-width: 72ch; }
+  .why { font-size: .93rem; color: var(--muted); margin-top: -4px; }
+  .intopic { display: none; border: 1px solid var(--rule); border-radius: 8px; padding: 10px 16px; margin: 16px 0; background: var(--panel); max-width: 78ch; }
+  .intopic strong { display: block; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .intopic ol { margin: 6px 0 0; padding-left: 20px; columns: 2; column-gap: 28px; }
+  ul, ol { padding-left: 24px; }
+  li { margin-bottom: 4px; }
+  li > ul { margin-top: 4px; }
+
+  /* Settings: name, then what it does */
+  dl.settings { margin: 8px 0 18px; max-width: 80ch; }
+  dl.settings dt { font-weight: 700; margin-top: 12px; }
+  dl.settings dd { margin: 2px 0 0 18px; }
+  dl.settings dd > ul { margin: 4px 0; }
+
+  .note, .tip, .caution { border-left: 5px solid var(--tide); background: var(--tide-soft); padding: 10px 16px; margin: 16px 0; border-radius: 0 8px 8px 0; max-width: 78ch; }
+  .tip { border-left-color: var(--tip); background: var(--tip-bg); }
+  .caution { border-left-color: #c99a00; background: var(--warn-bg); }
+  .note::before, .tip::before, .caution::before { display: block; font-weight: 700; font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+  .note::before { content: "Note"; color: var(--tide); }
+  .tip::before { content: "Tip"; color: var(--tip); }
+  .caution::before { content: "Caution"; color: var(--warn); }
+  .note p:last-child, .tip p:last-child, .caution p:last-child { margin-bottom: 0; }
+  .note p:first-child, .tip p:first-child, .caution p:first-child { margin-top: 0; }
+
+  .steps { counter-reset: s; list-style: none; padding-left: 0; }
+  .steps > li { counter-increment: s; position: relative; padding-left: 40px; margin-bottom: 12px; }
+  .steps > li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--tide); color: #fff; font-weight: 700; text-align: center; line-height: 28px; font-size: .9rem; }
+  :root[data-theme="dark"] .steps > li::before { color: #10282d; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .steps > li::before { color: #10282d; } }
+
+  figure { margin: 18px 0 22px; max-width: 900px; }
+  figure.panel { max-width: 620px; }
+  figure img { display: block; max-width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 6px; box-shadow: var(--shadow); cursor: zoom-in; background: #fff; }
+  figcaption { font-size: .9rem; color: var(--muted); margin-top: 6px; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; max-width: 900px; align-items: start; }
+  .shots figure { margin: 8px 0; }
+
+  .table-wrap { overflow-x: auto; max-width: 100%; margin: 12px 0 18px; }
+  table { border-collapse: collapse; font-size: .94rem; min-width: 480px; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--rule); }
+  th { background: var(--panel); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin: 16px 0; max-width: 960px; }
+  .cards a { display: block; border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; text-decoration: none; color: var(--ink); background: var(--panel); }
+  .cards a:hover { border-color: var(--tide); }
+  .cards strong { display: block; color: var(--link); }
+  .cards span { font-size: .9rem; color: var(--muted); }
+  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 18px 0; }
+  .flow span { border: 1px solid var(--tide); border-radius: 6px; padding: 6px 12px; background: var(--tide-soft); font-weight: 700; font-size: .95rem; }
+  .flow i { font-style: normal; color: var(--muted); }
+
+  .pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--rule); }
+  .pager a { text-decoration: none; max-width: 48%; }
+  .pager small { display: block; color: var(--muted); }
+  .pager .next { margin-left: auto; text-align: right; }
+  .foot { margin-top: 28px; font-size: .88rem; color: var(--muted); }
+
+  dialog.zoom { padding: 0; border: 0; background: transparent; max-width: 96vw; max-height: 96vh; }
+  dialog.zoom::backdrop { background: rgb(0 0 0 / .75); }
+  dialog.zoom img { display: block; max-width: 96vw; max-height: 90vh; border-radius: 6px; background: #fff; }
+  dialog.zoom p { color: #fff; margin: 8px 0 0; text-align: center; }
+
+  @media (max-width: 1180px) {
+    .layout { grid-template-columns: 260px minmax(0, 1fr); }
+    .onpage { display: none; }
+    .intopic { display: block; }
+  }
+  @media (max-width: 820px) {
+    #menu-btn { display: inline-block; }
+    .top { gap: 8px; padding: 0 12px; }
+    .top .brand { font-size: 1rem; }
+    .top .brand span { display: none; }
+    .top .search { flex: 1 1 auto; }
+    .icon-btn { padding: 5px 8px; }
+    .layout { display: block; }
+    .side { position: fixed; top: 60px; left: 0; bottom: 0; width: min(320px, 88vw); height: auto; z-index: 15; transform: translateX(-105%); transition: transform .2s; box-shadow: 0 0 24px rgb(0 0 0 / .25); }
+    body.menu-open .side { transform: none; }
+    main { padding: 16px 16px 48px; }
+    article h1 { font-size: 1.7rem; }
+    .intopic ol { columns: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) { .side { transition: none; } }
+  @media print {
+    .top, .side, .onpage, .pager, .intopic { display: none !important; }
+    .layout { display: block; }
+    main { padding: 0; }
+    article.topic[hidden] { display: block; }
+    article.topic { page-break-after: always; }
+    figure img { box-shadow: none; max-width: 75%; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <button class="icon-btn" id="menu-btn" type="button" aria-controls="side" aria-expanded="false">Topics</button>
+  <a class="brand" href="#welcome">Orchestrator for ArcGIS <span>User guide</span></a>
+  <div class="search" role="search">
+    <input type="search" id="find" placeholder="Search the guide" aria-label="Search the guide" autocomplete="off">
+  </div>
+  <button class="icon-btn" id="theme-btn" type="button" title="Switch between light and dark">Theme</button>
+</header>
+
+<div class="layout">
+  <nav class="side" id="side" aria-label="Topics"></nav>
+  <main id="main">
+    <div class="crumbs" id="crumbs"></div>
+
+<!-- =============================================================== GET STARTED -->
+
+<article class="topic" id="welcome" data-group="Get started">
+  <h1>What is Orchestrator for ArcGIS?</h1>
+  <p class="lead">Configure ArcGIS viewers without code. Orchestrator for ArcGIS builds map viewers from ArcGIS web maps by
+  configuration and publishes them to any web server.</p>
+  <p>You pick a web map, set the branding, layout, widgets, tools and search, decide what people see when they click a
+  feature, check the result in a <strong>Draft preview</strong>, and then <strong>publish</strong> a self-contained viewer: a
+  folder of static files that runs on IIS, Node.js, Docker or any other web server.</p>
+
+  <div class="flow" aria-label="From web map to published viewer">
+    <span>Web map</span><i>→</i><span>Project settings</span><i>→</i><span>Draft preview</span><i>→</i><span>Publish viewer</span><i>→</i><span>Live viewer</span>
+  </div>
+
+  <figure>
+    <img src="../images/guide/v-details.png" alt="The Public Viewer: a town map with a property's details in the panel" loading="lazy">
+    <figcaption>A viewer made with the Orchestrator: a public viewer, showing a property's details.</figcaption>
+  </figure>
+
+  <h2>Why it exists</h2>
+  <p>Every ArcGIS app builder (Flex Viewer, Web AppBuilder, Experience Builder, Instant Apps) solves part of the
+  problem. The tool a viewer needs is often in the other builder, so the gaps become custom widgets in a developer
+  edition that someone has to maintain, upgrade and rebuild with every release.</p>
+  <p>Web AppBuilder is retired, and many organisations still have to move off it. Some have twenty or more web maps
+  and apps to rebuild, each configured by hand, one at a time, often on top of nearly the same web map. Most GIS
+  teams are map experts, not software developers, and a powerful builder can be the hardest one to pick up.</p>
+  <p>The Orchestrator takes a different approach: <strong>configure viewers, don't build them</strong>.</p>
+  <ul>
+    <li><strong>A few web maps, not dozens.</strong> For example, one public and one internal web map are the single
+      source of truth. Each viewer adds only what is specific to it, such as extra <a href="#rest-services">ArcGIS REST
+      services</a> for a department.</li>
+    <li><strong>One viewer can serve several teams.</strong> Services and sections can be limited to
+      <a href="#rest-services">portal groups</a>, so a team's layers appear only for its members, instead of a separate app
+      per department.</li>
+    <li><strong>Tools as settings, not code.</strong> <a href="#related-records">Related records</a>,
+      <a href="#spatial">spatial relationships</a>, <a href="#dashboards">dashboards</a>, <a href="#editing">editing
+      forms</a> and <a href="#downloads">downloads</a> are switched on and set up in forms.</li>
+    <li><strong>Desktop tools in the browser.</strong> Tools that used to be desktop add-ins run in a web viewer for
+      anyone with a browser, with no desktop licence or install.</li>
+    <li><strong>Follow the web map.</strong> In live mode a viewer always shows the current web map, so a change made in
+      Map Viewer doesn't have to be repeated in every app.</li>
+    <li><strong>Upgrade once.</strong> Every viewer runs the same runtime, so an upgrade reaches every viewer when it is
+      published again.</li>
+  </ul>
+  <p><a href="#why">Why it's built this way</a> goes through the features one by one: how each job is usually done,
+  where that falls short, and what the Orchestrator does instead.</p>
+
+  <h2>Key ideas</h2>
+  <dl class="settings">
+    <dt>Orchestrator</dt>
+    <dd>This app, where viewers are authored. Only administrators of an approved ArcGIS portal can open it.</dd>
+    <dt>Project</dt>
+    <dd>One viewer and all its settings, shown as a row on the Projects page.</dd>
+    <dt>Web map</dt>
+    <dd>The ArcGIS Online or ArcGIS Enterprise web map the viewer is built on. It supplies the layers, symbology,
+    basemap, extent and popups. The Orchestrator adds to it; it never changes the web map.</dd>
+    <dt>Manifest</dt>
+    <dd>One JSON file that describes everything a viewer shows. The settings pages write it for you; the
+    <strong>Manifest</strong> panel beside them shows it as it changes.</dd>
+    <dt>Draft preview</dt>
+    <dd>The viewer running inside the Orchestrator. It runs exactly the same code as a published viewer, so what you
+    check is what you ship.</dd>
+    <dt>Published viewer</dt>
+    <dd>A folder holding the viewer page, the viewer runtime, styles, the project's <code>manifest.json</code> and a
+    <code>deploy/</code> folder for the server it will run on. It contains no Orchestrator code.</dd>
+  </dl>
+
+  <h2>Where to start</h2>
+  <div class="cards">
+    <a href="#quick-start"><strong>Quick start</strong><span>From a web map to a published viewer in six steps.</span></a>
+    <a href="#settings"><strong>Project settings</strong><span>The settings rail and what each area does.</span></a>
+    <a href="#using-viewer"><strong>Using a viewer</strong><span>For the people who use a published viewer.</span></a>
+    <a href="#publish"><strong>Publish a viewer</strong><span>Write the package and install it on a server.</span></a>
+  </div>
+
+  <div class="note"><p>Orchestrator for ArcGIS is a proof of concept. It is built on ArcGIS Maps SDK for JavaScript 4.30 and
+  works in current versions of Edge, Chrome, Firefox and Safari. Publishing needs Edge or Chrome. The screenshots in
+  this guide are of a public viewer on a live web map.</p></div>
+</article>
+
+<article class="topic" id="why" data-group="Get started">
+  <h1>Why it's built this way</h1>
+  <p class="lead">For each feature that works differently from the usual approach: how it's usually done, where that
+  falls short, and what the Orchestrator does instead.</p>
+
+  <h2 id="why-layer-styles">Layer styles: one layer, several looks</h2>
+  <dl class="settings">
+    <dt>The traditional way</dt><dd>To show parcels by valuation, by title type and as outlines only, the same layer is added to the web map three times (or published as separate views), each copy with its own symbology, and people switch between the copies.</dd>
+    <dt>Its limits</dt><dd>The Layers list fills with copies of the same data. A click returns the same parcel once per copy in Details, and Search does the same. Popups, filters and scale ranges have to be kept the same on every copy, and each copy that's switched on makes its own requests.</dd>
+    <dt>What the Orchestrator does</dt><dd>The layer appears once, and people pick a <strong>Style</strong> for it in the Layers list. The web map's own style is always the first choice. <strong>Fill values</strong> and <strong>Suggest classes</strong> read the categories and class breaks from the service when you set the style up. Details and Search still see one layer. See <a href="#layer-styles">Layer styles</a>.</dd>
+  </dl>
+
+  <h2 id="why-label-orientation">Label orientation: house numbers that follow their street</h2>
+  <dl class="settings">
+    <dt>The traditional way</dt><dd>In ArcMap or ArcGIS Pro, an analyst digitises helper lines across the parcel polygons and labels the street numbers along them. The other options are converting the labels to annotation and turning each one by hand, or calculating an angle field from the nearest street.</dd>
+    <dt>Its limits</dt><dd>Helper lines and annotation are a second dataset that goes stale when parcels or numbers change. The work needs a desktop licence and a specialist. An angle to the <em>nearest</em> street is wrong on corner plots and bends.</dd>
+    <dt>What the Orchestrator does</dt><dd>In the viewer, someone picks a street and its numbers, then chooses parallel, perpendicular (reading away from or toward the street) or a custom angle. On a curve each number follows its own segment, and <strong>Keep numbers upright</strong> stops any reading upside down. <strong>Save</strong> writes the angles to a field on the point layer in one request, and the layer's own labels use them. There are no helper lines to maintain. Only the editors' group can save. See <a href="#label-orientation">Label orientation</a>.</dd>
+  </dl>
+
+  <h2 id="why-related">Related records and Attribute trace: lookups without relationship classes</h2>
+  <dl class="settings">
+    <dt>The traditional way</dt><dd>A relationship class in the geodatabase, published with the service, so the popup shows related records. The alternative is an Arcade expression (<code>FeatureSetByRelationshipName</code>, <code>FeatureSetByPortalItem</code>) written into each popup by hand.</dd>
+    <dt>Its limits</dt><dd>A relationship class needs a schema change, the data owner and a republish, and it only reaches tables in the same workspace. Arcade lookups are code that a map expert has to write and maintain in every popup. Neither reaches a records system outside ArcGIS. Neither follows a chain such as road → addresses → properties in one click.</dd>
+    <dt>What the Orchestrator does</dt><dd><strong>Related records</strong> matches any ArcGIS table on the columns you choose, or calls your own JSON API (only on approved hosts), with <strong>Test this lookup</strong>. <strong>Attribute trace</strong> follows chains across layers (5 steps by default, up to 20), with filters, limits and a plain message when a limit is reached. Anyone using the viewer can run it and export the results. See <a href="#related-records">Related records</a> and <a href="#trace">Attribute trace</a>.</dd>
+  </dl>
+
+  <h2 id="why-legend-labels">Legend labels: counts on unique-value symbology</h2>
+  <dl class="settings">
+    <dt>The traditional way</dt><dd>Unique-value legend labels are static text. To show “Residential Zone I (1,204)”, someone types the counts into the labels in ArcGIS Pro or Map Viewer, or builds a separate dashboard for the counts.</dd>
+    <dt>Its limits</dt><dd>Typed counts are wrong as soon as the data changes. Editing the labels changes the web map for every app that uses it. A dashboard sits apart from the map it describes.</dd>
+    <dt>What the Orchestrator does</dt><dd>One small statistics query reads every category's count, or a column you name supplies it. The counts refresh on a timer you choose (every 30 seconds up to every hour, or only when the map opens), and only while the layer is showing. Only the labels change: the symbols, the classes and the web map stay as they are. <strong>Test</strong> shows each label before and after. See <a href="#legend-labels">Legend labels</a>.</dd>
+  </dl>
+
+  <h2 id="why-dimensions">Dimensions: lengths, bearings and areas for what's in view</h2>
+  <dl class="settings">
+    <dt>The traditional way</dt><dd>Dimension labels come from a parcel fabric or COGO annotation in ArcGIS Pro. On the web, people use a measure tool and measure one line at a time.</dd>
+    <dt>Its limits</dt><dd>Annotation needs desktop editing and goes stale when parcels change. Measuring by hand is slow and easy to get wrong. A Web Mercator layer's own stored area (<code>Shape.STArea()</code>) is projection area, not ground area: about 48% too large at 34° south.</dd>
+    <dt>What the Orchestrator does</dt><dd>Every side of every parcel in view is labelled with its length, and optionally its bearing and the parcel's area, redrawn after each pan or zoom. In a Web Mercator or geographic map the values are on the ground (WGS84 ellipsoid), with bearings from true north. Nothing is stored or edited. See <a href="#dimensions">Dimensions</a>.</dd>
+  </dl>
+
+  <h2 id="why-spatial">Spatial relationships: what's here, in one click</h2>
+  <dl class="settings">
+    <dt>The traditional way</dt><dd>Select by Location in ArcMap or ArcGIS Pro, or an analysis tool on the web (which, in ArcGIS Online, uses credits), or a query widget set up separately in each app.</dd>
+    <dt>Its limits</dt><dd>Desktop selection needs a licence and an analyst. Analysis tools write new layers and, in ArcGIS Online, cost credits. A query widget is set up again in every app, and people have to know what to ask.</dd>
+    <dt>What the Orchestrator does</dt><dd>The question is set up once per layer (for example, “Properties in this ward”) and shows as a button on that layer's Details card. One click runs it and shows the results as a table and outlines, with export. Nothing is written. See <a href="#spatial">Spatial relationships</a>.</dd>
+  </dl>
+
+  <h2 id="why-layer-info">Layer information: who owns this layer?</h2>
+  <dl class="settings">
+    <dt>The traditional way</dt><dd>Metadata lives in the item's description or the service's own page, or in a document somewhere else.</dd>
+    <dt>Its limits</dt><dd>People using a viewer rarely find it, so they ask the GIS team who keeps a layer, where it comes from and when it was last updated.</dd>
+    <dt>What the Orchestrator does</dt><dd>A panel in the viewer lists each layer's custodian, source, last update and contact, as rows you write, with the service's own details read when a layer is opened. See <a href="#layer-info">Layer information</a>.</dd>
+  </dl>
+
+  <h2 id="why-downloads">Downloads: files beside the map</h2>
+  <dl class="settings">
+    <dt>The traditional way</dt><dd>A separate Hub site or gallery app for downloads, linked from the viewer.</dd>
+    <dt>Its limits</dt><dd>People leave the map to find the files, and each app has its own list to keep up to date. ArcGIS has no download counter, so a “downloads” figure is usually item views.</dd>
+    <dt>What the Orchestrator does</dt><dd>The same sources (an Instant App gallery, a Hub site, a feature table, CKAN, Socrata or a list typed in) open as sortable, filterable tables inside the viewer, read fresh each time. ArcGIS counts are labelled honestly as <strong>Views / downloads</strong>. See <a href="#downloads">Downloads</a>.</dd>
+  </dl>
+
+  <h2 id="why-app-import">Import ArcGIS apps: move many apps, not one at a time</h2>
+  <dl class="settings">
+    <dt>The traditional way</dt><dd>With Web AppBuilder retired, each app is rebuilt by hand in Experience Builder: open
+      the old app, note its widgets, search sources, bookmarks and colours, and set them up again in the new builder.
+      Experience Builder apps that are mostly a map are maintained one by one in the same way.</dd>
+    <dt>Its limits</dt><dd>An organisation with twenty or more apps repeats that work twenty times, often on top of
+      nearly the same web map, and it is easy to miss a search source or a bookmark. The new builder has to be learnt
+      before any of it can start.</dd>
+    <dt>What the Orchestrator does</dt><dd>It reads each app's configuration, from Web AppBuilder or Experience Builder,
+      and makes projects from it: colours, widgets, tools, search and bookmarks (and, from Web AppBuilder, editing layers
+      and the splash screen). Tick every app in the organisation and import them in one go. A report says, per app, what
+      came across and what to check, so the work left is a short list, not a rebuild. See
+      <a href="#app-import">Import ArcGIS apps</a>.</dd>
+  </dl>
+
+  <h2 id="why-external-pages">External pages: other viewers, at this map's position</h2>
+  <dl class="settings">
+    <dt>The traditional way</dt><dd>A link that opens another organisation's viewer in a new tab.</dd>
+    <dt>Its limits</dt><dd>People lose their place: the other viewer opens at its own start, and they have to find the same spot again.</dd>
+    <dt>What the Orchestrator does</dt><dd>Other viewers open inside this one, in a sandboxed frame, at this map's position, and stay loaded while people switch between them. See <a href="#external-pages">External pages</a>.</dd>
+  </dl>
+
+  <h2 id="why-aerial-selection">Selection over aerials: a highlight you can see on any basemap</h2>
+  <dl class="settings">
+    <dt>The traditional way</dt><dd>A map or app has one selection colour, set once. It is chosen to suit the usual
+      basemap, or a compromise colour is picked that half works on both.</dd>
+    <dt>Its limits</dt><dd>A colour that reads well on a light street basemap disappears into the greens and browns of an
+      aerial photograph, and a colour bright enough for the photo is harsh on the street map. People switch the aerial
+      on, click a property, and can't see what was selected.</dd>
+    <dt>What the Orchestrator does</dt><dd>A second selection colour (bright cyan by default) is used automatically
+      while an aerial is showing: an imagery layer or basemap, or a tiled, map or web tile layer whose name or address
+      says imagery, aerial, ortho, satellite or hybrid. The highlight, spatial relationship outlines and select by shape
+      switch as soon as the aerial is switched on or off, goes out of scale, or the basemap changes. A dashed or dotted
+      <strong>selection outline</strong> keeps the boundary underneath visible. See <a href="#branding">Branding</a>.</dd>
+  </dl>
+
+  <h2 id="why-aerials">Aerials never queried: fast clicks and clean searches</h2>
+  <dl class="settings">
+    <dt>The traditional way</dt><dd>A click identifies every visible layer, the aerial photography included, and the
+      aerial service is listed alongside the data layers wherever layers can be searched.</dd>
+    <dt>Its limits</dt><dd>Asking an imagery service what's at a point returns pixel values or nothing useful, and it
+      slows down every click. Search offers layers nobody searches.</dd>
+    <dt>What the Orchestrator does</dt><dd>Imagery layers, and services whose name or address says imagery, aerial,
+      ortho, satellite or hybrid, are left out of Details and Search automatically, with nothing to set up. Dynamic
+      aerial map services are drawn as JPEG, which is much smaller per pan than a PNG of the whole screen. See
+      <a href="#details">Details</a>.</dd>
+  </dl>
+</article>
+
+<article class="topic" id="quick-start" data-group="Get started">
+  <h1>Quick start</h1>
+  <p class="lead">Make your first viewer: load a web map, adjust it, check it and publish it.</p>
+
+  <h2>Before you begin</h2>
+  <ul>
+    <li>You need to be an <strong>administrator</strong> of a portal the Orchestrator trusts (see <a href="#sign-in">Sign in</a>).</li>
+    <li>Have the item id or item page URL of a web map you can open.</li>
+    <li>Use Edge or Chrome if you want a project folder and Publish.</li>
+  </ul>
+
+  <h2>Make a viewer</h2>
+  <ol class="steps">
+    <li>Open the Orchestrator (for example <code>http://localhost/gis-orchestrator/</code> on the server) and sign in.</li>
+    <li>On <strong>Projects</strong>, click <strong>New project</strong>. Under <a href="#viewer-webmap">Web map</a>, paste the web
+      map's item id or item page URL and click <strong>Load web map</strong>.</li>
+    <li>Work through the settings rail one area at a time: <a href="#branding">Branding</a>, <a href="#template">Template</a>,
+      <a href="#details">Details</a>, <a href="#widgets">Widgets and tools</a>, <a href="#search">Search</a> and anything else you need.</li>
+    <li>Click <strong>Update preview</strong> in the Manifest panel, then open <strong>Draft preview</strong> to check the viewer on the map.</li>
+    <li>Go back to <strong>Settings</strong> and repeat until you're happy.</li>
+    <li>Click <strong>Publish viewer</strong> and choose where it will run. On a server set up with Setup.cmd it's installed
+      straight away; elsewhere, run the install script in the published folder.</li>
+  </ol>
+
+  <div class="tip"><p>Choose a <a href="#projects-folder">project folder</a> before you start. Projects are then saved as
+  files on disk as well as in the browser, so clearing the browser's data can't lose your work.</p></div>
+</article>
+
+<article class="topic" id="sign-in" data-group="Get started">
+  <h1>Sign in</h1>
+  <p class="lead">Only administrators of an approved portal can author viewers. People using a published viewer never
+  need to be administrators.</p>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>If both an ArcGIS Online organisation and an ArcGIS Enterprise portal are approved, choose the
+      <strong>Organisation</strong> or <strong>Enterprise</strong> tab first. The browser remembers the last one you used.</li>
+    <li>Sign in with your ArcGIS username and password, or, on an ArcGIS Enterprise portal that uses Windows
+      authentication, with <strong>Sign in with my Windows account</strong>.</li>
+    <li>The Orchestrator asks the portal whether you are an administrator of that organisation (the built-in
+      Administrator role or a custom role based on it). Publishers and users are refused, with the reason.</li>
+    <li>Your name shows at the right of the header while you're signed in. The Orchestrator locks again when you sign
+      out or your sign-in ends, and Publish asks the portal again.</li>
+    <li>Portals that sign in only through SAML can't be used.</li>
+  </ul>
+
+  <h2>Which portals are allowed</h2>
+  <p>The list comes from <code>authoring.json</code> next to the Orchestrator's <code>index.html</code>. On a server,
+  Setup.cmd's install page writes it from the portal address you type in. Each portal has its address and its
+  organisation id, which stops administrators of other ArcGIS Online organisations from getting in.</p>
+</article>
+
+<article class="topic" id="projects" data-group="Get started">
+  <h1>Projects</h1>
+  <p class="lead">The Orchestrator's home page is a table with one row per viewer project.</p>
+
+  <figure>
+    <img src="../images/guide/projects.png" alt="The Viewer projects table with one project, Public Viewer, and its actions" loading="lazy">
+    <figcaption>Each row has Open, Publish, Sync, Duplicate and Delete.</figcaption>
+  </figure>
+
+  <h2>Usage notes</h2>
+  <dl class="settings">
+    <dt>New project</dt><dd>Starts a project from a web map.</dd>
+    <dt>Open</dt><dd>Opens the project's settings.</dd>
+    <dt>Publish</dt><dd>Publishes the project's viewer (see <a href="#publish">Publish a viewer</a>).</dd>
+    <dt>Duplicate</dt><dd>Copies a project, for a second viewer on the same web map or a variant to try out.</dd>
+    <dt>Delete</dt><dd>Removes the project. In a project folder its file is renamed to <code>project.deleted.json</code>; nothing is removed from disk.</dd>
+    <dt>Import / Back up all projects</dt><dd>Reads projects from a file, and saves every project to one, for moving between browsers or computers.</dd>
+    <dt>Status, Created, Last edited</dt><dd>Whether the project is a draft or published, and when.</dd>
+  </dl>
+
+  <h2 id="projects-folder">Project folder</h2>
+  <p>Without one, the page says <em>Projects are kept in this browser only</em>, and clearing the browser's data deletes
+  them. Click <strong>Choose project folder…</strong> to keep them as real files:</p>
+  <ul>
+    <li>Each project is a subfolder holding <code>project.json</code>. Every change is saved there as well as in the browser.</li>
+    <li>When you choose the folder, its projects are merged with the browser's.</li>
+    <li>Published viewers are written into the project's subfolder, under <code>published\</code>.</li>
+    <li>It needs Edge or Chrome on https or localhost, and is chosen again in each new browser session.</li>
+    <li>The folder picker shows the drives of the computer the browser runs on, so to keep projects on a server, open
+      the Orchestrator on that server.</li>
+  </ul>
+
+  <h2 id="projects-sync">Sync (development only)</h2>
+  <p>When the Orchestrator runs from <code>tools/serve.py</code> on a development PC, each row also has
+  <strong>Sync</strong>. One click saves the viewer's manifest as <code>examples/&lt;viewer&gt;.json</code> (keeping the
+  previous one as <code>-bak.json</code>) so a cleared browser never loses work. Sync isn't Publish and doesn't exist on
+  a production server.</p>
+</article>
+
+<article class="topic" id="app-import" data-group="Get started">
+  <h1>Import ArcGIS apps</h1>
+  <p class="lead">Turn Web AppBuilder and Experience Builder apps into projects: one at a time, or every app in your
+  organisation at once.</p>
+  <p class="why">Why it works this way: <a href="#why-app-import">the usual approach and its limits</a>.</p>
+
+  <figure class="panel">
+    <img src="../images/64-orchestration-app-import-find.png" alt="The Import ArcGIS apps window: a box for app ids, Find apps in my organisation, and a list of apps with their builder and checkboxes" loading="lazy">
+    <figcaption>Find the organisation's apps and tick the ones to import (sample app names).</figcaption>
+  </figure>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>On the <a href="#projects">Projects</a> page, click <strong>Import ArcGIS apps</strong>.</li>
+    <li>Paste app item ids or app addresses (<code>…/webappviewer/index.html?id=…</code> or
+      <code>…/experience/…</code>), one per line, or click <strong>Find apps in my organisation</strong> and tick the apps.
+      The list shows each app's builder; <strong>Tick all shown</strong> ticks every app the filter shows.</li>
+    <li>An app is read from the portal its address names, so a public app of another organisation imports even while
+      you are signed in to your ArcGIS Enterprise portal. A bare item id is looked for on your portal, then on ArcGIS
+      Online. The viewer opens the app's web map on the portal it lives on.</li>
+    <li>Click <strong>Import</strong>. A Web AppBuilder app becomes one project. An Experience Builder app becomes one
+      project <strong>per web map</strong> it shows: map widgets on the same web map make one project, with the widgets
+      connected to any of them (at most 10 projects per app; the rest are listed). Each project is on the same web map,
+      in live mode, and is checked the same way as any other project before it is added. Nothing changes on the portal.</li>
+    <li>The report lists each new project with what was <strong>imported</strong>, what <strong>to check</strong> and
+      what was <strong>not imported</strong>, and an <strong>Open</strong> button. An item that isn't one of these apps,
+      or an Experience Builder app with no map (a page, dashboard or story), is refused with the reason.</li>
+    <li>The notes stay with the project: the <strong>From Web AppBuilder</strong> or <strong>From Experience
+      Builder</strong> chip on its row (with how many things to check) opens them again.</li>
+    <li>Open the project, check the items listed, then use <strong>Update preview</strong> and the
+      <a href="#preview">Draft preview</a>.</li>
+  </ul>
+
+  <figure>
+    <img src="../images/64-orchestration-app-import-report.png" alt="The import report: a Web AppBuilder and an Experience Builder app each made a project, with their notes, and a dashboard with no map was refused" loading="lazy">
+    <figcaption>The report after importing two public apps, one from each builder.</figcaption>
+  </figure>
+
+  <h2>From Web AppBuilder</h2>
+  <dl class="settings">
+    <dt>Title, subtitle, logo</dt><dd>HTML styling in the title is removed. A logo stored on the portal is linked; one
+      stored inside the app is listed to upload again under <a href="#branding">Branding</a>.</dd>
+    <dt>Theme</dt><dd>A custom theme colour becomes the header colour, with a text colour that passes the contrast check.
+      A named theme style (such as "blue") is listed to set by hand. The theme becomes the closest
+      <a href="#template">template</a>: Foldable, Launchpad, Box, Dart and Billboard become the header with a floating
+      panel; Plateau, Jewelry Box and Dashboard become the header bar; Tab becomes the side rail.</dd>
+    <dt>Layer List, Legend, Bookmark</dt><dd><a href="#layers-legend">Layers and Legend</a>, and
+      <a href="#bookmarks">Bookmarks</a> with the app's own bookmarks (zoom levels approximate). The widget that opened at
+      start opens first.</dd>
+    <dt>Search</dt><dd>Geocoding services and layer sources become <a href="#search">search box</a> sources. A layer is
+      matched to the web map by its address or id; one that isn't in the web map is listed.</dd>
+    <dt>Query, Enhanced Search</dt><dd>Each becomes an attribute search on the fields its filter uses. Fixed filters
+      aren't kept.</dd>
+    <dt>Edit, Smart Editor</dt><dd><a href="#editing">Editing</a> layers (feature service layers only), with their visible
+      fields, labels and which can be changed. Smart Editor attribute actions aren't converted.</dd>
+    <dt>Splash</dt><dd>The <a href="#disclaimer">Disclaimer</a>: its text with bold, lists and https links, and its button
+      label. Pictures are left out, and text over 5,000 characters is shortened.</dd>
+    <dt>Tools</dt><dd>Measurement (with its units), Select, Draw, Swipe, Elevation Profile, Coordinate, Basemap Gallery,
+      Print and Share become the matching <a href="#tools">tools</a>; Add Data switches on <a href="#add-data">Add data</a>.</dd>
+    <dt>Not imported</dt><dd>Attribute Table, About, Infographic, Chart, Filter, Time Slider, Directions, header links
+      and custom widgets are listed, each with what to use instead. Map controls such as the scale bar and home button
+      are part of every viewer.</dd>
+  </dl>
+
+  <h2>From Experience Builder</h2>
+  <dl class="settings">
+    <dt>Map widgets</dt><dd>Each web map they show becomes a project. With several, each project is named after the app
+      and its web map. Maps on 3D scenes are listed, not imported.</dd>
+    <dt>Colours and template</dt><dd>The header's background colour becomes the header colour, and the theme's primary
+      colour the accent when it is dark enough for selections. An app with a header gets the header bar
+      <a href="#template">template</a>, others the side rail.</dd>
+    <dt>Map tools</dt><dd>The map widget's Layers, Legend and Search switches, and its Measure, Select and Basemap tools,
+      become the matching widgets and <a href="#tools">tools</a>.</dd>
+    <dt>Legend, Map Layers, Bookmark, Feature Info</dt><dd>Legend, Layers, <a href="#bookmarks">Bookmarks</a> (the 2D
+      ones, zoom levels approximate) and <a href="#details">Details</a>. Each goes with the map it is connected to.</dd>
+    <dt>Search</dt><dd>Geocoding services and feature layer sources (with their search and display fields) become
+      <a href="#search">search box</a> sources, once each even when several search widgets repeat them. A search that
+      uses the map's own search settings brings the web map's search layers (set in Map Viewer's map properties) and
+      the ArcGIS World Geocoder. A source that searches a service outside the web map is listed: add the service under
+      <a href="#rest-services">ArcGIS REST services</a>, then add it to Search.</dd>
+    <dt>Add Data, Share, Embed</dt><dd><a href="#add-data">Add data</a>, the Share link tool, and each embedded https page
+      as an <a href="#external-pages">external page</a>. These belong to the whole app, so every project gets them.</dd>
+    <dt>Not imported</dt><dd>Table, Filter, Near Me, List, Chart and custom widgets are listed, each with what to use
+      instead. Pages, text, pictures, buttons and layouts are summed up in one line: they are page design, not part of
+      a viewer.</dd>
+  </dl>
+
+  <div class="note"><p>Only the app's configuration is read, with your sign-in. Apps whose web map is on another portal
+  are flagged: the viewer opens that web map there, so people need a sign-in on that portal unless it is public.</p></div>
+</article>
+
+<article class="topic" id="settings" data-group="Get started">
+  <h1>Project settings</h1>
+  <p class="lead">A rail on the left lists the setting areas, each with a line saying what's set. Pick one to open it.
+  The Manifest panel stays on the right.</p>
+
+  <figure>
+    <img src="../images/guide/set-details.png" alt="Project settings: the rail on the left, Details open in the middle, the Manifest panel on the right" loading="lazy">
+    <figcaption>The rail (Details is open, "3 layers customised"), the open area, and the Manifest panel with its checks.</figcaption>
+  </figure>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Arrow keys move along the rail.</li>
+    <li>Changes are saved to the project as you make them. <strong>Update preview</strong> sends them to the Draft preview.</li>
+    <li>The Manifest panel shows the JSON as it changes, with notes about anything that needs attention (for example,
+      no group set on a Streaming section) and whether it's valid.</li>
+    <li><strong>Download JSON</strong> and <strong>Load JSON</strong> save and read the manifest as a file.</li>
+    <li>Settings that list layers (Details, Layer information, Legend labels, Layer styles) group them by service,
+      with <strong>Expand all</strong> / <strong>Collapse all</strong>. Layer pickers in tool settings are plain lists of layer titles.</li>
+  </ul>
+
+  <h2>The setting areas</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Area</th><th>What it sets</th></tr></thead>
+    <tbody>
+      <tr><td><a href="#viewer-webmap">Viewer</a></td><td>The title in the header and a description.</td></tr>
+      <tr><td><a href="#viewer-webmap">Web map</a></td><td>The portal and web map, live or snapshot, and <a href="#rest-services">ArcGIS REST services</a> on top.</td></tr>
+      <tr><td><a href="#branding">Branding</a></td><td>Header colours, accent, logo and selection colours.</td></tr>
+      <tr><td><a href="#disclaimer">Disclaimer</a></td><td>Terms people accept before they use the map.</td></tr>
+      <tr><td><a href="#template">Template</a></td><td>How the viewer is laid out.</td></tr>
+      <tr><td><a href="#details">Details</a></td><td>What a clicked feature shows, and the <a href="#layer-order">layer order</a>.</td></tr>
+      <tr><td><a href="#layer-info">Layer information</a></td><td>Facts about each layer: custodian, update, contact.</td></tr>
+      <tr><td><a href="#legend-labels">Legend labels</a></td><td>Feature counts in the legend.</td></tr>
+      <tr><td><a href="#layer-styles">Layer styles</a></td><td>Other styles people can switch a layer to.</td></tr>
+      <tr><td><a href="#widgets">Widgets and tools</a></td><td>Which widgets and tools the viewer offers, their order and settings.</td></tr>
+      <tr><td><a href="#map-highlights">Map highlights</a></td><td>How every highlight stands out on the map, in one table.</td></tr>
+      <tr><td><a href="#cursors">Cursors</a></td><td>The map cursor while a tool or widget waits for the map.</td></tr>
+      <tr><td><a href="#bookmarks">Bookmarks</a></td><td>The web map's bookmarks and your own.</td></tr>
+      <tr><td><a href="#search">Search</a></td><td>The search box and attribute search.</td></tr>
+      <tr><td><a href="#add-data">Add data</a></td><td>Layers people may add for their visit.</td></tr>
+      <tr><td><a href="#dashboards">Dashboards</a></td><td>Indicators, charts and tables.</td></tr>
+      <tr><td><a href="#editing">Editing</a></td><td>Forms for editing feature layers.</td></tr>
+      <tr><td><a href="#scene">Scene</a></td><td>A separate 3D view.</td></tr>
+      <tr><td><a href="#streaming">Streaming</a></td><td>Cameras, drone video and live tracking.</td></tr>
+      <tr><td><a href="#external-pages">External pages</a></td><td>Other sites' pages shown inside the viewer.</td></tr>
+      <tr><td><a href="#downloads">Downloads</a></td><td>Lists of files people can download.</td></tr>
+      <tr><td><a href="#trace">Attribute trace</a></td><td>Features linked to a starting feature through their fields.</td></tr>
+    </tbody>
+  </table></div>
+</article>
+
+<article class="topic" id="preview" data-group="Get started">
+  <h1>Draft preview</h1>
+  <p class="lead">Check the viewer on the map before you publish it.</p>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Click <strong>Update preview</strong> in the Manifest panel, then the <strong>Draft preview</strong> tab in the header.
+      The header says whether the preview is up to date with your settings.</li>
+    <li>Everything works as in the published viewer: Details, search, tools, windows, dashboards and sign-in.</li>
+    <li>Some things are set up here rather than in settings: dragging dashboard items into place
+      (<a href="#dashboards">Dashboards, Arrange</a>) and finding the view for a <a href="#bookmarks">bookmark</a>.</li>
+    <li>The disclaimer shows each time the preview opens and after each change; an acceptance is never kept.</li>
+    <li>Group-only services and sections apply to you too, so you see what a member of your groups would see.</li>
+  </ul>
+
+  <div class="caution"><p>Edits made in the Draft preview, with <a href="#editing">Editing</a> or by saving
+  <a href="#label-orientation">label angles</a>, change the real data.</p></div>
+</article>
+
+<article class="topic" id="using-viewer" data-group="Get started">
+  <h1>Using a viewer</h1>
+  <p class="lead">For the people who use a published viewer: the parts of the screen and what they do.</p>
+
+  <figure>
+    <img src="../images/guide/v-layers.png" alt="The viewer: header, map, the Layers panel and the side rail of widget buttons" loading="lazy">
+    <figcaption>The Side rail template: the header, the map, the open panel (Layers) and the rail of widget buttons.</figcaption>
+  </figure>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li><strong>The rail</strong> (or the header, in the header templates) has a button for each widget. Click one to open its panel; click it again, or ×, to close it.</li>
+    <li><strong>Click the map</strong> to see what's there in <a href="#details">Details</a>.</li>
+    <li>Some widgets open a <strong>window over the map</strong> at half or full width. At half width, drag the edge between the window and the map.
+      When several windows are open, the one opened or clicked last is on top; click another to bring it forward.</li>
+    <li>Tables can show fields as <strong>Rows</strong> or <strong>Columns</strong>; ↔ makes the panel wider for tables, and <strong>Export…</strong> saves them as Excel (a blue header row with a filter on every column) or CSV.</li>
+    <li>The coordinates under the pointer show at the bottom left of the map.</li>
+    <li><strong>The cursor changes</strong> while a tool or window waits for the map: a crosshair to draw or measure, a
+      target ring to click one place, an arrow with a small square to choose a feature (see <a href="#cursors">Cursors</a>).
+      Over the map with nothing open it's the usual arrow.</li>
+    <li>A <a href="#disclaimer">disclaimer</a> may ask you to accept the terms first.</li>
+  </ul>
+</article>
+
+<!-- =============================================================== MAP AND APPEARANCE -->
+
+<article class="topic" id="viewer-webmap" data-group="Map and appearance">
+  <h1>Viewer and web map</h1>
+  <p class="lead">Name the viewer and choose the web map it is built on.</p>
+
+  <figure class="panel">
+    <img src="../images/guide/s-webmap.png" alt="Web map settings: portal, web map, the loaded web map card, live or snapshot, and ArcGIS REST services" loading="lazy">
+    <figcaption>The Web map area with a web map loaded (68 configurable layers). The portal, item id, title and owner are placeholders.</figcaption>
+  </figure>
+
+  <h2>Settings</h2>
+  <h3>Viewer</h3>
+  <dl class="settings">
+    <dt>Title (shown in the header)</dt><dd>The viewer's name, in its header and the browser tab.</dd>
+    <dt>Description</dt><dd>A line describing the viewer.</dd>
+  </dl>
+  <h3>Web map</h3>
+  <dl class="settings">
+    <dt>Portal</dt><dd>The ArcGIS Online organisation or ArcGIS Enterprise portal that holds the web map.</dd>
+    <dt>Web map</dt><dd>The web map's item id or item page URL. Click <strong>Load web map</strong>; the card shows its
+      owner, when it was last edited and how many layers you can configure, with <strong>Open the item page</strong>. An app
+      item (an Instant App or Experience Builder app) is followed to its web map.</dd>
+    <dt>When the web map changes</dt><dd>
+      <ul>
+        <li><strong>Live: the viewer always shows the current web map</strong>, so changes made in Map Viewer appear without publishing again.</li>
+        <li><strong>Snapshot: freeze the web map as it is when you publish</strong>.</li>
+      </ul></dd>
+    <dt>Sign in to this portal</dt><dd>Needed for secured web maps and layers. People opening a viewer on a secured web map are asked to sign in.</dd>
+    <dt><a href="#rest-services">ArcGIS REST services</a></dt><dd>Services drawn on top of the web map.</dd>
+  </dl>
+
+  <div class="note"><p>Never put tokens, keys or <code>?token=</code> addresses into any setting. The manifest refuses
+  them; people sign in when they open the viewer instead.</p></div>
+</article>
+
+<article class="topic" id="rest-services" data-group="Map and appearance">
+  <h1>ArcGIS REST services</h1>
+  <p class="lead">Draw services that aren't in the web map on top of it, and show some only to members of portal groups.</p>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>Add your organisation's own ArcGIS Server services to a public web map without changing the web map.</li>
+    <li>Serve every department from one shared web map: an <em>Assets</em> service only the Assets group sees, a <em>Planning</em> service only the Planning group sees.</li>
+  </ul>
+
+  <h2>Settings</h2>
+  <p>Under the web map card, in the Web map area:</p>
+  <dl class="settings">
+    <dt>List services</dt><dd>Paste an ArcGIS Server address to list its services directory: folders, a filter, a service's layers.</dd>
+    <dt>Add this URL</dt><dd>When the directory is switched off or hidden, paste a service or layer URL and add it
+      directly: <code>…/MapServer</code>, <code>…/FeatureServer/0</code>, <code>…/ImageServer</code>,
+      <code>…/VectorTileServer</code>. Only https services are accepted.</dd>
+    <dt>Sign in to this server</dt><dd>For secured servers: a username and password, or Windows sign-in through a portal. The viewer asks people the same way; they can also open the map without them.</dd>
+    <dt>Who sees it</dt><dd>Everyone, or only signed-in members of one or more <strong>portal groups</strong>.
+      Anyone else, including people who are signed out, never sees a group-only service: it's left out of the map,
+      Layers, Legend, Details, Search, Editing and Dashboards without a message.</dd>
+  </dl>
+
+  <div class="caution"><p>A group-only service is hidden, not protected: its address is in <code>manifest.json</code>,
+  which anyone who can reach the viewer can read. Share the service itself only with the group in ArcGIS Enterprise,
+  or secure it on its server.</p></div>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Added services' layers join Details, Search, Editing and the tools.</li>
+    <li>They have no web map popups, so Details shows all their fields until you customise them.</li>
+    <li>Cached (tiled) map services are display only.</li>
+    <li>A newly added service starts on top of the <a href="#layer-order">layer order</a>.</li>
+  </ul>
+</article>
+
+<article class="topic" id="layer-order" data-group="Map and appearance">
+  <h1>Layer order and visibility</h1>
+  <p class="lead">Set the order of the map's top-level layers and which ones are on when the viewer opens.</p>
+
+  <p>Open <strong>Layer order and visibility</strong> at the top of <a href="#details">Details</a>, or under
+  <a href="#widgets">Widgets and tools</a>, Layers. It's the same list in both places.</p>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Order (⤒ ↑ ↓ ⤓)</dt><dd>Move a layer to the top, up, down or to the bottom. A group layer moves with everything in it. Reset goes back to the web map's order with the REST services on top.</dd>
+    <dt>On when the viewer opens</dt><dd>A tick box per layer. By default it follows the web map; a badge marks layers switched differently. <strong>Switch layers on and off as in the web map</strong> undoes your changes.</dd>
+    <dt>People can drag layers in the Layers widget to change the order for their visit (not saved)</dt><dd>Under Widgets and tools, Layers.</dd>
+  </dl>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Drawing, the Layers and Legend widgets, Details results and the Orchestrator's layer lists all follow this order.</li>
+    <li>Layers added to the web map later keep their place relative to the layer above them.</li>
+    <li>Only top-level layers are ordered here. Layers inside a group and map service sublayers keep the web map's order; change those in the web map.</li>
+  </ul>
+</article>
+
+<article class="topic" id="branding" data-group="Map and appearance">
+  <h1>Branding</h1>
+  <p class="lead">The viewer's header, accent colour and logo, and how selected features are drawn.</p>
+  <p class="why">Why it works this way: <a href="#why-aerial-selection">the usual approach and its limits</a>.</p>
+
+  <figure class="panel">
+    <img src="../images/guide/s-branding.png" alt="Branding settings with a header preview, colours, selection over aerials and selection outline" loading="lazy">
+    <figcaption>The header preview updates as you change the colours.</figcaption>
+  </figure>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Subtitle</dt><dd>A second line under the title.</dd>
+    <dt>Header background, Header text</dt><dd>With a contrast check, so the header stays readable.</dd>
+    <dt>Accent (selection, active widget)</dt><dd>The colour of selected features and the open widget's button.</dd>
+    <dt>Selection over aerials / imagery</dt><dd>A second selection colour used while an aerial or imagery layer is
+      showing; otherwise the accent. <strong>Use accent</strong> turns it off. It switches as soon as an aerial is switched on
+      or off, zoomed out of scale, or the basemap changes.</dd>
+    <dt>Selection outline</dt><dd>The line style of the selected feature's outline: Solid, Dashed, Short dashes (broken),
+      Long dashes, Dotted or Dash-dot. The Public Viewer uses Dashed.</dd>
+    <dt>Upload logo</dt><dd>An image for the header, or a link to one.</dd>
+  </dl>
+  <p>The three selection settings are also the first row of <a href="#map-highlights">Map highlights</a>, next to every
+  highlight that uses them.</p>
+</article>
+
+<article class="topic" id="disclaimer" data-group="Map and appearance">
+  <h1>Disclaimer</h1>
+  <p class="lead">Terms people accept before they use the map, shown once the viewer has started.</p>
+
+  <figure>
+    <img src="../images/guide/v-disclaimer.png" alt="The Public Viewer's disclaimer over the map, with an accept button" loading="lazy">
+    <figcaption>The disclaimer stays over the map until people accept.</figcaption>
+  </figure>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>Tell people that boundaries, measurements and valuations are approximate and where the official source is.</li>
+    <li>Warn that underground services must be confirmed on site before digging.</li>
+  </ul>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Show a disclaimer when the viewer opens</dt><dd>It appears after the startup screen (Initializing application, Configuring components).</dd>
+    <dt>Title, Button, Text</dt><dd>Plain text with a little formatting, listed under <strong>Formatting</strong>:
+      <ul>
+        <li>Leave a blank line between paragraphs; https:// addresses become links.</li>
+        <li><code>## </code> starts a heading, <code>- </code> a bulleted item and <code>&gt; </code> a highlighted note.</li>
+        <li>Lines of <code>| cells |</code> make a table; a <code>|---|---|</code> line under the first row makes it the header.</li>
+        <li><code>**bold**</code> works anywhere. HTML is shown as text.</li>
+      </ul></dd>
+    <dt>Use the standard wording</dt><dd><strong>Formatted: headings, tables and notes</strong> or <strong>Plain paragraphs</strong>.
+      The same terms either way. Add your organisation's name, contact details and website, and remove what doesn't apply.</dd>
+    <dt>Text size</dt><dd>Small, Medium, Large or Extra large, for the title and text (the button keeps its size).</dd>
+    <dt>How it comes on screen</dt><dd>Slide in from the left, Drop in from the top or Appear in the middle.</dd>
+    <dt>Speed</dt><dd>Slow, Medium, Fast or Instant (no animation). People who ask their system for reduced motion always get a short fade.</dd>
+    <dt>Ask again</dt><dd>Every visit, Until the browser is closed, or For a number of days. Changing the title, text or button asks everyone again.</dd>
+    <dt>Play</dt><dd>Shows it in settings as the viewer will.</dd>
+  </dl>
+
+  <figure class="panel">
+    <img src="../images/guide/s-disclaimer.png" alt="Disclaimer settings" loading="lazy">
+    <figcaption>Disclaimer settings.</figcaption>
+  </figure>
+
+  <div class="note"><p>An acceptance is kept in each visitor's browser, so it isn't a record of who accepted.</p></div>
+</article>
+
+<article class="topic" id="template" data-group="Map and appearance">
+  <h1>Template</h1>
+  <p class="lead">How the viewer is laid out: where the widget buttons sit and how the panel opens.</p>
+
+  <div class="shots">
+    <figure><img src="../images/guide/v-layers.png" alt="Side rail template" loading="lazy"><figcaption>Side rail, panel on the right (the Public Viewer).</figcaption></figure>
+    <figure><img src="../images/guide/v-template-header.png" alt="Header bar template with the panel on the left" loading="lazy"><figcaption>Header bar, panel on the left.</figcaption></figure>
+    <figure><img src="../images/guide/v-template-floating.png" alt="Header and floating panel template" loading="lazy"><figcaption>Header + floating panel.</figcaption></figure>
+  </div>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Template</dt><dd>
+      <ul>
+        <li><strong>Side rail</strong>: widget icons in a rail beside the panel.</li>
+        <li><strong>Header bar</strong>: widget buttons in the header; the panel docks to the side.</li>
+        <li><strong>Header + floating panel</strong>: widget buttons in the header; the panel floats over a full-width map.</li>
+      </ul>
+      With the header templates, buttons that don't fit across the header scroll sideways.</dd>
+    <dt>Panel side</dt><dd>Right or Left.</dd>
+    <dt>Feature tables open with fields as</dt><dd><strong>Rows (Field | Value)</strong> or <strong>Columns (one row)</strong>. People can switch it in the viewer.</dd>
+  </dl>
+</article>
+
+<!-- =============================================================== FEATURE INFORMATION -->
+
+<article class="topic" id="cursors" data-group="Map and appearance">
+  <h1>Cursors</h1>
+  <p class="lead">The map cursor while a tool or widget waits for the map, so people can see the map is ready for them.</p>
+
+  <figure class="panel">
+    <img src="../images/guide/s-cursors.png" alt="Cursors settings: a cursor for each activity with try-it tiles, colour and size, and each tool and widget" loading="lazy">
+    <figcaption>Cursors settings. Hover a tile to try the cursor.</figcaption>
+  </figure>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Drawing and measuring</dt><dd>Measure distance and area, Draw, Elevation profile, and any shape being drawn: Select
+      features, a Screenshot area, Editing's Add, the Label orientation box and a Vegetation health area.</dd>
+    <dt>Clicking one place</dt><dd>Label orientation (click a street), Vegetation health (click a spot), and Attribute trace
+      while it waits for the start feature.</dd>
+    <dt>Choosing a feature</dt><dd>While the Attribute trace, Editing or spatial relationship window is open: a click opens a
+      feature.</dd>
+    <dt>Cursor</dt><dd>For each: the map's own arrow; a crosshair, a target ring, a bold plus or an arrow with a small square,
+      each drawn with a white edge so it reads on aerials and dark basemaps; or the system crosshair, plus or hand, which
+      follow each person's computer settings. The defaults are the crosshair, the target ring and the arrow.</dd>
+    <dt>Colour of the drawn cursors</dt><dd>Dark, or the selection colour (the <a href="#branding">accent</a>).</dd>
+    <dt>Size</dt><dd>Normal (32 px) or Large (48 px), for people who find the cursor hard to see.</dd>
+    <dt>Each tool and widget</dt><dd>Any of them can have its own cursor instead of its activity's, e.g. a bold plus for
+      Label orientation. <strong>Same as …</strong> follows the activity.</dd>
+  </dl>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Each choice has a tile, half dark map and half light, showing the cursor; hover it to try it.</li>
+    <li>An open tool wins over an open window: with Measure on and Attribute trace open, the crosshair shows.</li>
+    <li>Over Draw's handles and while the map is dragged, the map's own move, resize and grab cursors still show.</li>
+    <li>Tools that don't wait for the map (Swipe, Print, Basemap gallery…) keep the map's own cursor.</li>
+  </ul>
+</article>
+
+<article class="topic" id="details" data-group="Feature information">
+  <h1>Details</h1>
+  <p class="lead">What people see when they click a feature: the web map's popups, shown as clean tables, with your
+  additions.</p>
+  <p class="why">Why it works this way: <a href="#why-aerials">the usual approach and its limits</a>.</p>
+
+  <figure>
+    <img src="../images/guide/v-details.png" alt="Details after a click: Wards, Street Names and Cadastre (Deeds) sections, with a property's account, zoning and heritage information" loading="lazy">
+    <figcaption>One click on the map: results from three layers, in layer order. Cadastre (Deeds) opens by default.</figcaption>
+  </figure>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>Click a property to see its valuation, zoning, heritage grading and service requests in one card.</li>
+    <li>Hide internal fields such as OBJECTID and Shape_Area.</li>
+    <li>Open the Cadastre (Deeds) section first whenever a click finds a property.</li>
+  </ul>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Popups are read from the web map, Arcade and Experience Builder content included.</li>
+    <li><strong>Layers checked</strong> lists which layers the click looked in, including those out of scale.</li>
+    <li>Aerial photography is never queried: imagery layers, and services whose name or address says imagery, aerial,
+      ortho, satellite or hybrid, are left out of Details and Search.</li>
+    <li>Layers that are switched off are skipped.</li>
+    <li>Each layer's section has <strong>Export…</strong> (Excel or CSV), as do a feature's tables and related records; <strong>Expand all</strong> and <strong>Clear</strong> sit above them.</li>
+  </ul>
+
+  <h2>Settings</h2>
+  <p>The layers are grouped by service, with a filter, <strong>Only customised</strong>, and <strong>Expand all</strong> /
+  <strong>Collapse all</strong>. Open a layer to change it:</p>
+
+  <figure class="panel">
+    <img src="../images/guide/s-details-layer.png" alt="Details settings for the Wards layer: card title, hidden fields and a spatial relationship section" loading="lazy">
+    <figcaption>Wards: four fields hidden and one section, a spatial relationship.</figcaption>
+  </figure>
+
+  <dl class="settings">
+    <dt>Card title (leave empty to use the web map's)</dt><dd>For example <code>{WardNo}</code>, or <code>{Result}</code> for the address layer.</dd>
+    <dt>Include in Details even when out of scale</dt><dd>The layer still only draws in its scale range.</dd>
+    <dt>Open this layer by default in the viewer's Details pane</dt><dd>Once any layer has this, only those layers open; with none, the top layer opens.</dd>
+    <dt>Hide these fields from Details</dt><dd>Tick the fields to leave out.</dd>
+    <dt>Sections (related records)</dt><dd>One-to-many data the popup can't show: <a href="#related-records">related records</a>
+      from a table or API, or a <a href="#spatial">spatial relationship</a>, which shows as a button on the card.</dd>
+  </dl>
+
+  <div class="note"><p>Popup media (charts) and attachments aren't shown in Details. Popup HTML from web maps is
+  sanitised before it's shown.</p></div>
+</article>
+
+<article class="topic" id="related-records" data-group="Feature information">
+  <h1>Related records</h1>
+  <p class="lead">Show one-to-many records that belong to a clicked feature, from an ArcGIS table or your own JSON API.</p>
+  <p class="why">Why it works this way: <a href="#why-related">the usual approach and its limits</a>.</p>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>The units on a parcel.</li>
+    <li>A property's valuation history from a valuation table, matched on its parcel code.</li>
+    <li>Building plans for a parcel from the organisation's own records API.</li>
+  </ul>
+
+  <h2>Settings</h2>
+  <p>Add a section to a layer in <a href="#details">Details</a> and choose its <strong>Source</strong>:</p>
+  <dl class="settings">
+    <dt>An ArcGIS table</dt><dd>Choose the table and which field on the layer matches which field in the table.</dd>
+    <dt>A JSON API</dt><dd>Your own API, called with the feature's values.</dd>
+    <dt>Test this lookup</dt><dd>Runs the section against a real feature and shows what came back.</dd>
+  </dl>
+  <p>Sections load when people open a card, not on every click.</p>
+
+  <div class="caution"><p>Related records may only call hosts listed in <code>enrichmentHosts</code> in
+  <code>js/config.js</code>. Add your servers there before publishing. A secured table asks people to sign in.</p></div>
+</article>
+
+<article class="topic" id="spatial" data-group="Feature information">
+  <h1>Spatial relationships</h1>
+  <p class="lead">Features of other web map layers related to the clicked one by location, shown in a window over the map.</p>
+  <p class="why">Why it works this way: <a href="#why-spatial">the usual approach and its limits</a>.</p>
+
+  <figure>
+    <img src="../images/guide/v-spatial-half.png" alt="A Spatial relationship window at half the map listing the first 1,000 of 4,232 properties in Ward 3" loading="lazy">
+    <figcaption>Ward 3's card has a <strong>Spatial relationship</strong> button: the 4,232 properties it contains, first 1,000, in pages.</figcaption>
+  </figure>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>The properties inside a clicked ward (the Public Viewer's example).</li>
+    <li>All properties within 100 m of a clicked pump station.</li>
+    <li>The zoning polygons a clicked parcel intersects.</li>
+  </ul>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>The button runs the search only when clicked. The window opens over the map as a movable <strong>Window</strong>,
+      <strong>Half</strong> the map or <strong>Full</strong>; people can switch.</li>
+    <li>At half the map, the map keeps its centre, and zooms to results, in the half left clear. In the movable window,
+      a chosen row is zoomed into the biggest part of the map the window leaves clear (beside, above or below it).</li>
+    <li>One table per layer, with outlines on the map. Wide tables scroll inside their own frame.</li>
+    <li><strong>Export…</strong> (with the Export results tool) saves every feature, not just the page showing: as
+      <strong>Excel</strong> (a blue header row with a filter on every column; numbers and dates stay values) or
+      <strong>CSV</strong>. Under <strong>Columns</strong> the table's own columns start ticked; tick any of the layer's other
+      fields to include them too, or untick any (<strong>As shown</strong>, <strong>All</strong>, <strong>None</strong>).</li>
+    <li>At most 1,000 rows show at a time; <strong>Prev</strong> / <strong>Next</strong> page through the rest.</li>
+    <li>Clicking a row zooms to the feature, makes it <a href="#emphasis">stand out</a> and shows it in Details.</li>
+  </ul>
+
+  <figure>
+    <img src="../images/guide/v-spatial-chosen.png" alt="A chosen row's property lifted off the map in 3D, with its details" loading="lazy">
+    <figcaption>A chosen row: the property is lifted off the map and shown in Details.</figcaption>
+  </figure>
+
+  <h2>Settings</h2>
+  <p>A section whose Source is <strong>Spatial relationship</strong>, on a layer in <a href="#details">Details</a>:</p>
+  <dl class="settings">
+    <dt>Section title</dt><dd>The button's label on the card, for example "Properties in this ward".</dd>
+    <dt>Relationship (from the clicked feature)</dt><dd>Contains, within, intersects, touches, overlaps, crosses, envelope intersects, or within a distance in metres.</dd>
+    <dt>Layers to search</dt><dd>Tick the layers, then choose, rename and order each layer's columns with ↑ ↓.</dd>
+    <dt>Window size and side</dt><dd>Half the map (on the left, the default, or right), the whole map, or a movable window.</dd>
+    <dt><a href="#emphasis">When a result is chosen</a></dt><dd>How a chosen row stands out on the map.</dd>
+  </dl>
+</article>
+
+<article class="topic" id="emphasis" data-group="Feature information">
+  <h1>When a result is chosen</h1>
+  <p class="lead">How a chosen result or a selected feature stands out on the map. The same settings appear for spatial
+  relationships, each Search source and Attribute trace, and for Details, Editing, Select features, Go to coordinates and
+  Vegetation health. <a href="#map-highlights">Map highlights</a> shows them all in one table.</p>
+
+  <figure>
+    <img src="../images/guide/v-search-chosen.png" alt="A parcel lifted off the map in 3D after it was chosen from search results" loading="lazy">
+    <figcaption>A search result, a parcel: zoomed to, filled and lifted off the map.</figcaption>
+  </figure>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Zoom to</dt><dd>Fit the result (a point goes to street level), or a scale from 1:500 to 1:100,000. Not for Go to
+      coordinates (the tool sets its own zoom) or Vegetation health.</dd>
+    <dt>Colour</dt><dd>The selection colour, or pick one to give these results their own.</dd>
+    <dt>Flash it … times</dt><dd>Flash the result as the map arrives.</dd>
+    <dt>Fill it in that colour</dt><dd>With a Fill slider for how solid. Untick for an outline only: a bold one for
+      chosen results, the thin selection outline (in the <a href="#branding">Selection outline</a> style) for Details,
+      Editing, Select features and Go to coordinates.</dd>
+    <dt>Lift it off the map in 3D, as the Scene draws it</dt><dd>The shape raised a set height (4 to 48 screen pixels) with
+      shaded walls and a soft shadow. Points stand as a column, lines as a wall. Not for Vegetation health.</dd>
+  </dl>
+  <p>For spatial relationships, Search and Attribute trace all of them are on by default. Details, Editing, Select
+  features and Go to coordinates start as the plain thin selection outline, as the viewer drew them before they had
+  settings; Vegetation health starts with its own green marks.</p>
+</article>
+
+<article class="topic" id="map-highlights" data-group="Feature information">
+  <h1>Map highlights</h1>
+  <p class="lead">Every highlight in the viewer in one table: how each one stands out on the map, and where to change it.</p>
+
+  <figure class="panel">
+    <img src="../images/guide/s-highlights.png" alt="The Map highlights table with the Details row open: zoom, colour, flash, fill and lift" loading="lazy">
+    <figcaption>Map highlights, with the Details row open.</figcaption>
+  </figure>
+
+  <h2>What's in the table</h2>
+  <dl class="settings">
+    <dt>Selection colour</dt><dd>The accent, the colour over aerials and the outline style (the same fields as
+      <a href="#branding">Branding</a>). Every highlight without a colour of its own uses them.</dd>
+    <dt>Widgets</dt><dd><strong>Details</strong> (a feature clicked on the map or picked in Details, and the Attribute trace
+      start), <strong>Editing</strong> (the record chosen in its window) and <strong>Attribute trace</strong> (the result chosen).</dd>
+    <dt>Tools</dt><dd><strong>Select features</strong> (a feature chosen from what the shape selected), <strong>Go to
+      coordinates</strong> (the place gone to) and <strong>Vegetation health</strong> (the spot clicked and the area measured).</dd>
+    <dt>Spatial relationships</dt><dd>Each spatial relationship section, under its layer's service.</dd>
+    <dt>Search</dt><dd>Each search box source and each attribute search layer, layers under their service.</dd>
+  </dl>
+  <p>Each row shows its colour, flash, fill, 3D lift and zoom. A dash means the setting doesn't apply there. Rows for a
+  widget or tool the viewer doesn't offer say <strong>Not in this viewer</strong>; their settings are kept for when it's
+  switched on.</p>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Click a row to open its settings under it: the <a href="#emphasis">When a result is chosen</a> settings that apply to it.</li>
+    <li>These are the same settings as under <a href="#spatial">Details</a> (each spatial relationship),
+      <a href="#search">Search</a> and <a href="#trace">Attribute trace</a>: change either place and both show it.</li>
+    <li><strong>Copy these settings to</strong> the rest of its group, or to every highlight, after a confirm. Their own
+      settings are replaced; settings that don't apply to one are ignored there.</li>
+  </ul>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>Make a clicked parcel flash once and fill it lightly, so people see which one Details is showing.</li>
+    <li>Give Go to coordinates an orange column that stands out on aerials.</li>
+    <li>Set one look on Attribute trace, then copy it to every highlight so the viewer behaves the same everywhere.</li>
+  </ul>
+</article>
+
+<!-- =============================================================== WIDGETS -->
+
+<article class="topic" id="widgets" data-group="Widgets">
+  <h1>Widgets and tools</h1>
+  <p class="lead">Choose what the viewer offers, in what order, and how each tool behaves.</p>
+
+  <figure class="panel">
+    <img src="../images/guide/s-widgets.png" alt="Widgets and tools settings: a tick box and ↑ ↓ for each widget, Panel opens on, and the tools" loading="lazy">
+    <figcaption>Tick the widgets to include and order them with ↑ ↓; the tools follow below.</figcaption>
+  </figure>
+
+  <h2>The widgets</h2>
+  <div class="cards">
+    <a href="#layers-legend"><strong>Layers and Legend</strong><span>Switch layers on and off; read the symbols.</span></a>
+    <a href="#layer-info"><strong>Layer information</strong><span>Custodian, update, contact.</span></a>
+    <a href="#details"><strong>Details</strong><span>What a clicked feature shows.</span></a>
+    <a href="#bookmarks"><strong>Bookmarks</strong><span>Saved places.</span></a>
+    <a href="#search"><strong>Search</strong><span>Addresses, places and attribute search.</span></a>
+    <a href="#add-data"><strong>Add data</strong><span>Layers people add for their visit.</span></a>
+    <a href="#dashboards"><strong>Dashboards</strong><span>Indicators, charts and tables.</span></a>
+    <a href="#editing"><strong>Editing</strong><span>Forms for feature layers.</span></a>
+    <a href="#scene"><strong>Scene</strong><span>A separate 3D view.</span></a>
+    <a href="#streaming"><strong>Streaming</strong><span>Cameras, drones and tracking.</span></a>
+    <a href="#external-pages"><strong>External pages</strong><span>Other sites inside the viewer.</span></a>
+    <a href="#downloads"><strong>Downloads</strong><span>Files people can download.</span></a>
+    <a href="#trace"><strong>Attribute trace</strong><span>Linked features through their fields.</span></a>
+    <a href="#tools"><strong>Tools</strong><span>Measure, draw, swipe, dimensions and more.</span></a>
+  </div>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Widgets</dt><dd>A tick box and ↑ ↓ for each. They appear in the viewer's rail (or header) in this order, top to bottom.</dd>
+    <dt>Tools</dt><dd>On when a tool below is ticked.</dd>
+    <dt>Panel opens on</dt><dd>The widget whose panel is open when the viewer starts (the Public Viewer opens on Layers).</dd>
+    <dt>Tools (n of 15 switched on)</dt><dd>Tick, order and set up each tool; <strong>Settings</strong> opens a tool's own settings.
+      The Tools panel lists them in this order. See <a href="#tools">Tools</a>.</dd>
+  </dl>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Several widgets open a window over the map, at <strong>half</strong> width (beside the map, on the side you choose,
+      with a drag handle) or <strong>full</strong> width. Each has its own "The window opens at" setting.</li>
+    <li>Widgets set up on their own settings page (Add data, Editing, Scene and the rest) also have a
+      "Show the … button in the viewer" switch there; it's the same switch as the tick box here.</li>
+  </ul>
+</article>
+
+<article class="topic" id="layers-legend" data-group="Widgets">
+  <h1>Layers and Legend</h1>
+  <p class="lead">The list of the map's layers, Experience Builder style, and the legend of their symbols.</p>
+
+  <div class="shots">
+    <figure><img src="../images/guide/v-layers.png" alt="The Layers panel with the web map's group layers" loading="lazy"><figcaption>Layers: the web map's groups, in the <a href="#layer-order">layer order</a>.</figcaption></figure>
+    <figure><img src="../images/guide/v-legend.png" alt="The Legend panel" loading="lazy"><figcaption>Legend.</figcaption></figure>
+  </div>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Click a layer's eye to switch it on or off, and the arrow to open a group.</li>
+    <li>A layer's sliders button opens its transparency and legend; a layer with <a href="#layer-styles">layer styles</a> also gets a Style choice there.</li>
+    <li>Legend labels can carry feature counts (see <a href="#legend-labels">Legend labels</a>).</li>
+  </ul>
+
+  <h2>Settings</h2>
+  <p>Under <a href="#widgets">Widgets and tools</a>, Layers:</p>
+  <dl class="settings">
+    <dt>People can drag layers in the Layers widget to change the order for their visit (not saved)</dt><dd>Off by default.</dd>
+    <dt>Open REST endpoint</dt><dd>Adds "Open REST endpoint" to a layer's menu, only for the layers you tick (none by default).</dd>
+    <dt>Layer order and visibility</dt><dd>See <a href="#layer-order">Layer order and visibility</a>.</dd>
+  </dl>
+</article>
+
+<article class="topic" id="layer-info" data-group="Widgets">
+  <h1>Layer information</h1>
+  <p class="lead">A panel listing information about the map's layers: your own rows, and optionally facts read from each
+  layer's service.</p>
+  <p class="why">Why it works this way: <a href="#why-layer-info">the usual approach and its limits</a>.</p>
+
+  <div class="shots">
+    <figure><img src="../images/guide/s-layerInfo-open.png" alt="Layer information settings for Cadastre (Deeds): Custodian, Update and Contact rows" loading="lazy"><figcaption>Settings: three rows for Cadastre (Deeds).</figcaption></figure>
+    <figure><img src="../images/guide/v-layer-info.png" alt="The Layer information panel in the viewer" loading="lazy"><figcaption>The panel in the viewer.</figcaption></figure>
+  </div>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>Who looks after each layer, and who to contact about it.</li>
+    <li>How often a layer is updated and where its data comes from.</li>
+  </ul>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Show the Layer information button in the viewer</dt><dd>Switches the widget on or off.</dd>
+    <dt>Rows</dt><dd>Per layer, up to 30 rows with your own labels and values (Custodian, Source, Updated, Contact…),
+      ordered with ↑ ↓; <strong>Add row</strong> adds one. https:// links and e-mail addresses become links.</dd>
+    <dt>Also show the service's details</dt><dd>The service's own description, type, feature count, visible scales,
+      copyright and address, read when people open that layer.</dd>
+  </dl>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>The panel lists only layers that have information, in layer order, with a filter box.</li>
+    <li>Layers on group-only services people can't see are left out.</li>
+  </ul>
+</article>
+
+<article class="topic" id="legend-labels" data-group="Widgets">
+  <h1>Legend labels</h1>
+  <p class="lead">Counts in the legend for layers styled by category, for example "Residential Zone I (1,204)".</p>
+  <p class="why">Why it works this way: <a href="#why-legend-labels">the usual approach and its limits</a>.</p>
+
+  <figure class="panel">
+    <img src="../images/guide/s-legendLabels-open.png" alt="Legend labels settings for Cadastre (Deeds): keep the style's own labels, count from a column, or count the features automatically" loading="lazy">
+    <figcaption>Cadastre (Deeds) has two categories by Layer, so it can get counts.</figcaption>
+  </figure>
+
+  <h2>Settings</h2>
+  <p>Open a layer to see whether its style is by category (unique values on one field). For those:</p>
+  <dl class="settings">
+    <dt>Labels</dt><dd>
+      <ul>
+        <li><strong>Keep the style's own labels</strong> (no counts).</li>
+        <li><strong>Count from a column</strong>: each category's count from a field on the layer (the largest value per category).</li>
+        <li><strong>Count the features automatically</strong>: the service counts each category's features.</li>
+      </ul></dd>
+    <dt>Label part</dt><dd>The whole label, or only the text before or after its first colon.</dd>
+    <dt>Read again</dt><dd>Every 30 seconds, minute, 5 or 15 minutes or hour, or only when the map opens.</dd>
+    <dt>Test</dt><dd>Shows each label before and after.</dd>
+  </dl>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Only the labels change: symbols, colours and classes stay the web map's. Counts show in the Legend and in the Layers list's legend.</li>
+    <li>Counts are for the whole layer (with its filter), not the part of the map in view.</li>
+    <li>The viewer reads them in one small statistics query after the map has first drawn, and again only while the layer is showing.</li>
+    <li>Ranges of numbers, styles on several fields or Arcade, and tiled layers keep their own labels.</li>
+  </ul>
+</article>
+
+<article class="topic" id="layer-styles" data-group="Widgets">
+  <h1>Layer styles</h1>
+  <p class="lead">Several styles for one layer that people switch between in the viewer, without publishing the layer twice.</p>
+  <p class="why">Why it works this way: <a href="#why-layer-styles">the usual approach and its limits</a>.</p>
+
+  <figure>
+    <img src="../images/guide/v-styles-valuation.png" alt="Cadastre (Deeds) drawn by valuation in five classes, with the Style choice and legend in the Layers list" loading="lazy">
+    <figcaption>Cadastre (Deeds) switched to its <strong>Valuation</strong> style in the Layers list: five classes, from up to 200,000 to more than 3,100,000.</figcaption>
+  </figure>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>Parcels by <strong>valuation</strong>, by <strong>title type</strong>, or as <strong>outline only</strong>.</li>
+    <li>Roads by surface type or by condition.</li>
+  </ul>
+
+  <h2>Settings</h2>
+  <figure class="panel">
+    <img src="../images/guide/s-layerStyles-open.png" alt="Layer styles settings for Cadastre (Deeds): The viewer opens with, the Valuation style, Add a style" loading="lazy">
+    <figcaption>Cadastre (Deeds) has one style, Valuation (ranges, 5 classes); the viewer opens with the web map's style.</figcaption>
+  </figure>
+  <dl class="settings">
+    <dt>The viewer opens with</dt><dd>The web map's style, or one of the layer's styles. The web map's style is always the first choice in the viewer.</dd>
+    <dt>Add a style</dt><dd>
+      <ul>
+        <li><strong>One symbol</strong>: a fill colour, or outline only.</li>
+        <li><strong>Categories (one colour per value)</strong>, plus an Other class. <strong>Fill values</strong> reads the field's values and how many features have each.</li>
+        <li><strong>Ranges of numbers (graduated colours)</strong>. <strong>Suggest classes</strong> offers classes with about the same number of features or equal ranges, in a choice of colour ramps.</li>
+      </ul></dd>
+    <dt>Per style</dt><dd>A name and description (shown under the Style choice), the field, colours, outline and fill opacity.
+      Styles can be duplicated, reordered, switched off or removed.</dd>
+    <dt>Outlines</dt><dd>Polygon layers: keep <strong>the layer's own outlines</strong> (the style's colours are drawn over the layer)
+      or use <strong>the style's own outline</strong> (the layer's renderer is replaced).</dd>
+  </dl>
+
+  <div class="caution"><p>A style is a way of drawing, not a security boundary. A field whose name looks financial gets a
+  warning: keep restricted fields out of the service instead.</p></div>
+</article>
+
+<article class="topic" id="bookmarks" data-group="Widgets">
+  <h1>Bookmarks</h1>
+  <p class="lead">Saved places people jump to: the web map's bookmarks and your own.</p>
+
+  <figure>
+    <img src="../images/guide/v-bookmarks.png" alt="The Bookmarks panel listing the web map's places" loading="lazy">
+    <figcaption>The viewer's 37 bookmarks come from the web map.</figcaption>
+  </figure>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Include the web map's bookmarks</dt><dd>Lists them, with how many there are.</dd>
+    <dt>Extra bookmarks</dt><dd>Your own, named and ordered with ↑ ↓.</dd>
+    <dt>Add the viewer's current view</dt><dd>Adds a bookmark at the place the Draft preview is showing. Give it a name.</dd>
+  </dl>
+
+  <div class="tip"><p>Open the Draft preview, pan and zoom to the place, then come back to Bookmarks and click
+  <strong>Add the viewer's current view</strong>.</p></div>
+</article>
+
+<article class="topic" id="search" data-group="Widgets">
+  <h1>Search</h1>
+  <p class="lead">A search box for addresses, places and layers, with suggestions, and an attribute search with SQL-style operators.</p>
+
+  <figure>
+    <img src="../images/guide/v-search-chosen.png" alt="A parcel found by the attribute search, highlighted on the map, with Back to 10 search results" loading="lazy">
+    <figcaption>A parcel found with the attribute search: chosen from 10 results, it opens in Details with <strong>← Back to 10 search results</strong>.</figcaption>
+  </figure>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>Find an address with the Address Search layer, or anywhere with the ArcGIS World Geocoder.</li>
+    <li>Find a property by its parcel number.</li>
+    <li>List every property whose valuation is between two values.</li>
+  </ul>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Suggestions show as people type. With several sources, <strong>Search in</strong> picks one, or all of them.</li>
+    <li>Results come back as a table under the box; a single result is zoomed to and highlighted. <strong>Export…</strong>
+      saves them as Excel or CSV; when an attribute search stopped at its limit, the export holds every match, and the
+      layer's other fields can be ticked too.</li>
+    <li>Clicking a row opens it in Details, with <strong>← Back to n search results</strong> until the search is cleared.</li>
+    <li>The attribute search builds a condition (field, operator, value); <strong>Add condition</strong> adds another.</li>
+  </ul>
+
+  <h2>Settings</h2>
+  <figure class="panel">
+    <img src="../images/guide/s-search.png" alt="Search settings: the search box's sources and the attribute search's layers" loading="lazy">
+    <figcaption>Two box sources (ArcGIS World Geocoder and Address Search, the primary) and two attribute search layers.</figcaption>
+  </figure>
+  <h3>Search box</h3>
+  <dl class="settings">
+    <dt>Sources</dt><dd><strong>Add ArcGIS World Geocoder</strong>, <strong>Add a geocoding service</strong>
+      (<code>…/GeocodeServer</code>, optionally limited to countries) or <strong>Add a layer</strong> (searched on chosen
+      fields, contains or whole values, with results named by a display field).</dd>
+    <dt>Primary source (the box opens on it)</dt><dd>One source, or All sources.</dd>
+    <dt>Hint while it searches all sources</dt><dd>The placeholder text in the box.</dd>
+    <dt>Result columns</dt><dd>Per source; a geocoder's come from its result fields.</dd>
+  </dl>
+  <h3>Attribute search</h3>
+  <dl class="settings">
+    <dt>Add a layer to search</dt><dd>Per layer, the searchable fields and a hint.</dd>
+    <dt>Operators</dt><dd>Equals, contains, starts with, between, is any of, dates and more.</dd>
+    <dt>Result columns</dt><dd>Chosen, renamed and ordered with ↑ ↓.</dd>
+  </dl>
+  <p>Every source is a card that folds away, each with its own <a href="#emphasis">When a result is chosen</a> settings.</p>
+</article>
+
+<article class="topic" id="add-data" data-group="Widgets">
+  <h1>Add data</h1>
+  <p class="lead">Layers people add to the map for their visit: curated collections, portal search, a URL or a file.</p>
+
+  <div class="shots">
+    <figure><img src="../images/guide/s-addData.png" alt="Add data settings" loading="lazy"><figcaption>Settings (switched off in the Public Viewer).</figcaption></figure>
+    <figure><img src="../images/guide/v-add-data.png" alt="The Add data panel with Search, URL and File" loading="lazy"><figcaption>The panel in the viewer, switched on for this picture.</figcaption></figure>
+  </div>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Curated collections</dt><dd><strong>Add a collection</strong>: a name plus one or more portal groups. People pick a
+      collection, filter it by name and add the layers shared to its groups. Secured groups show their items once people sign in.</dd>
+    <dt>Portal search</dt><dd>This organisation's items, Everything the portal shows, or Off.</dd>
+    <dt>Layer URL</dt><dd>ArcGIS REST services, or <code>.geojson</code> / <code>.csv</code> links.</dd>
+    <dt>Local files</dt><dd>CSV (with latitude and longitude), GeoJSON, or a zipped shapefile, up to 10 MB.</dd>
+  </dl>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Signed out, a search shows only public items; <strong>Sign in</strong> shows the rest.</li>
+    <li>Added layers appear in Layers and Legend and can be zoomed to or removed.</li>
+    <li>They last for the visit only; nothing is saved into the viewer.</li>
+    <li>A zipped shapefile is converted by the portal (nothing is stored there); CSV and GeoJSON are read in the browser.</li>
+  </ul>
+</article>
+
+<article class="topic" id="dashboards" data-group="Widgets">
+  <h1>Dashboards</h1>
+  <p class="lead">Indicators, charts and tables from the web map's layers, opened across the whole page.</p>
+
+  <figure>
+    <img src="../images/guide/v-dashboards.png" alt="The Cadastre (Deeds) overview dashboard: totals, doughnut and bar charts, a summary table and a features table" loading="lazy">
+    <figcaption>The Public Viewer's <em>Cadastre (Deeds) overview</em>, made with Auto generate: 43,181 properties, their total valuation, charts by type, status and ward, and the newest records.</figcaption>
+  </figure>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>How many properties there are, and their total valuation.</li>
+    <li>Properties by type, status or ward, as doughnut and bar charts.</li>
+    <li>The newest records, as a features table.</li>
+  </ul>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Build it yourself</dt><dd>An empty dashboard: add the indicators, charts and tables yourself.</dd>
+    <dt>Auto generate…</dt><dd>Pick layers: their fields are read and the rules choose a count and totals, charts of fields
+      such as zoning or ward, a summary table and a features table. No AI is involved.</dd>
+    <dt>Indicators</dt><dd>A single value with a colour and caption.</dd>
+    <dt>Charts</dt><dd>Bar, horizontal bar, line, pie and doughnut: the count, sum, average, minimum or maximum of a layer,
+      grouped by a field, optionally filtered, computed by the server.</dd>
+    <dt>Summary tables</dt><dd>One row per group: the value and, for counts and sums, its share.</dd>
+    <dt>Features tables</dt><dd>One row per feature with the fields you tick, newest first, up to 100 rows.</dd>
+    <dt>Width and height</dt><dd>1 to 12 grid columns, and rows of 60 px.</dd>
+    <dt>Appearance</dt><dd>Colour or palette, transparency, outlines, value labels, legend position, axis titles, grid
+      lines, label shortening, smooth or filled lines, doughnut hole size.</dd>
+  </dl>
+
+  <h2>Arrange</h2>
+  <p>In the <strong>Draft preview</strong>, open Dashboards and click <strong>Arrange</strong>. Drag ✥ to move an item and its
+  bottom-right corner to resize it (or use the arrow keys and Shift + arrow keys on ✥). The layout goes into the project
+  as you go; a published viewer shows it fixed. <strong>Refresh</strong> reads the numbers again and
+  <strong>Back to map</strong> closes the dashboard.</p>
+</article>
+
+<article class="topic" id="editing" data-group="Widgets">
+  <h1>Editing</h1>
+  <p class="lead">Form-centric editing of feature service layers, in a window over the map.</p>
+
+  <figure class="panel">
+    <img src="../images/guide/s-editing.png" alt="Editing settings: the five form templates, window width and side, records listed, and layers" loading="lazy">
+    <figcaption>Editing settings. The Public Viewer's web map has no feature service layers, so it can't be edited.</figcaption>
+  </figure>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>The window lists the layer's records in the part of the map people can see, newest first, and lists them again when they pan or zoom.</li>
+    <li>Clicking a record, in the list or on the map, opens its form. Only changed values are saved.</li>
+    <li>Coded-value domains become drop-downs, range domains and field lengths are checked, and dates use a date picker.</li>
+    <li>Edits go through the service with the signed-in person's identity, so the service's own permissions decide what's allowed.</li>
+    <li>Edits made in the <a href="#preview">Draft preview</a> change the real data (the window says so).</li>
+  </ul>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>Fold the less-used fields into a <strong>Fire details</strong> group that starts folded, so the form opens short.</li>
+    <li>Show <strong>Seen at</strong> only when <strong>Type</strong> is one of 7, 22 (Fire origin, Spot fire).</li>
+    <li>Make <strong>Description</strong> required when <strong>Type</strong> is 4, and let people change
+      <strong>Wind direction</strong> only once there is a description.</li>
+    <li>Start from the form already built in Field Maps with <strong>Use the web map's form (Field Maps)</strong>.</li>
+  </ul>
+
+  <figure>
+    <img src="../images/62-viewer-smart-form-required-when.png" alt="An edit form with an Event group, a field hint under Event type, and Description marked required by a rule" loading="lazy">
+    <figcaption>A smart form in the viewer: the Event group, a hint under Event type, and Description required by a
+      <strong>Required when</strong> rule (Esri's public Wildfire sample).</figcaption>
+  </figure>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Show the Editing button in the viewer</dt><dd>Switches the widget on or off.</dd>
+    <dt>Form template</dt><dd>
+      <ul>
+        <li><strong>Classic list</strong>: a tidy list of records; the form opens as a dialog in the middle.</li>
+        <li><strong>Cards</strong>: records as cards with their key values; a wide two-column form.</li>
+        <li><strong>Table</strong>: a sortable table of records; the form slides in from the side.</li>
+        <li><strong>List and form</strong>: side by side; pick a record and edit it next to the list.</li>
+        <li><strong>Guided steps</strong>: one small group of fields at a time with large controls, for tablets and field crews.</li>
+      </ul></dd>
+    <dt>The window opens at</dt><dd><strong>Half: the form beside the map</strong> (on the left or right; the map and the drag
+      handle take the other side) or <strong>Full: the form over the whole map</strong>. People can switch.</dd>
+    <dt>Most records listed for the map view</dt><dd>Newest first; 200 by default, up to 1,000.</dd>
+    <dt>Layers people can edit</dt><dd>Feature service layers (<code>…/FeatureServer/n</code>) only. Per layer: update, add
+      (draw the feature, then fill in the form) and delete; the fields, their order and labels, which are editable or
+      required, the record title and up to four values shown with each record. <strong>Back to every editable
+      field</strong> undoes the choices.</dd>
+  </dl>
+
+  <h2 id="smart-forms">Smart forms</h2>
+  <p>Each layer's form can have groups, hints and rules. A field's <strong>Rules (n)</strong> link opens its hint and
+  rules; the number counts what is set.</p>
+
+  <figure class="panel">
+    <img src="../images/62-orchestration-smart-form-rules.png" alt="Editing settings for one layer: Use the web map's form, the import notes, two groups with Starts folded and Show the group only when, and the field table with two fields' rules open" loading="lazy">
+    <figcaption>A layer's form after importing its Field Maps form: two groups, and the rules of Seen at and Wind direction open.</figcaption>
+  </figure>
+
+  <dl class="settings">
+    <dt>Groups</dt><dd>Titled sections in the form. <strong>Add group</strong>, name it, put it in order with ↑ ↓,
+      and tick <strong>Starts folded</strong> to open it closed. <strong>Show the group only when</strong> hides the whole
+      group until a rule is met. Then pick each field's <strong>Group</strong> in the field table; removing a group
+      keeps its fields in the form. In the <strong>Guided steps</strong> template each group is a step.</dd>
+    <dt>Hint under the field</dt><dd>A short help text shown under the field.</dd>
+    <dt>Show only when</dt><dd>The field shows only while another field's value meets the rule.</dd>
+    <dt>Required when</dt><dd>The field must be filled in while the rule is met. <strong>Always</strong> follows the
+      Required tick (or the service, if it doesn't allow empty values).</dd>
+    <dt>Editable when</dt><dd>People can change the field only while the rule is met; otherwise it is read-only.</dd>
+    <dt>A rule</dt><dd><strong>Always</strong>, or a field, a test and a value: <strong>is</strong>, <strong>is
+      not</strong>, <strong>is one of</strong> (values separated by commas), <strong>is empty</strong> or <strong>is not
+      empty</strong>. Coded-value fields offer their values.</dd>
+    <dt>Use the web map's form (Field Maps)</dt><dd>Shown when the web map's layer has a Field Maps form. Copies its
+      fields, labels, hints and groups, and turns simple Arcade conditions into rules. It replaces the form's fields,
+      groups and rules (it asks first) and lists anything that didn't come across, to set by hand.</dd>
+  </dl>
+
+  <div class="note"><p>A field hidden by a rule is never required and never saved: the record keeps the value it had
+  (it isn't cleared). Rules compare one field with a value; they are not Arcade, so a Field Maps condition that
+  combines fields or calls functions isn't converted. Calculated values, text, relationship and attachment elements
+  aren't brought over. The form is read from the web map's layer, not the layer's item.</p></div>
+
+  <div class="note"><p>Editing changes attributes and adds and deletes features. It doesn't reshape features, snap, or
+  handle attachments, related tables or subtype-specific domains yet. Map service sublayers can't be edited.</p></div>
+</article>
+
+<article class="topic" id="scene" data-group="Widgets">
+  <h1>Scene</h1>
+  <p class="lead">A separate 3D view of the layers you choose. Nothing comes over from the 2D map.</p>
+
+  <figure class="panel">
+    <img src="../images/guide/s-scene.png" alt="Scene settings: width and side, and the layers to add" loading="lazy">
+    <figcaption>Scene settings (switched off in the Public Viewer).</figcaption>
+  </figure>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Show the Scene button in the viewer</dt><dd>Switches the widget on or off.</dd>
+    <dt>The scene opens at</dt><dd><strong>Half: the scene beside the 2D map</strong> (with a drag handle; the two move
+      together) or <strong>Full: the scene instead of the 2D map</strong> (with <strong>Back to the 2D map</strong> and
+      <strong>Sun and shadows</strong>).</dd>
+    <dt>Layers in the scene</dt><dd>Pick a layer and <strong>Add to the scene</strong>. Map service sublayers are read as
+      features from their URL; tables, image and tile layers, and multipoint layers can't go in.</dd>
+    <dt>Height</dt><dd>Per layer: <strong>from a field</strong> (metres), <strong>random between two heights</strong> (the same
+      for a feature every time), or <strong>none</strong> (flat, for context such as boundaries or roads).</dd>
+    <dt>Colour, thickness and shape</dt><dd>Polygons are extruded, lines become walls, and points stand up as a cylinder (poles) or cone (trees).</dd>
+  </dl>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Uses Esri's world elevation and a default Esri basemap.</li>
+    <li><strong>Sun and shadows</strong> sets a date and time to see the shadows.</li>
+    <li>Secured layers ask for sign-in first. Clicking features in 3D does nothing for now.</li>
+  </ul>
+</article>
+
+<article class="topic" id="streaming" data-group="Widgets">
+  <h1>Streaming</h1>
+  <p class="lead">Live video and live positions in one widget: Cameras, Drones and Tracking.</p>
+
+  <figure>
+    <img src="../images/guide/v-streaming-cameras.png" alt="The Streaming window at half the map playing a live traffic camera" loading="lazy">
+    <figcaption>Cameras: a live Caltrans traffic camera (demo), with Show on map, Open in a new tab and Full screen.</figcaption>
+  </figure>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>Traffic and beach cameras marked on the map.</li>
+    <li>An emergency team pasting the address of their drone's live video.</li>
+    <li>Fleet vehicles moving on the map, with trails.</li>
+  </ul>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>The window opens on a card for each section that's on (with one, straight on it); tabs at its top switch between them.</li>
+    <li>Cameras: pick one in the list, or click its marker on the map. Leaving a video section or closing the window stops the video.</li>
+    <li>Drones: paste your stream's address (and a name). It plays for this visit only and is never stored.</li>
+    <li>Tracking: switch feeds on and off, <strong>Zoom to</strong> them, <strong>List</strong> their objects, select one to see its
+      values, and <strong>Follow</strong> it. Feeds stay on the map when the window closes.</li>
+  </ul>
+
+  <figure>
+    <img src="../images/guide/v-streaming-tracking-map.png" alt="Tracking: the Los Angeles Metro buses demo feed on the map, 39 buses" loading="lazy">
+    <figcaption>Tracking: Esri's sample stream service of Los Angeles Metro buses (demo), 39 on the map, zoomed to.</figcaption>
+  </figure>
+
+  <h2>Settings</h2>
+  <figure class="panel">
+    <img src="../images/guide/s-streaming.png" alt="Streaming settings with tabs for Cameras, Drones and Tracking" loading="lazy">
+    <figcaption>One settings page with a tab per section.</figcaption>
+  </figure>
+  <dl class="settings">
+    <dt>Show the Streaming button in the viewer</dt><dd>Switches the widget on or off.</dd>
+    <dt>The window opens at</dt><dd><strong>Half: beside the map</strong> (on the left or right; people can drag the edge) or <strong>Full: over the map and the panel</strong>.</dd>
+    <dt>Offer … in the Streaming window</dt><dd>Each section is switched on or off on its own.</dd>
+    <dt>Who may watch: members of this portal group</dt><dd>A group id or group page link; empty means everyone.</dd>
+    <dt>Cameras</dt><dd><strong>Add a camera</strong>: a name, address, description, credit and optional location. Browsers
+      play HLS (<code>.m3u8</code>), MP4 or WebM video, MJPEG, snapshot pictures and YouTube or Vimeo players. Each camera
+      has a <strong>Test</strong> player. The demo adds public Caltrans traffic cameras.</dd>
+    <dt>Drones</dt><dd>No addresses are stored: people paste them in the viewer. The demo lists a recorded drone flight and two live
+      test signals.</dd>
+    <dt>Tracking</dt><dd>Feeds, each an ArcGIS stream service (pushed live), an ArcGIS feature layer (read again on a
+      timer), GeoJSON, or any JSON with a latitude and longitude. <strong>Test the feed</strong> reads it once and fills in
+      the paths it can guess. The demo adds LA buses, US flights, the International Space Station, Finnish trains and
+      Boston's subway.</dd>
+  </dl>
+
+  <div class="caution"><p>Camera and feed addresses are in <code>manifest.json</code>, which anyone who can reach the viewer
+  can read. A group hides a section; it doesn't protect the streams. Addresses must be https:// and must not contain
+  passwords or keys. Browsers can't play RTSP or RTMP: use a gateway such as MediaMTX or go2rtc.</p></div>
+
+  <div class="caution"><p><strong>Public viewers: public cameras and feeds only.</strong> In a viewer the public can
+  open, use only camera and feed addresses that are already public, such as traffic cameras or open data feeds. To
+  stream your organisation's own cameras, drones or vehicle positions, publish a separate viewer to an internal
+  application that runs only on your internal network and can't be reached from outside it, and keep those cameras
+  and feeds on the internal network too.</p></div>
+</article>
+
+<article class="topic" id="external-pages" data-group="Widgets">
+  <h1>External pages</h1>
+  <p class="lead">Other sites' pages opened inside the viewer: an Experience Builder app, another organisation's viewer, a dashboard.</p>
+  <p class="why">Why it works this way: <a href="#why-external-pages">the usual approach and its limits</a>.</p>
+
+  <figure>
+    <img src="../images/guide/v-pages-page.png" alt="Another organisation's map viewer open at half the map, beside the viewer's map" loading="lazy">
+    <figcaption>Another organisation's public map viewer at half the map, opened where the map is looking.</figcaption>
+  </figure>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Tabs at the top of the window switch pages. Each page stays loaded, so people keep their place.</li>
+    <li>The window's header has <strong>Go to the map's position</strong>, <strong>Reload the page</strong> and <strong>Open in a new tab</strong>.</li>
+    <li>A site that doesn't allow other sites to show it stays blank; the line at the window's foot offers Open in a new tab.</li>
+  </ul>
+
+  <h2>Settings</h2>
+  <figure class="panel">
+    <img src="../images/guide/s-externalPages.png" alt="External pages settings: width and side, and the two pages" loading="lazy">
+    <figcaption>Two pages, both opening at the map's position.</figcaption>
+  </figure>
+  <dl class="settings">
+    <dt>Show the External pages button in the viewer</dt><dd>Switches the widget on or off.</dd>
+    <dt>The window opens at</dt><dd><strong>Half: beside the map</strong> (left or right) or <strong>Full: over the map and the panel</strong>.</dd>
+    <dt>Pages</dt><dd><strong>Add a page</strong>: a name, an https:// address and a line of description, ordered with ↑ ↓.</dd>
+    <dt>It's a GIS viewer</dt><dd>The page opens where the map is looking. Its address carries placeholders the viewer
+      fills: <code>{lon}</code>, <code>{lat}</code>, <code>{zoom}</code>, <code>{scale}</code> and the extent
+      <code>{xmin}</code> <code>{ymin}</code> <code>{xmax}</code> <code>{ymax}</code>, in WGS 84.</dd>
+    <dt>Fill in the map's position</dt><dd>Writes the placeholders for addresses it recognises (Cape Farm Mapper, Map Viewer, Instant Apps, Experience Builder).</dd>
+    <dt>Examples</dt><dd>Cape Farm Mapper and the CSG Property Viewer, which can be added back if removed.</dd>
+  </dl>
+</article>
+
+<article class="topic" id="downloads" data-group="Widgets">
+  <h1>Downloads</h1>
+  <p class="lead">Lists of files people can download, each a sortable table with a filter box.</p>
+  <p class="why">Why it works this way: <a href="#why-downloads">the usual approach and its limits</a>.</p>
+
+  <figure>
+    <img src="../images/guide/v-downloads-list.png" alt="The Map Sheets (PDF) download page: 22 PDF map sheets with views and created dates" loading="lazy">
+    <figcaption>Map Sheets (PDF): 22 items from an Instant App's group. Clicking a name downloads the file.</figcaption>
+  </figure>
+
+  <h2>Settings</h2>
+  <figure class="panel">
+    <img src="../images/guide/s-downloads.png" alt="Downloads settings: width and side, and six download pages" loading="lazy">
+    <figcaption>Six download pages: an Instant App and five Hub site catalogs.</figcaption>
+  </figure>
+  <dl class="settings">
+    <dt>Show the Downloads button in the viewer</dt><dd>Switches the widget on or off.</dd>
+    <dt>The window opens at</dt><dd><strong>Half: beside the map</strong> (left or right) or <strong>Full: over the map and the panel</strong>.</dd>
+    <dt>Download pages</dt><dd><strong>Add a download page</strong> (up to 20): a name, a line of description, and where its list comes from:
+      <ul>
+        <li>an <strong>ArcGIS Instant App</strong> that shows a group's content (such as a Filter Gallery), or a portal group page,</li>
+        <li>an <strong>ArcGIS Hub site</strong> (its catalog groups),</li>
+        <li>an <strong>ArcGIS feature layer or table</strong> (a where clause, and which fields hold the name, link, count, type and date),</li>
+        <li>a <strong>JSON API</strong> (a path to the list and to the fields, with CKAN and Socrata presets),</li>
+        <li>a <strong>list typed here</strong>.</li>
+      </ul></dd>
+    <dt>Test</dt><dd>Reads the list as the viewer will and shows the first rows.</dd>
+  </dl>
+
+  <div class="note"><p>ArcGIS has no download counter, so for ArcGIS sources the count is the item's views (views and
+  downloads together), headed "Views / downloads". Lists are read each time someone opens a page, so they stay up to date.</p></div>
+</article>
+
+<article class="topic" id="trace" data-group="Widgets">
+  <h1>Attribute trace</h1>
+  <p class="lead">Which features are linked to a starting feature through chains of field relationships.</p>
+  <p class="why">Why it works this way: <a href="#why-related">the usual approach and its limits</a>.</p>
+
+  <figure>
+    <img src="../images/guide/v-trace-results.png" alt="An Attribute trace from Main Road: Street Names to Primary addresses to Cadastre (Deeds), 34 connected properties" loading="lazy">
+    <figcaption>A trace from a road: its road id finds 34 addresses, whose parcel codes find 34 properties, in 0.2 s.</figcaption>
+  </figure>
+
+  <h2>Examples</h2>
+  <ul>
+    <li>Road closure: a road's id finds its addresses, and their parcel codes find the properties (above).</li>
+    <li>A reservoir finds its zones, pipes, connections and properties.</li>
+  </ul>
+
+  <h2>Usage notes</h2>
+  <ol>
+    <li>Click a feature of the trace's starting layer and press the trace's button on its Details card
+      (<strong>Trace: Street Names</strong>), or open Attribute trace and <strong>Pick on the map</strong>.</li>
+    <li>Click <strong>Run the trace</strong>. Each step's count shows as it goes; you can cancel.</li>
+    <li>Results come as a table (with <strong>Zoom to all</strong>, <strong>Clear from the map</strong> and <strong>Export…</strong>)
+      and on the map. Choosing a row zooms to it and opens it in Details.</li>
+    <li><strong>Export…</strong> (with the Export results tool) saves every result as <strong>Excel</strong> (a blue header
+      row with a filter on every column) or <strong>CSV</strong>. The table's columns start ticked; tick any of the last
+      layer's other fields to include them too.</li>
+  </ol>
+  <p>Results are labelled as linked, not confirmed affected: matching keys doesn't prove a physical connection or an outage.</p>
+
+  <h2>Settings</h2>
+  <figure class="panel">
+    <img src="../images/guide/s-trace.png" alt="Attribute trace settings: window, own traces, When a result is chosen, Limits and the traces" loading="lazy">
+    <figcaption>Attribute trace settings, with one trace: Street Names → Primary → Cadastre (Deeds).</figcaption>
+  </figure>
+  <dl class="settings">
+    <dt>Show the Attribute trace button in the viewer</dt><dd>Switches the widget on or off.</dd>
+    <dt>The window opens at</dt><dd><strong>Half: beside the map</strong> (left or right) or <strong>Full: over the map and the panel</strong>.</dd>
+    <dt>Viewer users may make their own traces</dt><dd>Kept in their own browser only: never shared, never published, and lost when they clear the browser's data.</dd>
+    <dt><a href="#emphasis">When a result is chosen</a></dt><dd>Zoom, colour, flash, fill and lift.</dd>
+    <dt>Limits</dt><dd>Most steps in one trace (1–20), most features one step may find, most results, values per query,
+      queries at once, and the longest a trace may run. A trace that reaches one stops with a plain message.</dd>
+    <dt>Traces</dt><dd><strong>Add a trace</strong> (up to 20): a name, the layer it starts from and its steps. Each step reads a
+      field from the starting feature or earlier steps and finds the features of another layer whose field matches,
+      with optional filters, <em>ignore case</em> and <em>optional</em>. Result columns are chosen, renamed and ordered.
+      <strong>Test</strong> runs a trace from a where clause.</dd>
+  </dl>
+</article>
+
+<!-- =============================================================== TOOLS -->
+
+<article class="topic" id="tools" data-group="Tools">
+  <h1>Tools</h1>
+  <p class="lead">The Tools panel: measuring, drawing, comparing and more. Tick and order them under Widgets and tools.
+  While a tool waits for the map the cursor changes (<a href="#cursors">Cursors</a>).</p>
+
+  <figure>
+    <img src="../images/guide/v-measure.png" alt="Measure distance: a line measured across a town" loading="lazy">
+    <figcaption>Measure distance.</figcaption>
+  </figure>
+
+  <h2>Settings</h2>
+  <p>Each ticked tool's <strong>Settings</strong> under <a href="#widgets">Widgets and tools</a>:</p>
+  <dl class="settings">
+    <dt>Measure distance / Measure area</dt><dd>Units: Metric (m / km), metres, kilometres, imperial, feet or miles; for area, Metric (m² / km²), square metres, hectares, square kilometres, imperial or acres.</dd>
+    <dt>Select features</dt><dd>The layers to select from and the shapes: rectangle, polygon, circle, point.</dd>
+    <dt>Draw</dt><dd>The shapes offered (point, line, polygon, rectangle, circle) and the colour.</dd>
+    <dt><a href="#swipe">Swipe</a></dt><dd>Compare layers with a drag handle.</dd>
+    <dt>Elevation profile</dt><dd>Draw a line, see the ground profile. Units.</dd>
+    <dt><a href="#label-orientation">Label orientation</a></dt><dd>Turn house numbers to follow a street.</dd>
+    <dt><a href="#dimensions">Dimensions</a></dt><dd>Side lengths, bearings and areas of the parcels in view.</dd>
+    <dt>Vegetation health</dt><dd>How healthy the veld, crops or fynbos are, from satellite imagery (Esri's Sentinel-2 or Landsat) or your own multispectral ImageServer, not from aerial photos (no near-infrared band). The indices offered (NDVI, SAVI, NDMI, EVI, NBR), their class breaks (healthy, moderate, stressed, bare or water), the cloud limit and the opacity; for your own service, <strong>Test the service</strong> finds its bands. In the viewer people click a spot to inspect it, and draw an area or use a selected parcel for its hectares per class, with a chart and Export…. The spot and the area are
+      marked in green; their colour, fill and flash are set under <a href="#map-highlights">Map highlights</a>.</dd>
+    <dt>Go to coordinates</dt><dd>The zoom level to go to (17 by default). How the place stands out (colour, flash, fill,
+      a 3D column) is under <a href="#map-highlights">Map highlights</a>.</dd>
+    <dt>Basemap gallery</dt><dd>Which basemaps are offered: Topographic, Streets, Light grey, Dark grey, Imagery, Imagery with labels, OpenStreetMap.</dd>
+    <dt>Print</dt><dd>The print service, a title, the layout (A4 or A3, landscape or portrait, or map only) and the format (PDF, PNG or JPG).</dd>
+    <dt>Share link</dt><dd>A link that opens the viewer at the current place (<code>?center=lon,lat&amp;zoom=z</code>).</dd>
+    <dt>Screenshot</dt><dd>Download a PNG (sharp, larger file) or JPG (smaller file) of the whole map or a dragged area.</dd>
+    <dt>Pointer coordinates</dt><dd>Always on when ticked: the coordinates under the pointer, at the bottom left of the map.</dd>
+    <dt>Export results (Excel, CSV)</dt><dd>Always on when ticked: <strong>Export…</strong> on every results table (Details, Search, spatial relationships, Attribute trace): Excel with a blue header row and a filter on every column, or CSV, every row.</dd>
+  </dl>
+
+  <figure>
+    <img src="../images/guide/v-basemaps.png" alt="The Basemap gallery tool" loading="lazy">
+    <figcaption>Basemap gallery.</figcaption>
+  </figure>
+</article>
+
+<article class="topic" id="swipe" data-group="Tools">
+  <h1>Swipe</h1>
+  <p class="lead">Compare layers on either side of a drag handle, for example this year's aerial against last year's.</p>
+  <figure>
+    <img src="../images/guide/v-swipe.png" alt="Swipe: a handle down the middle of the map, with the Tools panel explaining it" loading="lazy">
+    <figcaption>Drag the handle left or right to compare the layers.</figcaption>
+  </figure>
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Direction</dt><dd>Left and right, or top and bottom.</dd>
+    <dt>Leading and trailing layers</dt><dd>The layers on each side of the handle, from a plain list of layer titles.</dd>
+  </dl>
+</article>
+
+<article class="topic" id="label-orientation" data-group="Tools">
+  <h1>Label orientation</h1>
+  <p class="lead">Turn house numbers to follow their street, and save the angles to the layer.</p>
+  <p class="why">Why it works this way: <a href="#why-label-orientation">the usual approach and its limits</a>.</p>
+
+  <h2>Usage notes</h2>
+  <ol>
+    <li>Pick a street line layer and a house number point layer (or use the ones set in settings).</li>
+    <li>Pick a street from the list of streets in view, or click it. It's outlined in amber with an arrow for its direction.</li>
+    <li>Pick the numbers: click to add or remove, or draw a box.</li>
+    <li>Choose the orientation: horizontal, parallel, perpendicular (away from or toward the street), reversed parallel, or a custom angle.</li>
+    <li>Click <strong>Save</strong> to write the angles, if you're allowed to.</li>
+  </ol>
+  <p>On a curved street each number follows the segment nearest to it. <strong>Keep numbers upright</strong> turns any that would read upside down.</p>
+
+  <h2>Settings</h2>
+  <dl class="settings">
+    <dt>Street layer and label field</dt><dd>The starting street layer.</dd>
+    <dt>House number layer, label field and angle field</dt><dd>The angle field must be a number field (Double, Single, Integer or Small integer).</dd>
+    <dt>Editors' group</dt><dd>A portal group id. Only signed-in members may save; with no group set, nobody can save and turned numbers are drawn for the visit only (the Manifest panel says so).</dd>
+    <dt>Orientation and Keep numbers upright</dt><dd>The starting choices.</dd>
+  </dl>
+
+  <div class="note"><p>Saving writes degrees clockwise (0 = horizontal) to a feature service layer that allows updates.
+  The layer's own labelling must use the field for the turned numbers to show.</p></div>
+</article>
+
+<article class="topic" id="dimensions" data-group="Tools">
+  <h1>Dimensions</h1>
+  <p class="lead">Parcel-fabric-style labels: the length of each side, and optionally its bearing and each parcel's area, for
+  the part of the map in view.</p>
+  <p class="why">Why it works this way: <a href="#why-dimensions">the usual approach and its limits</a>.</p>
+
+  <figure>
+    <img src="../images/guide/v-dimensions.png" alt="Parcels labelled with side lengths, bearings and areas" loading="lazy">
+    <figcaption>Cadastre (Deeds) measured: side lengths, bearings (degrees, minutes, seconds) and areas, 56 parcels in view.</figcaption>
+  </figure>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Open Dimensions in the Tools panel, tick the layers to measure and click <strong>Show dimensions</strong>.</li>
+    <li>Labels are redrawn whenever the map comes to rest. A shared side is labelled once; a side too short on screen gets no label until you zoom in.</li>
+    <li>It stays on while people use Details and other tools, and never takes map clicks.</li>
+    <li>A layer is measured only while the map draws it; the panel says why one isn't (switched off, out of scale, more than 500 features in view).</li>
+    <li>In a Web Mercator or geographic map, lengths and areas are on the ground and bearings are from true north.</li>
+  </ul>
+
+  <h2>Settings</h2>
+  <p>In settings (under Tools) and, apart from the colours, in the viewer's panel:</p>
+  <dl class="settings">
+    <dt>Lengths in, Decimals</dt><dd>Metres or feet, 0 to 3 decimals.</dd>
+    <dt>Show polygon areas, Areas in</dt><dd>m², ha, ft² or acres, or "m² below 1 ha, then hectares".</dd>
+    <dt>Show bearings after the lengths (clockwise from north), Bearings as</dt><dd>Degrees, minutes, seconds (96°44'03") or decimal degrees.</dd>
+    <dt>Label lines with</dt><dd>A length per segment, or the whole line's length once.</dd>
+    <dt>Colours</dt><dd>Of length, area and bearing labels, each its own (settings only).</dd>
+  </dl>
+
+  <div class="caution"><p>Dimensions are for orientation, not survey. Bearings are true bearings, not Lo-system grid
+  bearings, and arcs come back as many short straight segments.</p></div>
+</article>
+
+<!-- =============================================================== PUBLISH -->
+
+<article class="topic" id="publish" data-group="Publish and install">
+  <h1>Publish a viewer</h1>
+  <p class="lead">Build the viewer package and install it on the server it will run on.</p>
+
+  <h2>Publish</h2>
+  <ol class="steps">
+    <li>Click <strong>Publish viewer</strong> in the Manifest panel (or <strong>Publish</strong> on the project's row). With no
+      project folder chosen yet, it asks for one first.</li>
+    <li>Choose where it will run: <strong>IIS</strong> (an application under a site, or a site of its own),
+      <strong>Node.js Server</strong> or <strong>Docker</strong>, and fill in that target's settings.</li>
+    <li>The package is written into the project's folder as <code>published\v&lt;version&gt;-&lt;target&gt;\</code>. Each
+      publish makes a new folder, so earlier ones stay.</li>
+    <li>On a server with the install helper, it's installed straight away and the log is shown. Elsewhere, run the
+      install script in the package's <code>deploy\</code> folder and follow its <code>README.txt</code>.</li>
+    <li>Click the live address to open the viewer, or <strong>Copy</strong> it.</li>
+  </ol>
+
+  <h2>The targets</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Target</th><th>What the server needs</th><th>Install, update, roll back</th></tr></thead>
+    <tbody>
+      <tr><td><strong>IIS</strong> (least effort)</td><td>IIS; an application under a site, or a site of its own</td><td><code>deploy\iis\install.ps1</code></td></tr>
+      <tr><td><strong>Node.js Server</strong></td><td>Node.js LTS, and WinSW to run it as a Windows service</td><td><code>deploy\node\install.ps1</code></td></tr>
+      <tr><td><strong>Docker</strong></td><td>Windows containers; the image brings its own Node.js</td><td><code>deploy\docker\build.ps1</code></td></tr>
+    </tbody>
+  </table></div>
+  <p>Each install keeps earlier versions, and <code>-Rollback</code> goes back to the one before.</p>
+
+  <div class="tip"><p>Publishing changes nothing for the people using the old version until it's installed. Use
+  <a href="#preview">Draft preview</a> to check first.</p></div>
+</article>
+
+<article class="topic" id="server-install" data-group="Publish and install">
+  <h1>Install on a Windows Server</h1>
+  <p class="lead">Run the Orchestrator on the server it publishes to, so Publish installs viewers with one click.</p>
+
+  <p>The full, step-by-step guide with screenshots is the <a href="install-guide.pdf">Install Guide (PDF)</a>. In short:</p>
+  <ol class="steps">
+    <li>On your PC, open <strong>Publish to production server</strong> in the Orchestrator's header and click
+      <strong>Make the zip</strong> (once per version).</li>
+    <li>Copy the zip to the server, extract it and double-click <strong>Setup.cmd</strong>.</li>
+    <li>On the install page, enter the server's name, your portal and the projects folder, then click <strong>Install</strong>.</li>
+    <li>Setup opens <code>http://localhost/gis-orchestrator/#/setup</code>, the <strong>Server setup</strong> checklist. Sign in and choose the projects folder.</li>
+  </ol>
+
+  <h2>Usage notes</h2>
+  <ul>
+    <li>Open the Orchestrator <strong>on the server</strong>: localhost counts as secure, so the project folder works without
+      a certificate, and the folder picker shows the server's own drives.</li>
+    <li>The optional <strong>install helper</strong> is a small listener on 127.0.0.1 only. It runs only the Orchestrator's own
+      install scripts and asks the portal that you're an administrator first. Without it, every step shows the
+      command to run by hand.</li>
+  </ul>
+</article>
+
+<!-- =============================================================== REFERENCE -->
+
+<article class="topic" id="security" data-group="Reference">
+  <h1>Security and privacy</h1>
+  <p class="lead">What a viewer stores, where sign-ins go, and what is and isn't protected.</p>
+  <ul>
+    <li><strong>No credentials in manifests.</strong> People sign in when they open a secured viewer; the short-lived token lives in the browser tab only.</li>
+    <li><strong>A manifest is public.</strong> Anyone who can reach a viewer can read its <code>manifest.json</code>.
+      Group-only services and sections hide things; secure the services themselves to protect them.</li>
+    <li><strong>Tokens go only to their own server.</strong> A sign-in's token is sent only to its own portal or server.</li>
+    <li><strong>Allowed hosts.</strong> Related records may only call hosts in <code>enrichmentHosts</code>.</li>
+    <li><strong>Serve viewers over https.</strong> Over http, anyone on the network path can read or change the page and its tokens.</li>
+    <li><strong>Edits use the person's identity.</strong> The service's own permissions decide what Editing and Label orientation may save.</li>
+    <li><strong>Sanitised content.</strong> Popup HTML from web maps is sanitised; downloads and disclaimers are shown as text.</li>
+  </ul>
+  <p>The README has the full list, including CORS and the security headers each target sends.</p>
+</article>
+
+<article class="topic" id="glossary" data-group="Reference">
+  <h1>Glossary</h1>
+  <dl class="settings">
+    <dt>Group-only</dt><dd>Shown only to signed-in members of chosen portal groups.</dd>
+    <dt>Half / full window</dt><dd>A window over the map at half the map's width (beside it, with a drag handle) or covering it.</dd>
+    <dt>Highlight</dt><dd>How a selected feature or chosen result stands out on the map: colour, flash, fill, 3D lift and
+      zoom. All of them are on the <a href="#map-highlights">Map highlights</a> page.</dd>
+    <dt>Install helper</dt><dd>An optional local service on the server that runs the Orchestrator's install scripts for Publish.</dd>
+    <dt>Live web map</dt><dd>The viewer reads the current web map each time it opens. Compare <em>snapshot</em>.</dd>
+    <dt>Manifest</dt><dd>The JSON file that describes a viewer.</dd>
+    <dt>Project folder</dt><dd>A folder on disk where projects and published packages are kept as files.</dd>
+    <dt>Rail</dt><dd>The column of buttons down the side: the settings rail in the Orchestrator, or the Side rail template in a viewer.</dd>
+    <dt>Snapshot web map</dt><dd>The web map frozen into the viewer when it's published.</dd>
+    <dt>Web Mercator</dt><dd>The projection most web maps use. It keeps angles true but enlarges areas away from the equator, which is why tools measure on the ground instead.</dd>
+  </dl>
+</article>
+
+    <nav class="pager" id="pager" aria-label="Previous and next topic"></nav>
+    <p class="foot">Orchestrator for ArcGIS user guide. Screenshots taken from the live app with Playwright:
+    a public viewer on its web map.</p>
+  </main>
+  <aside class="onpage" id="onpage" aria-label="In this topic"></aside>
+</div>
+
+<dialog class="zoom" id="zoom" aria-label="Screenshot"><img alt=""><p></p></dialog>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const topics = [...document.querySelectorAll('article.topic')];
+  const titleOf = t => t.querySelector('h1').textContent;
+  const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+  // Give every h2 an id (topic-heading) so "In this topic" can link to it.
+  for (const t of topics) for (const h of t.querySelectorAll('h2')) if (!h.id) h.id = `${t.id}-${slug(h.textContent)}`;
+
+  // Topics navigation, in the articles' order and groups.
+  const side = $('#side');
+  function buildNav(query = '') {
+    const q = query.trim().toLowerCase();
+    const shown = q ? topics.filter(t => t.textContent.toLowerCase().includes(q)) : topics;
+    const groups = new Map();
+    for (const t of shown) (groups.get(t.dataset.group) ?? groups.set(t.dataset.group, []).get(t.dataset.group)).push(t);
+    side.replaceChildren();
+    if (q) {
+      const p = document.createElement('p');
+      p.className = 'count';
+      p.textContent = `${shown.length} topic${shown.length === 1 ? '' : 's'} mention “${query.trim()}”`;
+      side.append(p);
+    }
+    for (const [group, list] of groups) {
+      const h = document.createElement('h2');
+      h.textContent = group;
+      const ul = document.createElement('ul');
+      for (const t of list) {
+        const a = document.createElement('a');
+        a.href = `#${t.id}`;
+        a.textContent = titleOf(t);
+        const li = document.createElement('li');
+        li.append(a);
+        ul.append(li);
+      }
+      side.append(h, ul);
+    }
+    if (!shown.length) {
+      const p = document.createElement('p');
+      p.className = 'none';
+      p.textContent = 'No topic mentions that.';
+      side.append(p);
+    }
+    markCurrent();
+  }
+  let current = topics[0];
+  function markCurrent() {
+    for (const a of side.querySelectorAll('a')) {
+      if (a.getAttribute('href') === `#${current.id}`) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    }
+  }
+
+  function link(href, text) { const a = document.createElement('a'); a.href = href; a.textContent = text; return a; }
+
+  function show() {
+    const target = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    const t = target?.closest('article.topic') ?? topics[0];
+    current = t;
+    for (const a of topics) a.hidden = a !== t;
+    markCurrent();
+    document.title = `${titleOf(t)} | Orchestrator for ArcGIS User Guide`;
+
+    // Breadcrumb
+    const crumbs = $('#crumbs');
+    crumbs.replaceChildren(link('#welcome', 'User guide'), ' › ', t.dataset.group);
+
+    // In this topic: on the right on wide screens, under the lead on narrower ones.
+    const heads = [...t.querySelectorAll('h2')];
+    const list = () => { const ol = document.createElement('ol'); for (const h of heads) { const li = document.createElement('li'); li.append(link(`#${h.id}`, h.textContent)); ol.append(li); } return ol; };
+    const onpage = $('#onpage');
+    onpage.replaceChildren();
+    t.querySelector('.intopic')?.remove();
+    if (heads.length > 1) {
+      const h = document.createElement('h2'); h.textContent = 'In this topic';
+      onpage.append(h, list());
+      const box = document.createElement('div'); box.className = 'intopic';
+      const s = document.createElement('strong'); s.textContent = 'In this topic';
+      box.append(s, list());
+      (t.querySelector('.lead') ?? t.querySelector('h1')).after(box);
+    }
+
+    // Previous and next
+    const i = topics.indexOf(t);
+    const pager = $('#pager');
+    pager.replaceChildren();
+    for (const [n, cls, label] of [[i - 1, 'prev', '← Previous'], [i + 1, 'next', 'Next →']]) {
+      if (!topics[n]) continue;
+      const a = link(`#${topics[n].id}`, titleOf(topics[n]));
+      a.className = cls;
+      const small = document.createElement('small'); small.textContent = label;
+      a.prepend(small);
+      pager.append(a);
+    }
+
+    document.body.classList.remove('menu-open');
+    $('#menu-btn').setAttribute('aria-expanded', 'false');
+    if (target && target !== t) target.scrollIntoView();
+    else window.scrollTo(0, 0);
+  }
+
+  addEventListener('hashchange', show);
+  // On load the browser jumps to #topic after this script has run; a topic opens at its top instead.
+  addEventListener('load', () => { if (location.hash === `#${current.id}`) window.scrollTo(0, 0); });
+  $('#find').addEventListener('input', e => buildNav(e.target.value));
+  $('#menu-btn').addEventListener('click', e => {
+    const open = document.body.classList.toggle('menu-open');
+    e.currentTarget.setAttribute('aria-expanded', String(open));
+  });
+
+  // Light / dark: follows the system until chosen, then remembered in this browser.
+  const root = document.documentElement;
+  try { const saved = localStorage.getItem('guide-theme'); if (saved) root.dataset.theme = saved; } catch {}
+  $('#theme-btn').addEventListener('click', () => {
+    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('guide-theme', root.dataset.theme); } catch {}
+  });
+
+  // Screenshots open full size.
+  const zoom = $('#zoom');
+  document.addEventListener('click', e => {
+    const img = e.target.closest('figure img');
+    if (img) {
+      zoom.querySelector('img').src = img.src;
+      zoom.querySelector('img').alt = img.alt;
+      zoom.querySelector('p').textContent = img.closest('figure').querySelector('figcaption')?.textContent ?? '';
+      zoom.showModal();
+    } else if (e.target.closest('dialog.zoom')) zoom.close();
+  });
+
+  buildNav();
+  show();
+})();
+</script>
+</body>
+</html>

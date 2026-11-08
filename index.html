@@ -1,0 +1,145 @@
+<!doctype html>
+<!-- The public site's landing page (tools/public-site.mjs copies it to the top of the site and fills in 2026-11-08).
+     Standalone on purpose: its own styles, no scripts, nothing from js/ — it is published where the Orchestrator
+     itself is not. The palette and type match docs/user-guide.htm so the two pages feel like one site. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orchestrator for ArcGIS</title>
+  <meta name="description" content="Configure ArcGIS map viewers without code, and publish them as self-contained static sites.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1C2B30; --muted: #56656a; --bg: #ffffff; --panel: #f4f7f6; --rule: #d7dfdd;
+      --tide: #2B6F7F; --tide-soft: #e2eef0; --link: #22626f; --shadow: 0 1px 3px rgb(0 0 0 / .08);
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --ink: #e3ebe9; --muted: #a2b1ad; --bg: #141c1e; --panel: #1b2629; --rule: #2f3d40;
+        --tide: #5fb3c4; --tide-soft: #1d3338; --link: #7cc6d5; --shadow: none; color-scheme: dark;
+      }
+    }
+    :root[data-theme="dark"] {
+      --ink: #e3ebe9; --muted: #a2b1ad; --bg: #141c1e; --panel: #1b2629; --rule: #2f3d40;
+      --tide: #5fb3c4; --tide-soft: #1d3338; --link: #7cc6d5; --shadow: none; color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 "Atkinson Hyperlegible", "Segoe UI", Arial, sans-serif; }
+    a { color: var(--link); }
+    :focus-visible { outline: 3px solid var(--tide); outline-offset: 2px; }
+    .top { display: flex; align-items: center; gap: 14px; padding: 0 16px; height: 60px; background: var(--tide); color: #fff; }
+    :root[data-theme="dark"] .top { background: #0f2a30; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .top { background: #0f2a30; } }
+    .top .brand { color: #fff; text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+    .top .brand span { font-weight: 400; opacity: .85; }
+    .top nav { margin-left: auto; display: flex; gap: 16px; font-size: .95rem; }
+    .top nav a { color: #fff; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px 64px; }
+    h1 { font-size: clamp(1.6rem, 4.5vw, 2.3rem); line-height: 1.25; margin: 40px 0 8px; }
+    .lede { font-size: 1.1rem; color: var(--muted); margin: 0 0 28px; max-width: 62ch; }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
+    .btn { display: inline-block; padding: 11px 18px; border-radius: 8px; text-decoration: none; font-weight: 700; border: 1px solid var(--tide); }
+    .btn.primary { background: var(--tide); color: #fff; }
+    .btn.primary:hover { filter: brightness(1.08); }
+    .btn.ghost { color: var(--link); background: transparent; }
+    .btn.ghost:hover { background: var(--tide-soft); }
+    .note { font-size: .92rem; color: var(--muted); margin: 0 0 40px; }
+    h2 { font-size: 1.25rem; margin: 44px 0 10px; padding-top: 20px; border-top: 1px solid var(--rule); }
+    .does { margin: 0; padding-left: 20px; max-width: 70ch; }
+    .does li { margin-bottom: 6px; }
+    .tour { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin: 20px 0 0; }
+    figure { margin: 0; }
+    figure img { width: 100%; height: auto; display: block; border: 1px solid var(--rule); border-radius: 8px; box-shadow: var(--shadow); background: var(--panel); }
+    figcaption { font-size: .92rem; color: var(--muted); margin-top: 8px; }
+    figcaption b { color: var(--ink); font-weight: 700; }
+    footer { border-top: 1px solid var(--rule); margin-top: 48px; padding-top: 20px; font-size: .92rem; color: var(--muted); }
+    footer p { max-width: 70ch; }
+  </style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="./">Orchestrator for ArcGIS</a>
+  <nav>
+    <a href="docs/user-guide.htm">User guide</a>
+    <a href="viewer/">Demo</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <h1>Configure ArcGIS map viewers without code</h1>
+  <p class="lede">
+    The Orchestrator is a browser app that turns an ArcGIS web map into a configured map viewer — widgets, tools,
+    Details panels, dashboards, editing, 3D — and publishes it as a self-contained static site. No build step, no
+    bundler, no backend: the published viewer is plain HTML, CSS and ES modules on any web server.
+  </p>
+
+  <div class="cta">
+    <a class="btn primary" href="viewer/">Open the demo viewer</a>
+    <a class="btn ghost" href="docs/user-guide.htm">Read the user guide</a>
+  </div>
+  <p class="note">
+    The demo is a real published viewer on a public ArcGIS Online web map, so it needs no sign-in. Everything it
+    shows comes from one <code>manifest.json</code> beside the page.
+  </p>
+
+  <h2>What it does</h2>
+  <ul class="does">
+    <li>Reads a web map's layers and builds a viewer from them: Layers, Legend, Search, Bookmarks, Details, Dashboards, Editing, 3D scene, Streaming video, Attribute trace.</li>
+    <li>Details panels that follow a click through related records and other services, with results tables that export to Excel and CSV.</li>
+    <li>Tools: measure, draw, swipe, elevation profile, dimensions, vegetation health, address audit, basemaps, screenshot, share link.</li>
+    <li>Draft preview runs the same runtime as the published viewer, so what you preview is what ships.</li>
+    <li>Publishes to IIS, a Node.js service or a Windows container, each with its own install script.</li>
+  </ul>
+
+  <h2>A look at it</h2>
+  <div class="tour">
+    <figure>
+      <img src="images/guide/projects.png" alt="The Orchestrator's projects list, each project a card with its web map and version.">
+      <figcaption><b>Projects.</b> Each viewer is a project: its web map, its settings and its published versions.</figcaption>
+    </figure>
+    <figure>
+      <img src="images/guide/s-widgets.png" alt="The widgets and tools settings page, with each widget switched on or off.">
+      <figcaption><b>Settings, not code.</b> Switch widgets and tools on, set their options, preview, publish.</figcaption>
+    </figure>
+    <figure>
+      <img src="images/guide/v-layers.png" alt="A published viewer showing the layer list beside the map.">
+      <figcaption><b>The published viewer.</b> A side rail, a header bar or a floating panel — the same runtime either way.</figcaption>
+    </figure>
+    <figure>
+      <img src="images/guide/v-details.png" alt="The Details panel showing a clicked feature's fields and related records.">
+      <figcaption><b>Details.</b> One click gathers the feature, its related records and anything else you point at.</figcaption>
+    </figure>
+    <figure>
+      <img src="images/guide/v-dashboards.png" alt="A dashboard of indicators and charts built from the web map's layers.">
+      <figcaption><b>Dashboards.</b> Indicators, charts and tables counted live from the map's own layers.</figcaption>
+    </figure>
+    <figure>
+      <img src="images/guide/v-trace-results.png" alt="Attribute trace following a network from one feature to the next.">
+      <figcaption><b>Attribute trace.</b> Follow a network from feature to feature, with the results listed and drawn.</figcaption>
+    </figure>
+  </div>
+
+  <h2>Built with</h2>
+  <p>
+    ArcGIS Maps SDK for JavaScript 4.30 (from Esri's CDN), Chart.js 4 for dashboard charts (MIT) and hls.js 1.5 for
+    camera and drone video (Apache-2.0). Nothing else: no framework, no package manager, no build.
+  </p>
+
+  <footer>
+    <p>
+      This site publishes the user guide and a demo viewer. The Orchestrator's own source is not published.
+    </p>
+    <p>
+      &copy; Ashley Gahl. All rights reserved. Published as a demo and documentation, not an open-source release.
+      Site built 2026-11-08.
+    </p>
+  </footer>
+</div>
+
+</body>
+</html>
