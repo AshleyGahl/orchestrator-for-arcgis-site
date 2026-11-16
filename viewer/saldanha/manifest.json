@@ -1,0 +1,1061 @@
+{
+  "schema": "overstrand.map-manifest/3",
+  "id": "viewer-59d649b6",
+  "title": "Saldanha GIS Viewer",
+  "description": "",
+  "version": 55,
+  "publishedAt": "2026-11-16T11:11:27.785Z",
+  "publishedBy": "preview",
+  "webmap": {
+    "portalUrl": "https://saldanhabay.maps.arcgis.com",
+    "itemId": "0dcfe729d6414ea58345c08dabf042b9",
+    "title": "Public Viewer Map",
+    "mode": "live",
+    "secured": false,
+    "modified": null,
+    "snapshot": null,
+    "extraServices": [],
+    "layerOrder": [],
+    "layerVisibility": {
+      "1a198dcfbf8-layer-17": false,
+      "1a198d228ec-layer-16": false
+    },
+    "layersLeftOut": []
+  },
+  "branding": {
+    "subtitle": "An Orchestrator for ArcGIS demo",
+    "headerBg": "#267030",
+    "headerText": "#FFFFFF",
+    "accent": "#2B6F7F",
+    "selectionOnImagery": "#EEFF00",
+    "selectionLine": "dash",
+    "logo": "https://saldanhabay.maps.arcgis.com/sharing/rest/content/items/a87639a745914044a771188d01ca10ca/resources/inConfig/088497031933919.gif"
+  },
+  "layout": {
+    "template": "rail",
+    "panelSide": "right",
+    "fieldsAs": "rows",
+    "resultsAt": "panel"
+  },
+  "widgets": {
+    "layers": true,
+    "legend": true,
+    "details": true,
+    "bookmarks": true,
+    "search": true,
+    "addData": false,
+    "dashboards": true,
+    "editing": false,
+    "scene": false,
+    "streaming": false,
+    "externalPages": true,
+    "downloads": true,
+    "layerInfo": false,
+    "trace": false,
+    "tools": [
+      "measure-distance",
+      "measure-area",
+      "select",
+      "sketch",
+      "swipe",
+      "elevation",
+      "dimensions",
+      "vegetation",
+      "go-to-xy",
+      "basemap-gallery",
+      "print",
+      "share-link",
+      "screenshot",
+      "coordinates",
+      "export-results"
+    ],
+    "toolConfig": {
+      "measure-distance": {
+        "unit": "miles"
+      },
+      "measure-area": {
+        "unit": "imperial"
+      },
+      "select": {
+        "layers": [],
+        "shapes": [
+          "rectangle",
+          "polygon"
+        ],
+        "emphasis": {
+          "flash": false,
+          "flashTimes": 3,
+          "highlight": false,
+          "fillOpacity": 0.6,
+          "lift": false,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      },
+      "sketch": {
+        "shapes": [
+          "point",
+          "polyline",
+          "polygon",
+          "rectangle",
+          "circle"
+        ],
+        "color": "#2B6F7F"
+      },
+      "elevation": {
+        "unit": "metric"
+      },
+      "swipe": {
+        "direction": "horizontal",
+        "leading": [
+          "1a198d228ec-layer-16"
+        ],
+        "trailing": [
+          "1a198dcfbf8-layer-17"
+        ]
+      },
+      "label-orientation": {
+        "streetLayer": "",
+        "streetLabelField": "",
+        "pointLayer": "",
+        "labelField": "",
+        "angleField": "",
+        "saveGroupId": "",
+        "mode": "PARALLEL",
+        "autoFlip": true
+      },
+      "dimensions": {
+        "unit": "meters",
+        "areaUnit": "auto",
+        "decimals": 2,
+        "showArea": true,
+        "showBearings": false,
+        "bearingFormat": "dms",
+        "lineLength": "segments",
+        "lengthColor": "#000000",
+        "areaColor": "#000000",
+        "bearingColor": "#000000"
+      },
+      "vegetation": {
+        "source": "sentinel2",
+        "serviceUrl": "",
+        "bands": {
+          "blue": null,
+          "green": null,
+          "red": null,
+          "nir": null,
+          "swir1": null,
+          "swir2": null
+        },
+        "scale": 1,
+        "dateField": "",
+        "cloudField": "",
+        "indices": [
+          "ndvi",
+          "savi",
+          "ndmi",
+          "evi",
+          "nbr"
+        ],
+        "defaultIndex": "ndvi",
+        "breaks": {},
+        "maxCloud": 20,
+        "opacity": 0.7,
+        "emphasis": {
+          "flash": false,
+          "flashTimes": 3,
+          "highlight": false,
+          "fillOpacity": 0.6,
+          "lift": false,
+          "liftHeight": 24,
+          "color": "#10B981",
+          "zoomScale": 0
+        }
+      },
+      "go-to-xy": {
+        "zoom": 17,
+        "emphasis": {
+          "flash": false,
+          "flashTimes": 3,
+          "highlight": false,
+          "fillOpacity": 0.6,
+          "lift": false,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      },
+      "basemap-gallery": {
+        "basemaps": [
+          "topo-vector",
+          "streets-vector",
+          "gray-vector",
+          "dark-gray-vector",
+          "satellite",
+          "hybrid",
+          "osm"
+        ]
+      },
+      "print": {
+        "serviceUrl": "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task",
+        "title": "",
+        "layout": "a4-landscape",
+        "format": "pdf"
+      },
+      "share-link": {},
+      "screenshot": {
+        "format": "png"
+      },
+      "coordinates": {
+        "format": "dd"
+      },
+      "export-results": {},
+      "address-audit": {
+        "layer": "",
+        "fields": {
+          "number": {
+            "field": "",
+            "part": 0
+          },
+          "unit": {
+            "field": "",
+            "part": 0
+          },
+          "street": {
+            "field": "",
+            "part": 0
+          },
+          "streetType": {
+            "field": "",
+            "part": 0
+          },
+          "suburb": {
+            "field": "",
+            "part": 0
+          },
+          "locality": {
+            "field": "",
+            "part": 0
+          },
+          "postal": {
+            "field": "",
+            "part": 0
+          }
+        },
+        "skipValues": [
+          "UNKNOWN"
+        ],
+        "providers": [
+          "osm"
+        ],
+        "maxDistance": 25,
+        "locality": "",
+        "admin": "",
+        "postal": "",
+        "country": "ZA",
+        "windowSize": "bottom",
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      }
+    },
+    "open": "layers",
+    "order": [],
+    "toolOrder": [],
+    "layerReorder": false,
+    "restLinks": [],
+    "cursors": {
+      "draw": "cross",
+      "pick": "target",
+      "select": "arrow",
+      "colour": "dark",
+      "size": "normal",
+      "overrides": {}
+    },
+    "detailsEmphasis": {
+      "flash": false,
+      "flashTimes": 3,
+      "highlight": false,
+      "fillOpacity": 0.6,
+      "lift": false,
+      "liftHeight": 24,
+      "color": "",
+      "zoomScale": 0
+    }
+  },
+  "bookmarks": {
+    "includeWebMap": false,
+    "extra": [
+      {
+        "id": "bm-1",
+        "name": "St Helena Bay",
+        "center": [
+          18.013033,
+          -32.75331
+        ],
+        "zoom": 14
+      },
+      {
+        "id": "bm-2",
+        "name": "Laingville",
+        "center": [
+          18.063781,
+          -32.78972
+        ],
+        "zoom": 16
+      },
+      {
+        "id": "bm-3",
+        "name": "Paternoster",
+        "center": [
+          17.896776,
+          -32.812843
+        ],
+        "zoom": 15
+      },
+      {
+        "id": "bm-4",
+        "name": "Vredenburg",
+        "center": [
+          17.997767,
+          -32.9115
+        ],
+        "zoom": 14
+      },
+      {
+        "id": "bm-5",
+        "name": "Jacobsbaai",
+        "center": [
+          17.889265,
+          -32.971364
+        ],
+        "zoom": 15
+      },
+      {
+        "id": "bm-6",
+        "name": "Saldanha",
+        "center": [
+          17.948918,
+          -33.007072
+        ],
+        "zoom": 15
+      },
+      {
+        "id": "bm-7",
+        "name": "Langebaan",
+        "center": [
+          18.045048,
+          -33.071936
+        ],
+        "zoom": 14
+      },
+      {
+        "id": "bm-8",
+        "name": "Hopefield",
+        "center": [
+          18.343996,
+          -33.062766
+        ],
+        "zoom": 15
+      }
+    ]
+  },
+  "search": {
+    "boxSources": [],
+    "boxPrimary": "",
+    "allPlaceholder": "search street or erf number",
+    "sources": [
+      {
+        "id": "src-3d15a373",
+        "layerKey": "PublicViewer_4808",
+        "fields": [
+          "PROP_DESC",
+          "Township"
+        ],
+        "operators": [
+          "eq",
+          "ne",
+          "contains",
+          "startsWith",
+          "endsWith",
+          "gt",
+          "gte",
+          "lt",
+          "lte",
+          "between",
+          "in",
+          "empty",
+          "notEmpty"
+        ],
+        "defaultOperator": "contains",
+        "resultFields": [],
+        "hint": "Search Registered Property",
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      },
+      {
+        "id": "src-9b379de6",
+        "layerKey": "PublicViewer_3385",
+        "fields": [
+          "SP_NAME"
+        ],
+        "operators": [
+          "eq",
+          "ne",
+          "contains",
+          "startsWith",
+          "endsWith",
+          "gt",
+          "gte",
+          "lt",
+          "lte",
+          "between",
+          "in",
+          "empty",
+          "notEmpty"
+        ],
+        "defaultOperator": "contains",
+        "resultFields": [],
+        "hint": "Search Suburbs",
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      }
+    ]
+  },
+  "addData": {
+    "collections": [],
+    "portalSearch": "organization",
+    "url": true,
+    "file": true
+  },
+  "editing": {
+    "template": "classic",
+    "width": "half",
+    "side": "left",
+    "maxRecords": 200,
+    "layers": [],
+    "emphasis": {
+      "flash": false,
+      "flashTimes": 3,
+      "highlight": false,
+      "fillOpacity": 0.6,
+      "lift": false,
+      "liftHeight": 24,
+      "color": "",
+      "zoomScale": 0
+    }
+  },
+  "scene": {
+    "width": "half",
+    "side": "left",
+    "layers": []
+  },
+  "streaming": {
+    "width": "half",
+    "side": "left",
+    "cameras": {
+      "on": false,
+      "groupId": "",
+      "streams": []
+    },
+    "drones": {
+      "on": false,
+      "groupId": "",
+      "demo": false
+    },
+    "tracking": {
+      "on": false,
+      "groupId": "",
+      "feeds": []
+    }
+  },
+  "externalPages": {
+    "width": "half",
+    "side": "left",
+    "pages": [
+      {
+        "id": "page-cfm",
+        "title": "Cape Farm Mapper",
+        "url": "https://gis.elsenburg.com/apps/cfm/#x={lon}&y={lat}&z={zoom}&bm=hybrid",
+        "description": "Western Cape Department of Agriculture: farms, crops, soils and climate",
+        "followMap": true
+      },
+      {
+        "id": "page-csg",
+        "title": "CSG Property Viewer",
+        "url": "https://csggis.dlrrd.gov.za/portal/apps/experiencebuilder/experience/?id=a9a8f908e82c443b9cb7bede69f5985e#widget_81=viewpoint:%7B%22rotation%22%3A0%2C%22scale%22%3A{scale}%2C%22targetGeometry%22%3A%7B%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%2C%22x%22%3A{lon}%2C%22y%22%3A{lat}%7D%7D",
+        "description": "Chief Surveyor-General (DLRRD): cadastral parcels and survey diagrams",
+        "followMap": true
+      },
+      {
+        "id": "pg-17d63cda",
+        "title": "CSG Diagrams",
+        "url": "https://csg.dlrrd.gov.za/esio/searchproperty.jsp",
+        "description": "",
+        "followMap": false
+      }
+    ]
+  },
+  "downloads": {
+    "width": "half",
+    "side": "left",
+    "pages": [
+      {
+        "id": "dl-60e8f15b",
+        "title": "Map Sheets (PDF)",
+        "description": "",
+        "source": {
+          "kind": "manual",
+          "url": "",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [
+            {
+              "name": "SBM",
+              "url": "https://sbm.gov.za/maps/",
+              "type": "PDF"
+            }
+          ],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-8a20948f",
+        "title": "WCG - Geoscience",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=boundaries%2520%2526%2520geoscience",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-5cbb289e",
+        "title": "WCG - Demographics",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=demographics",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-ee46c406",
+        "title": "WCG - Service Delivery",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=service%2520delivery",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-35c1641d",
+        "title": "WCG - Economy Employment",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=economy%2520%2526%2520employment",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-5850ac97",
+        "title": "WCG - Governance Planning",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=governance%2520%2526%2520planning",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      }
+    ]
+  },
+  "trace": {
+    "width": "half",
+    "side": "left",
+    "allowUserTraces": false,
+    "limits": {
+      "maxSteps": 5,
+      "maxIdsPerStep": 5000,
+      "maxFinal": 2000,
+      "batchSize": 200,
+      "concurrency": 3,
+      "timeoutSeconds": 60
+    },
+    "emphasis": {
+      "flash": true,
+      "flashTimes": 3,
+      "highlight": true,
+      "fillOpacity": 0.6,
+      "lift": true,
+      "liftHeight": 24,
+      "color": "",
+      "zoomScale": 0
+    },
+    "traces": []
+  },
+  "dashboards": [
+    {
+      "id": "dash-04a4ae50",
+      "title": "Property Overview",
+      "description": "Made automatically from Registered Property. Change anything, or rearrange it in the Draft preview.",
+      "widgets": [
+        {
+          "id": "dw-cecc89c3",
+          "type": "indicator",
+          "title": "Total Registered Property",
+          "layerKey": "PublicViewer_4808",
+          "categoryField": "",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 10,
+          "cols": 4,
+          "rows": 4,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "single",
+          "opacity": 0.85,
+          "outlineColor": "",
+          "outlineWidth": 0,
+          "showValues": false,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": "Features in the layer"
+        },
+        {
+          "id": "dw-8454a39e",
+          "type": "hbar",
+          "title": "Group by Type",
+          "layerKey": "PublicViewer_4808",
+          "categoryField": "Property_Type",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 20,
+          "cols": 4,
+          "rows": 4,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "palette",
+          "opacity": 0.85,
+          "outlineColor": "#FFFFFF",
+          "outlineWidth": 2,
+          "showValues": true,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": ""
+        },
+        {
+          "id": "dw-5be45d2a",
+          "type": "hbar",
+          "title": "Group by Ownership",
+          "layerKey": "PublicViewer_4808",
+          "categoryField": "OwnershipCategory",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 20,
+          "cols": 4,
+          "rows": 4,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "palette",
+          "opacity": 0.85,
+          "outlineColor": "#FFFFFF",
+          "outlineWidth": 2,
+          "showValues": true,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": ""
+        },
+        {
+          "id": "dw-89d4136c",
+          "type": "bar",
+          "title": "Group By Town",
+          "layerKey": "PublicViewer_4808",
+          "categoryField": "Township",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 20,
+          "cols": 12,
+          "rows": 5,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "single",
+          "opacity": 0.85,
+          "outlineColor": "",
+          "outlineWidth": 0,
+          "showValues": true,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": "dash-1d6cee55",
+      "title": "Zonings Overview",
+      "description": "Made automatically from Zonings. Change anything, or rearrange it in the Draft preview.",
+      "widgets": [
+        {
+          "id": "dw-33b6818f",
+          "type": "bar",
+          "title": "",
+          "layerKey": "19ecb4e2c4e-layer-16",
+          "categoryField": "Current_Zoning",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 10,
+          "cols": 12,
+          "rows": 8,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "single",
+          "opacity": 0.49,
+          "outlineColor": "",
+          "outlineWidth": 0,
+          "showValues": true,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": ""
+        }
+      ]
+    }
+  ],
+  "details": {
+    "PublicViewer_3904": {
+      "exclude": true
+    },
+    "PublicViewer_4808": {
+      "sections": [
+        {
+          "id": "sec-83852820",
+          "title": "Zoning Scheme",
+          "type": "related-layer",
+          "render": "fields",
+          "layerKey": "19ecb4e2c4e-layer-16",
+          "matchMode": "fields",
+          "match": [
+            {
+              "tableField": "SG21CDE",
+              "layerField": "SG21CDE"
+            }
+          ],
+          "where": "",
+          "fields": [
+            {
+              "name": "Previous_Zoning_Scheme",
+              "label": "Previous Zoning Scheme"
+            },
+            {
+              "name": "Current_Zoning",
+              "label": "Current Zoning"
+            },
+            {
+              "name": "Previous_Zoning",
+              "label": "Previous Zoning"
+            },
+            {
+              "name": "TP_Status",
+              "label": "TP Status"
+            }
+          ],
+          "orderBy": "",
+          "max": 50,
+          "expand": true,
+          "hideEmpty": false
+        },
+        {
+          "id": "sec-84c8874d",
+          "title": "Sectional Schemes",
+          "type": "related-layer",
+          "render": "table",
+          "matchMode": "fields",
+          "match": [
+            {
+              "tableField": "SG21CDE",
+              "layerField": "SG21CDE"
+            }
+          ],
+          "where": "",
+          "fields": [
+            {
+              "name": "SECTIONAL_SCHEME_NAME",
+              "label": "Scheme Name"
+            },
+            {
+              "name": "SECTIONAL_SCHEME_NUMBER",
+              "label": "Scheme Number"
+            },
+            {
+              "name": "SSUnit",
+              "label": "Scheme Unit"
+            }
+          ],
+          "orderBy": "",
+          "max": 50,
+          "layerKey": "PublicViewer_3904",
+          "group": "",
+          "expand": false,
+          "hideEmpty": true
+        }
+      ],
+      "ignoreScale": true,
+      "expand": true,
+      "title": "{SG21CDE}",
+      "hideFields": [
+        "OBJECTID",
+        "MAJCDE",
+        "MINORCDE",
+        "SG21CDE",
+        "FARMNO",
+        "PTNNUM",
+        "ERFNO",
+        "OPERATOR",
+        "UPDATE_",
+        "SECTIONALTITLE",
+        "COMMENTS",
+        "Property_Type",
+        "Property_Size",
+        "Township",
+        "Data_Source",
+        "Orig_Erf",
+        "OwnershipCategory",
+        "Shape__Area",
+        "Shape__Length"
+      ],
+      "fieldLabels": {
+        "PROP_DESC": "Parcel",
+        "Buyer_Name": "Buyer Names"
+      }
+    },
+    "19ecb4e2c4e-layer-16": {
+      "exclude": true
+    },
+    "MDB_Draft_Wards2026_711": {
+      "sections": [
+        {
+          "id": "sec-0e106fbb",
+          "title": "Spatial relationship",
+          "type": "spatial",
+          "render": "table",
+          "relation": "contains",
+          "distance": 100,
+          "targets": [
+            {
+              "layerKey": "PublicViewer_4808",
+              "fields": [
+                {
+                  "name": "PROP_DESC",
+                  "label": "Property Description"
+                },
+                {
+                  "name": "SG21CDE",
+                  "label": "SG21CDE"
+                }
+              ]
+            }
+          ],
+          "max": 1000,
+          "windowSize": "half",
+          "windowSide": "left",
+          "emphasis": {
+            "flash": true,
+            "flashTimes": 3,
+            "highlight": true,
+            "fillOpacity": 0.6,
+            "lift": true,
+            "liftHeight": 24,
+            "color": "",
+            "zoomScale": 0
+          }
+        }
+      ],
+      "ignoreScale": true,
+      "hideFields": [
+        "FID",
+        "OBJECTID",
+        "Shape_Leng",
+        "Shape__Area",
+        "Shape__Length"
+      ]
+    }
+  },
+  "layerInfo": {
+    "layers": {},
+    "showAddress": true
+  },
+  "legendLabels": {
+    "layers": {
+      "19ecb4e2c4e-layer-16": {
+        "mode": "auto",
+        "part": "all",
+        "refreshSeconds": 0
+      }
+    }
+  },
+  "layerStyles": {
+    "layers": {}
+  },
+  "disclaimer": {
+    "enabled": true,
+    "title": "Welcome",
+    "text": "The following web application provides spatial information pertaining to all of the cadastral, site address, community and services information in the Saldanha Bay Municipal area. Whilst every effort is made to ensure the accuracy of information, the GIS Department and Saldanha Bay Municipality make no warranties as to the correctness of the information supplied. This viewer represents the Integrated Zoning Bylaw as approved by Council on the 26 October 2021.\n\nPlease note that all Zonings are Subject to Confirmation.\nThe information provided on the website is provided by the respective custodian departments, are of general nature only and does not constitute professional\nadvice. Persons relying on this information do so entirely at their own risk. Saldanha Bay Municipality will not be liable for any claims whatsoever, whether for\ndamages or otherwise, directly or indirectly, attributable to the use of and/or reliance on information or links provided on this website.Access and use of this website constitutes acceptance of these terms and conditions of use and is furthermore subject to the Saldanha Bay Municipality\n\nDisclaimer Notice/s.\n\n> **Not for emergencies.** In an emergency, phone the emergency services. Do not use this viewer for emergency response or navigation.\n\n## At a glance\n| What you see | How to treat it | The official source |\n|---|---|---|\n| Property boundaries, erf or parcel numbers | Approximate | The approved survey diagrams and the title deeds |\n| Zoning and land use | A guide | The approved zoning scheme and its register |\n| Property values | For reference | The official valuation roll |\n| Pipes, cables and other services | Indicative only | The service provider, confirmed on site |\n| Distances, areas and coordinates | Estimates | A professional land surveyor |\n\n**By continuing you confirm that you have read, understood and accept these terms.**",
+    "acceptLabel": "Continue",
+    "textSize": "small",
+    "transition": "top",
+    "speed": "medium",
+    "remember": "never",
+    "rememberDays": 30
+  }
+}

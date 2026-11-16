@@ -1,0 +1,1243 @@
+{
+  "schema": "overstrand.map-manifest/3",
+  "id": "viewer-e40291f9",
+  "title": "Citymaps GIS Viewer",
+  "description": "",
+  "version": 60,
+  "publishedAt": "2026-11-16T11:18:53.018Z",
+  "publishedBy": "preview",
+  "webmap": {
+    "portalUrl": "https://stellenbosch.maps.arcgis.com",
+    "itemId": "9362b51841304a8d90db3b21b49c51a5",
+    "title": "Public Viewer Map",
+    "mode": "live",
+    "secured": false,
+    "modified": null,
+    "snapshot": null,
+    "extraServices": [],
+    "layerOrder": [
+      "bca86a563a5e417abdd76efe2985b239",
+      "b97fe3fccd87449a9fb22f86c8902b17",
+      "d24715edc8e2485cbec2cc2de8a9de84",
+      "fe770bcc3185428fafe5b896b5b003cb",
+      "ba5d6541641846b39e346f1b6363137d",
+      "19c1d7f54be-layer-42"
+    ],
+    "layerVisibility": {
+      "19c1d7f54be-layer-42": false,
+      "fe770bcc3185428fafe5b896b5b003cb": true
+    },
+    "layersLeftOut": []
+  },
+  "branding": {
+    "subtitle": "An Orchestrator for ArcGIS demo",
+    "headerBg": "#002157",
+    "headerText": "#F1F7F8",
+    "accent": "#234189",
+    "selectionOnImagery": "#EDFD12",
+    "selectionLine": "dash",
+    "logo": "https://stellenbosch.gov.za/wp-content/themes/stellenbosch/assets/img/logo-horizontal-white.svg"
+  },
+  "layout": {
+    "template": "rail",
+    "panelSide": "right",
+    "fieldsAs": "rows",
+    "resultsAt": "panel"
+  },
+  "widgets": {
+    "layers": true,
+    "legend": true,
+    "details": true,
+    "bookmarks": true,
+    "search": true,
+    "addData": true,
+    "dashboards": true,
+    "editing": false,
+    "scene": false,
+    "streaming": false,
+    "externalPages": true,
+    "downloads": true,
+    "layerInfo": false,
+    "trace": false,
+    "tools": [
+      "measure-distance",
+      "measure-area",
+      "select",
+      "sketch",
+      "elevation",
+      "dimensions",
+      "vegetation",
+      "go-to-xy",
+      "address-audit",
+      "basemap-gallery",
+      "share-link",
+      "screenshot",
+      "coordinates",
+      "export-results"
+    ],
+    "toolConfig": {
+      "measure-distance": {
+        "unit": "metric"
+      },
+      "measure-area": {
+        "unit": "metric"
+      },
+      "select": {
+        "layers": [],
+        "shapes": [
+          "rectangle",
+          "polygon"
+        ],
+        "emphasis": {
+          "flash": false,
+          "flashTimes": 3,
+          "highlight": false,
+          "fillOpacity": 0.6,
+          "lift": false,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      },
+      "sketch": {
+        "shapes": [
+          "point",
+          "polyline",
+          "polygon",
+          "rectangle",
+          "circle"
+        ],
+        "color": "#2B6F7F"
+      },
+      "elevation": {
+        "unit": "metric"
+      },
+      "swipe": {
+        "direction": "horizontal",
+        "leading": [],
+        "trailing": []
+      },
+      "label-orientation": {
+        "streetLayer": "",
+        "streetLabelField": "",
+        "pointLayer": "",
+        "labelField": "",
+        "angleField": "",
+        "saveGroupId": "",
+        "mode": "PARALLEL",
+        "autoFlip": true
+      },
+      "dimensions": {
+        "unit": "meters",
+        "areaUnit": "auto",
+        "decimals": 2,
+        "showArea": true,
+        "showBearings": false,
+        "bearingFormat": "dms",
+        "lineLength": "segments",
+        "lengthColor": "#000000",
+        "areaColor": "#000000",
+        "bearingColor": "#000000"
+      },
+      "vegetation": {
+        "source": "sentinel2",
+        "serviceUrl": "",
+        "bands": {
+          "blue": null,
+          "green": null,
+          "red": null,
+          "nir": null,
+          "swir1": null,
+          "swir2": null
+        },
+        "scale": 1,
+        "dateField": "",
+        "cloudField": "",
+        "indices": [
+          "ndvi",
+          "savi",
+          "ndmi",
+          "evi",
+          "nbr"
+        ],
+        "defaultIndex": "ndvi",
+        "breaks": {},
+        "maxCloud": 20,
+        "opacity": 0.7,
+        "emphasis": {
+          "flash": false,
+          "flashTimes": 3,
+          "highlight": false,
+          "fillOpacity": 0.6,
+          "lift": false,
+          "liftHeight": 24,
+          "color": "#10B981",
+          "zoomScale": 0
+        }
+      },
+      "go-to-xy": {
+        "zoom": 17,
+        "emphasis": {
+          "flash": false,
+          "flashTimes": 3,
+          "highlight": false,
+          "fillOpacity": 0.6,
+          "lift": false,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      },
+      "basemap-gallery": {
+        "basemaps": [
+          "topo-vector",
+          "streets-vector",
+          "gray-vector",
+          "dark-gray-vector",
+          "satellite",
+          "hybrid",
+          "osm"
+        ]
+      },
+      "print": {
+        "serviceUrl": "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task",
+        "title": "",
+        "layout": "a4-landscape",
+        "format": "pdf"
+      },
+      "share-link": {},
+      "screenshot": {
+        "format": "png"
+      },
+      "coordinates": {
+        "format": "dd"
+      },
+      "export-results": {},
+      "address-audit": {
+        "layer": "b97fe3fccd87449a9fb22f86c8902b17",
+        "fields": {
+          "number": {
+            "field": "streetno",
+            "part": 0
+          },
+          "unit": {
+            "field": "bldngname",
+            "part": 0
+          },
+          "street": {
+            "field": "streetname",
+            "part": 0
+          },
+          "streetType": {
+            "field": "",
+            "part": 0
+          },
+          "suburb": {
+            "field": "suburbname",
+            "part": 0
+          },
+          "locality": {
+            "field": "cityname",
+            "part": 0
+          },
+          "postal": {
+            "field": "",
+            "part": 0
+          }
+        },
+        "skipValues": [
+          "UNKNOWN"
+        ],
+        "providers": [
+          "osm"
+        ],
+        "maxDistance": 25,
+        "locality": "",
+        "admin": "",
+        "postal": "",
+        "country": "ZA",
+        "windowSize": "bottom",
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      }
+    },
+    "open": "layers",
+    "order": [],
+    "toolOrder": [],
+    "layerReorder": false,
+    "restLinks": [],
+    "cursors": {
+      "draw": "cross",
+      "pick": "target",
+      "select": "arrow",
+      "colour": "dark",
+      "size": "normal",
+      "overrides": {}
+    },
+    "detailsEmphasis": {
+      "flash": false,
+      "flashTimes": 3,
+      "highlight": false,
+      "fillOpacity": 0.6,
+      "lift": false,
+      "liftHeight": 24,
+      "color": "",
+      "zoomScale": 0
+    }
+  },
+  "bookmarks": {
+    "includeWebMap": true,
+    "extra": [
+      {
+        "id": "bm-1",
+        "name": "Stellenbosch",
+        "center": [
+          18.863061,
+          -33.938162
+        ],
+        "zoom": 14
+      },
+      {
+        "id": "bm-2",
+        "name": "Franschhoek",
+        "center": [
+          19.123404,
+          -33.910208
+        ],
+        "zoom": 15
+      },
+      {
+        "id": "bm-3",
+        "name": "Wemmershoek",
+        "center": [
+          19.042309,
+          -33.873552
+        ],
+        "zoom": 17
+      }
+    ]
+  },
+  "search": {
+    "boxSources": [
+      {
+        "id": "box-1a776338",
+        "type": "layer",
+        "layerKey": "cecc1f63221b4091b2c72d5c2e989247",
+        "name": "Registered Property",
+        "searchFields": [
+          "Property_D"
+        ],
+        "displayField": "Property_D",
+        "exactMatch": false,
+        "placeholder": "",
+        "maxSuggestions": 6,
+        "resultFields": [
+          {
+            "name": "Property_D",
+            "label": "Property Description"
+          },
+          {
+            "name": "Allotment",
+            "label": "Allotment"
+          }
+        ],
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      },
+      {
+        "id": "box-08cd394a",
+        "type": "layer",
+        "layerKey": "53cc4b5825f642a987815b1757cf85d5",
+        "name": "Surveyed Cadastre",
+        "searchFields": [
+          "LAYER"
+        ],
+        "displayField": "SG21CDE",
+        "exactMatch": false,
+        "placeholder": "",
+        "maxSuggestions": 6,
+        "resultFields": [
+          {
+            "name": "SG21CDE",
+            "label": "SG21 Code"
+          },
+          {
+            "name": "ALLOTMENT",
+            "label": "Allotment"
+          }
+        ],
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      },
+      {
+        "id": "box-ffe4305b",
+        "type": "layer",
+        "layerKey": "5a4429a0f8b44770b6855b8dc551f195",
+        "name": "Sectional Schemes",
+        "searchFields": [
+          "SECTIONAL_SCHEME_NAME"
+        ],
+        "displayField": "SECTIONAL_SCHEME_NAME",
+        "exactMatch": false,
+        "placeholder": "",
+        "maxSuggestions": 6,
+        "resultFields": [
+          {
+            "name": "SECTIONAL_SCHEME_NAME",
+            "label": "Sectional Scheme Name"
+          }
+        ],
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      },
+      {
+        "id": "box-f536947e",
+        "type": "locator",
+        "name": "RSA Locator",
+        "url": "https://utility.arcgis.com/usrsvcs/servers/be11ae9caba5445dacebbdbd55ad711a/rest/services/World/GeocodeServer",
+        "placeholder": "",
+        "countryCode": "",
+        "maxSuggestions": 6,
+        "resultFields": [],
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      }
+    ],
+    "boxPrimary": "",
+    "allPlaceholder": "",
+    "sources": [
+      {
+        "id": "src-c5774077",
+        "layerKey": "cecc1f63221b4091b2c72d5c2e989247",
+        "fields": [
+          "Property_D",
+          "Allotment"
+        ],
+        "operators": [
+          "eq",
+          "ne",
+          "contains",
+          "startsWith",
+          "endsWith",
+          "gt",
+          "gte",
+          "lt",
+          "lte",
+          "between",
+          "in",
+          "empty",
+          "notEmpty"
+        ],
+        "defaultOperator": "eq",
+        "resultFields": [],
+        "hint": "Please type Erf or Farm nr.",
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      },
+      {
+        "id": "src-4ccb09ec",
+        "layerKey": "53cc4b5825f642a987815b1757cf85d5",
+        "fields": [
+          "PROP_DESC",
+          "ALLOTMENT"
+        ],
+        "operators": [
+          "eq",
+          "ne",
+          "contains",
+          "startsWith",
+          "endsWith",
+          "gt",
+          "gte",
+          "lt",
+          "lte",
+          "between",
+          "in",
+          "empty",
+          "notEmpty"
+        ],
+        "defaultOperator": "eq",
+        "resultFields": [],
+        "hint": "Surveyed Property",
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      },
+      {
+        "id": "src-7b80a827",
+        "layerKey": "b97fe3fccd87449a9fb22f86c8902b17",
+        "fields": [
+          "streetno",
+          "streetname",
+          "suburbname"
+        ],
+        "operators": [
+          "eq",
+          "ne",
+          "contains",
+          "startsWith",
+          "endsWith",
+          "gt",
+          "gte",
+          "lt",
+          "lte",
+          "between",
+          "in",
+          "empty",
+          "notEmpty"
+        ],
+        "defaultOperator": "eq",
+        "resultFields": [],
+        "hint": "Street Address",
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      },
+      {
+        "id": "src-0f4895bf",
+        "layerKey": "5a4429a0f8b44770b6855b8dc551f195",
+        "fields": [
+          "SECTIONAL_SCHEME_NAME"
+        ],
+        "operators": [
+          "eq",
+          "ne",
+          "contains",
+          "startsWith",
+          "endsWith",
+          "gt",
+          "gte",
+          "lt",
+          "lte",
+          "between",
+          "in",
+          "empty",
+          "notEmpty"
+        ],
+        "defaultOperator": "eq",
+        "resultFields": [],
+        "hint": "Sectional Schemes",
+        "emphasis": {
+          "flash": true,
+          "flashTimes": 3,
+          "highlight": true,
+          "fillOpacity": 0.6,
+          "lift": true,
+          "liftHeight": 24,
+          "color": "",
+          "zoomScale": 0
+        }
+      }
+    ]
+  },
+  "addData": {
+    "collections": [],
+    "portalSearch": "organization",
+    "url": true,
+    "file": true
+  },
+  "editing": {
+    "template": "classic",
+    "width": "half",
+    "side": "left",
+    "maxRecords": 200,
+    "layers": [],
+    "emphasis": {
+      "flash": false,
+      "flashTimes": 3,
+      "highlight": false,
+      "fillOpacity": 0.6,
+      "lift": false,
+      "liftHeight": 24,
+      "color": "",
+      "zoomScale": 0
+    }
+  },
+  "scene": {
+    "width": "half",
+    "side": "left",
+    "layers": []
+  },
+  "streaming": {
+    "width": "half",
+    "side": "left",
+    "cameras": {
+      "on": false,
+      "groupId": "",
+      "streams": []
+    },
+    "drones": {
+      "on": false,
+      "groupId": "",
+      "demo": false
+    },
+    "tracking": {
+      "on": false,
+      "groupId": "",
+      "feeds": []
+    }
+  },
+  "externalPages": {
+    "width": "half",
+    "side": "left",
+    "pages": [
+      {
+        "id": "page-cfm",
+        "title": "Cape Farm Mapper",
+        "url": "https://gis.elsenburg.com/apps/cfm/#x={lon}&y={lat}&z={zoom}&bm=hybrid",
+        "description": "Western Cape Department of Agriculture: farms, crops, soils and climate",
+        "followMap": true
+      },
+      {
+        "id": "page-csg",
+        "title": "CSG Property Viewer",
+        "url": "https://csggis.dlrrd.gov.za/portal/apps/experiencebuilder/experience/?id=a9a8f908e82c443b9cb7bede69f5985e#widget_81=viewpoint:%7B%22rotation%22%3A0%2C%22scale%22%3A{scale}%2C%22targetGeometry%22%3A%7B%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%2C%22x%22%3A{lon}%2C%22y%22%3A{lat}%7D%7D",
+        "description": "Chief Surveyor-General (DLRRD): cadastral parcels and survey diagrams",
+        "followMap": true
+      },
+      {
+        "id": "pg-7c10b349",
+        "title": "CSG Diagrams",
+        "url": "https://csg.dlrrd.gov.za/esio/searchproperty.jsp",
+        "description": "",
+        "followMap": false
+      }
+    ]
+  },
+  "downloads": {
+    "width": "half",
+    "side": "left",
+    "pages": [
+      {
+        "id": "dl-3dd608e0",
+        "title": "WCG - Geoscience",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=boundaries%2520%2526%2520geoscience",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-7999dd2e",
+        "title": "WCG - Demographics",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=demographics",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-5735f501",
+        "title": "WCG - Service Delivery",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=service%2520delivery",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-38b23315",
+        "title": "WCG - Economy Employment",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=economy%2520%2526%2520employment",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      },
+      {
+        "id": "dl-04fb63c4",
+        "title": "WCG - Governance Planning",
+        "description": "",
+        "source": {
+          "kind": "hubSite",
+          "url": "https://wcg-opendataportal-westerncapegov.hub.arcgis.com/search?tags=governance%2520%2526%2520planning",
+          "where": "1=1",
+          "listPath": "",
+          "fields": {
+            "name": "",
+            "link": "",
+            "count": "",
+            "type": "",
+            "date": ""
+          },
+          "items": [],
+          "countLabel": ""
+        }
+      }
+    ]
+  },
+  "trace": {
+    "width": "half",
+    "side": "left",
+    "allowUserTraces": false,
+    "limits": {
+      "maxSteps": 5,
+      "maxIdsPerStep": 5000,
+      "maxFinal": 2000,
+      "batchSize": 200,
+      "concurrency": 3,
+      "timeoutSeconds": 60
+    },
+    "emphasis": {
+      "flash": true,
+      "flashTimes": 3,
+      "highlight": true,
+      "fillOpacity": 0.6,
+      "lift": true,
+      "liftHeight": 24,
+      "color": "",
+      "zoomScale": 0
+    },
+    "traces": []
+  },
+  "dashboards": [
+    {
+      "id": "dash-7594b6e4",
+      "title": "Property Overview",
+      "description": "Made automatically from Registered Property. Change anything, or rearrange it in the Draft preview.",
+      "widgets": [
+        {
+          "id": "dw-f8fbf8a0",
+          "type": "indicator",
+          "title": "Total Registered Property",
+          "layerKey": "cecc1f63221b4091b2c72d5c2e989247",
+          "categoryField": "",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 10,
+          "cols": 4,
+          "rows": 4,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "single",
+          "opacity": 0.85,
+          "outlineColor": "",
+          "outlineWidth": 0,
+          "showValues": false,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": "Features in the layer"
+        },
+        {
+          "id": "dw-544d4027",
+          "type": "hbar",
+          "title": "Group by Type",
+          "layerKey": "cecc1f63221b4091b2c72d5c2e989247",
+          "categoryField": "Property_Type",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 6,
+          "cols": 4,
+          "rows": 4,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "palette",
+          "opacity": 0.85,
+          "outlineColor": "#FFFFFF",
+          "outlineWidth": 2,
+          "showValues": true,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": ""
+        },
+        {
+          "id": "dw-6fad0b72",
+          "type": "hbar",
+          "title": "Group by layer",
+          "layerKey": "cecc1f63221b4091b2c72d5c2e989247",
+          "categoryField": "Layer",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 6,
+          "cols": 4,
+          "rows": 4,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "palette",
+          "opacity": 0.85,
+          "outlineColor": "#FFFFFF",
+          "outlineWidth": 2,
+          "showValues": true,
+          "legend": "auto",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": ""
+        },
+        {
+          "id": "dw-605392e8",
+          "type": "bar",
+          "title": "Group by Ward",
+          "layerKey": "cecc1f63221b4091b2c72d5c2e989247",
+          "categoryField": "WardNo",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 10,
+          "cols": 12,
+          "rows": 5,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "single",
+          "opacity": 0.49,
+          "outlineColor": "",
+          "outlineWidth": 0,
+          "showValues": true,
+          "legend": "top",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": ""
+        }
+      ]
+    },
+    {
+      "id": "dash-3921d741",
+      "title": "Zoning Overview",
+      "description": "Made automatically from Zoning. Change anything, or rearrange it in the Draft preview.",
+      "widgets": [
+        {
+          "id": "dw-99b806e6",
+          "type": "bar",
+          "title": "",
+          "layerKey": "86b0c4da0a1b4c21ae0abafa3d6194eb",
+          "categoryField": "Zone_Code",
+          "valueField": "",
+          "statistic": "count",
+          "where": "",
+          "sort": "value-desc",
+          "topN": 25,
+          "cols": 12,
+          "rows": 9,
+          "prefix": "",
+          "suffix": "",
+          "decimals": 0,
+          "columns": [],
+          "orderField": "",
+          "orderDirection": "desc",
+          "color": "",
+          "colorMode": "palette",
+          "opacity": 0.49,
+          "outlineColor": "",
+          "outlineWidth": 0,
+          "showValues": true,
+          "legend": "top",
+          "xTitle": "",
+          "yTitle": "",
+          "showGrid": true,
+          "labelMaxLength": 24,
+          "smooth": true,
+          "fillArea": true,
+          "pointSize": 3,
+          "cutout": 55,
+          "caption": ""
+        }
+      ]
+    }
+  ],
+  "details": {
+    "cecc1f63221b4091b2c72d5c2e989247": {
+      "sections": [
+        {
+          "id": "sec-969b3a48",
+          "title": "Zoning Scheme",
+          "type": "related-layer",
+          "render": "fields",
+          "matchMode": "fields",
+          "match": [
+            {
+              "tableField": "SG21CDE",
+              "layerField": "SG21_Code"
+            }
+          ],
+          "where": "",
+          "fields": [
+            {
+              "name": "Former_Zoning",
+              "label": "Former Zoning"
+            },
+            {
+              "name": "Base_Zone",
+              "label": "Base Zone"
+            },
+            {
+              "name": "Zone_Code",
+              "label": "Zone Code"
+            },
+            {
+              "name": "Overlay_Zone1",
+              "label": "Overlay Zone"
+            }
+          ],
+          "orderBy": "",
+          "max": 50,
+          "layerKey": "86b0c4da0a1b4c21ae0abafa3d6194eb",
+          "group": "",
+          "expand": true,
+          "hideEmpty": true
+        },
+        {
+          "id": "sec-4b4a6520",
+          "title": "Sectional Schemes",
+          "type": "related-layer",
+          "render": "table",
+          "matchMode": "fields",
+          "match": [
+            {
+              "tableField": "SG21CDE",
+              "layerField": "SG21_Code"
+            }
+          ],
+          "where": "",
+          "fields": [
+            {
+              "name": "SECTIONAL_SCHEME_NAME",
+              "label": "Sectional Scheme Name"
+            },
+            {
+              "name": "SECTIONAL_SCHEME_NUMBER",
+              "label": "Sectional Scheme Number"
+            }
+          ],
+          "orderBy": "",
+          "max": 50,
+          "layerKey": "5a4429a0f8b44770b6855b8dc551f195",
+          "group": "",
+          "expand": false,
+          "hideEmpty": true
+        }
+      ],
+      "expand": true,
+      "ignoreScale": true,
+      "title": "{SG21_Code}",
+      "hideFields": [
+        "OBJECTID",
+        "Layer",
+        "SG21_Code",
+        "Major_Code",
+        "Minor_Code",
+        "Farm_Number",
+        "Portion",
+        "Erf_Number",
+        "Shape__Area",
+        "Shape__Length"
+      ],
+      "fieldLabels": {
+        "Property_D": "Property"
+      },
+      "fieldOrder": [
+        "OBJECTID",
+        "Layer",
+        "SG21_Code",
+        "Property_Type",
+        "Allotment",
+        "Major_Code",
+        "Minor_Code",
+        "Farm_Number",
+        "Portion",
+        "Erf_Number",
+        "Property_D",
+        "WardNo",
+        "Shape__Area",
+        "Shape__Length"
+      ]
+    },
+    "1a1bf411bf6-layer-43": {
+      "sections": [
+        {
+          "id": "sec-bc065bd3",
+          "title": "Show Parcels in Ward",
+          "type": "spatial",
+          "render": "table",
+          "relation": "contains",
+          "distance": 100,
+          "targets": [
+            {
+              "layerKey": "cecc1f63221b4091b2c72d5c2e989247",
+              "fields": [
+                {
+                  "name": "SG21_Code",
+                  "label": "SG21 Code"
+                },
+                {
+                  "name": "Allotment",
+                  "label": "Allotment"
+                },
+                {
+                  "name": "Property_D",
+                  "label": "Property Description"
+                },
+                {
+                  "name": "Portion",
+                  "label": "Portion"
+                }
+              ]
+            }
+          ],
+          "max": 1000,
+          "windowSize": "half",
+          "windowSide": "left",
+          "emphasis": {
+            "flash": true,
+            "flashTimes": 3,
+            "highlight": true,
+            "fillOpacity": 0.6,
+            "lift": true,
+            "liftHeight": 24,
+            "color": "",
+            "zoomScale": 0
+          }
+        }
+      ],
+      "hideFields": [
+        "FID",
+        "FID_1",
+        "Province",
+        "Municipali",
+        "WardID",
+        "WardLink",
+        "Shape__Are",
+        "Shape__Len",
+        "Shape__Area",
+        "Shape__Length"
+      ],
+      "title": "WardID {WardID}",
+      "fieldLabels": {
+        "MUNICNAME": "Municipality",
+        "DISTRICT": "District",
+        "DISTRICTCO": "District Code",
+        "CAT_B": "Category",
+        "WardNo": "Ward No",
+        "DATE": "Date"
+      },
+      "fieldOrder": [
+        "FID",
+        "FID_1",
+        "Province",
+        "Municipali",
+        "WardNo",
+        "CAT_B",
+        "WardLink",
+        "WardID",
+        "MUNICNAME",
+        "DISTRICT",
+        "DISTRICTCO",
+        "DATE",
+        "Shape__Are",
+        "Shape__Len",
+        "Shape__Area",
+        "Shape__Length"
+      ]
+    },
+    "5a4429a0f8b44770b6855b8dc551f195": {
+      "exclude": true
+    },
+    "86b0c4da0a1b4c21ae0abafa3d6194eb": {
+      "exclude": true
+    }
+  },
+  "layerInfo": {
+    "layers": {},
+    "showAddress": true
+  },
+  "legendLabels": {
+    "layers": {
+      "86b0c4da0a1b4c21ae0abafa3d6194eb": {
+        "mode": "auto",
+        "part": "all",
+        "refreshSeconds": 3600
+      }
+    }
+  },
+  "layerStyles": {
+    "layers": {
+      "cecc1f63221b4091b2c72d5c2e989247": {
+        "start": "outline-only",
+        "styles": [
+          {
+            "id": "outline-only",
+            "name": "Default",
+            "description": "",
+            "enabled": true,
+            "type": "simple",
+            "outline": {
+              "color": "#dad7d7",
+              "width": 1
+            },
+            "opacity": 0.7,
+            "outlines": "own",
+            "fill": null
+          }
+        ]
+      }
+    }
+  },
+  "disclaimer": {
+    "enabled": true,
+    "title": "WELCOME TO THE STELLENBOSCH MAPPING PUBLIC GIS VIEWER",
+    "text": "This map viewer is published for **general information only**. Please read these terms before you use it. In these terms, \"we\" and \"us\" mean the organisation that publishes this viewer.\n\n> **Not for emergencies.** In an emergency, phone the emergency services. Do not use this viewer for emergency response or navigation.\n\n## At a glance\n| What you see | How to treat it | The official source |\n|---|---|---|\n| Property boundaries, erf or parcel numbers | Approximate | The approved survey diagrams and the title deeds |\n| Zoning and land use | A guide | The approved zoning scheme and its register |\n| Property values | For reference | The official valuation roll |\n| Pipes, cables and other services | Indicative only | The service provider, confirmed on site |\n| Distances, areas and coordinates | Estimates | A professional land surveyor |\n\n## 1. Information only\nThe maps, data and results shown here are a guide. They are not:\n- an official record or a legal document\n- a certificate or a plan approval\n- a replacement for advice from a qualified professional or a written answer from us.\n\n## 2. No guarantee of accuracy\nWe take reasonable care to keep the data accurate and current, but it is compiled from many sources, at different dates and scales, and may contain errors, gaps or delays. No guarantee is given that it is accurate, complete, current or fit for any particular purpose.\n\n## 3. Boundaries, positions and measurements\nProperty boundaries, erf or parcel numbers, zoning, servitudes and other lines are approximate and may be shifted against the aerial imagery. They are not a substitute for a land survey, the approved survey diagrams, the title deeds or the approved zoning scheme. Distances, areas and coordinates measured in this viewer are **estimates only**.\n\n## 4. Valuations, zoning and other official information\nWhere property values, zoning or land-use information is shown, the official valuation roll, the zoning scheme register and our formal decisions take precedence over anything in this viewer.\n\n## 5. Services and infrastructure\nThe position of pipes, cables and other services is indicative only. **Never rely on this viewer to locate underground services before you dig or build:**\n- contact us and the relevant service providers\n- confirm positions on site.\n\n## 6. Not for emergencies or navigation\nDo not use this viewer for emergency response, navigation or any decision where an error could put people or property at risk.\n\n## 7. Limitation of liability\nTo the fullest extent allowed by law, we, our officials and our suppliers are not liable for any loss, damage, cost or claim, direct or indirect, that arises from using, or being unable to use, this viewer or its data, or from any decision made on the strength of it. **You use it at your own risk.**\n\n## 8. Third-party content\nBasemaps, imagery and some layers come from third parties (including Esri and its data partners) under their own terms and copyright. We do not control and are not responsible for them. Links to other websites are provided for convenience and do not mean we endorse their content.\n\n## 9. Availability and changes\nThe viewer and its data may change, be withdrawn or be unavailable at any time without notice. Downloads, where offered, are provided as they are, without support.\n\n## 10. Copyright and use of the data\nOur data in this viewer remains our property.\n| You may | You may not, without our written permission |\n|---|---|\n| View it and print it for personal and non-commercial reference | Resell it, or copy it in bulk |\n\n## 11. Personal information\nAny personal information is handled in line with the applicable data protection law, including the Protection of Personal Information Act 4 of 2013 (POPIA). Use personal information you see here only for a lawful purpose. Your acceptance of these terms is kept only in your own browser; it is not sent to us.\n\n## 12. Governing law\nThese terms are governed by the laws of the Republic of South Africa.\n\n> To report an error in the data, or for official information, please contact us.\n\n**By continuing you confirm that you have read, understood and accept these terms.**",
+    "acceptLabel": "OK",
+    "textSize": "small",
+    "transition": "top",
+    "speed": "medium",
+    "remember": "never",
+    "rememberDays": 30
+  }
+}
